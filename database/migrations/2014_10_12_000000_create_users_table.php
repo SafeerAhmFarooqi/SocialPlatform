@@ -15,10 +15,30 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('shopname')->nullable();
+            $table->unsignedBigInteger('shop_sub_category')->nullable();
+            $table->unsignedBigInteger('shop_category')->nullable();
             $table->string('password');
+            $table->string('pdf_password')->nullable();
+            $table->timestamp('dob')->nullable();
+            $table->string('residence')->nullable();
+            $table->string('city')->nullable();
+            $table->unsignedBigInteger('country')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('about')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('profile_pic_path')->nullable();
+            $table->string('pdf_file_path')->nullable();
+            $table->string('options')->nullable();
+            $table->boolean('user_status')->default(1);
+            $table->boolean('shop_status')->default(1);
+            $table->unsignedBigInteger('location')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
