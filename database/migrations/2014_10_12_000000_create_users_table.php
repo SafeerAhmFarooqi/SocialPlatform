@@ -26,7 +26,6 @@ return new class extends Migration
             $table->timestamp('dob')->nullable();
             $table->string('residence')->nullable();
             $table->string('city')->nullable();
-            $table->unsignedBigInteger('country')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('about')->nullable();
@@ -37,7 +36,7 @@ return new class extends Migration
             $table->string('options')->nullable();
             $table->boolean('user_status')->default(1);
             $table->boolean('shop_status')->default(1);
-            $table->unsignedBigInteger('location')->nullable();
+            $table->string('location')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
