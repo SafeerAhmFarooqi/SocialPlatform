@@ -1,0 +1,10 @@
+@extends('layouts.master-layout')
+@section('theme-head')
+    @include('metronic-theme.head')
+@endsection
+@section('theme-content')
+    @yield('body-content')
+@endsection
+@section('theme-script')
+    @include('metronic-theme.script')
+@endsection
