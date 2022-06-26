@@ -422,7 +422,7 @@
                         <div class="menu-item px-5">
                             <a href="#" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="menu-link px-5">Sign Out</a>
                         </div>
-                        <form id="frm-logout" action="#" method="POST" style="display: none;">
+                        <form id="frm-logout" action="{{route('logout')}}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                         <!--end::Menu item-->
