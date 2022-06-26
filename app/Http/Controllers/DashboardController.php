@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Response;
 class DashboardController extends BaseController
 {
 
-   
+   public function dashboard()
+   {
+    return view('dashboards.shop-admin.dashboard');
+   }
 }
 
 
