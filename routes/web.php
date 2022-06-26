@@ -28,4 +28,16 @@ Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
+
+Route::group(['middleware' => ['role:Admin','auth']], function () {
+
+});
+
+Route::group(['middleware' => ['role:Shop','auth']], function () {
+
+});
+
+Route::group(['middleware' => ['role:User','auth']], function () {
+
+});
 require __DIR__.'/auth.php';
