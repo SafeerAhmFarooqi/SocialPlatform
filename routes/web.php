@@ -50,9 +50,13 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/Admin-Shops-list-Deactive', [ShopAdminController::class,'allShopsListDeactive'])->name('admin.all.shops.list.deactive');
     Route::get('/Admin-Shops-Categories', [ShopAdminController::class,'allShopsCategories'])->name('admin.all.shops.categories');
     Route::get('/Admin-Shops-Categories-Edit-Page/{id?}', [ShopAdminController::class,'allShopsCategoriesEditShow'])->name('admin.all.shops.categories.edit.page');
+    Route::get('/Admin-Shops-Sub-Categories-Edit-Page/{id?}', [ShopAdminController::class,'allShopsSubCategoriesEditShow'])->name('admin.all.shops.subcategories.edit.page');
     Route::post('/Admin-Shops-Categories-Edit', [ShopAdminController::class,'allShopsCategoriesEdit'])->name('admin.all.shops.categories.edit');
+    Route::post('/Admin-Shops-Sub-Categories-Edit', [ShopAdminController::class,'allShopsSubCategoriesEdit'])->name('admin.all.shops.subcategories.edit');
     Route::post('/Admin-Shops-Categories-Create', [ShopAdminController::class,'allShopsCategoriesCreate'])->name('admin.all.shops.categories.create');
+    Route::post('/Admin-Shops-Subcategories-Create', [ShopAdminController::class,'allShopsSubCategoriesCreate'])->name('admin.all.shops.subcategories.create');
     Route::post('/Admin-Shops-Categories-Delete', [ShopAdminController::class,'allShopsCategoriesDelete'])->name('admin.all.shops.categories.delete');
+    Route::post('/Admin-Shops-Sub-Categories-Delete', [ShopAdminController::class,'allShopsSubCategoriesDelete'])->name('admin.all.shops.subcategories.delete');
     // Admin Group Management Routes
     Route::get('/Admin-Groups-list', [GroupAdminController::class,'allGroupsList'])->name('admin.all.groups.list');
     Route::get('/Admin-Groups-list-Show-Active', [GroupAdminController::class,'allGroupsListShowActive'])->name('admin.all.groups.list.show.active');
