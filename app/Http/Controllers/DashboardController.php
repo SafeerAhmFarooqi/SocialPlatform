@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Group;
+use App\Models\Voucher;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,6 +26,9 @@ class DashboardController extends BaseController
       $allGroupsCount= Group::count();
       $allActiveGroupsCount= Group::where('group_status',true)->count();
       $allDeactiveGroupsCount= Group::where('group_status',false)->count();
+      $allVouchersCount= Voucher::count();
+      $allActiveVouchersCount= Voucher::where('voucher_status',true)->count();
+      $allDeactiveVouchersCount= Voucher::where('voucher_status',false)->count();
     return view('dashboards.shop-admin.dashboard',[
       'allUsersCount'=>$allUsersCount,
       'allActiveUsersCount'=>$allActiveUsersCount,
@@ -35,6 +39,9 @@ class DashboardController extends BaseController
       'allGroupsCount'=>$allGroupsCount,
       'allActiveGroupsCount'=>$allActiveGroupsCount,
       'allDeactiveGroupsCount'=>$allDeactiveGroupsCount,
+      'allVouchersCount'=>$allVouchersCount,
+      'allActiveVouchersCount'=>$allActiveVouchersCount,
+      'allDeactiveVouchersCount'=>$allDeactiveVouchersCount,
     ]);
    }
 
