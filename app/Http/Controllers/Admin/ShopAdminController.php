@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\ShopCategories;
+use App\Models\ShopSubCategories;
+
 
 class ShopAdminController extends BaseAdminController
 {
@@ -102,7 +104,21 @@ class ShopAdminController extends BaseAdminController
     // return "safeer";
     //return $id;
     $category = ShopCategories::findOrFail($id);
-    return view('dashboards.shop-admin.admin.all-shops-categories-edit-page',['category'=>$category]);
+    return view('dashboards.shop-admin.admin.all-shops-categories-edit-page',[
+      'category'=>$category,
+      'srNo'=>0,
+   ]);
+ }  
+
+ public function allShopsSubCategoriesEditShow($id=null)
+ {
+    // return "safeer";
+    //return $id;
+    $subCategory = ShopSubCategories::findOrFail($id);
+    return view('dashboards.shop-admin.admin.all-shops-sub-categories-edit-page',[
+      'subCategory'=>$subCategory,
+      'srNo'=>0,
+   ]);
  }  
 
  public function allShopsCategoriesEdit(Request $request)
@@ -124,7 +140,55 @@ class ShopAdminController extends BaseAdminController
     }
  }  
 
- 
+ public function allShopsSubCategoriesEdit(Request $request)
+ {
+    // return "safeer";
+    $request->validate([
+      'sub_category' => ['required', 'string', 'max:255'],
+  ]);
+    $subCategory = ShopSubCategories::find($request->sub_category_id);
+    $subCategory->sub_category=$request->sub_category;
+    $subCategory->save();
+    if($subCategory)
+    {
+        return back()->with('success', 'Sub Category Updated Successfully' );
+    }
+    else
+    {
+        return back()->with('success', 'Unable to update Sub Category' );
+    }
+ }  
+
+ public function allShopsSubCategoriesCreate(Request $request)
+ {
+    $request->validate([
+        'sub_category' => ['required', 'string', 'max:255'],
+    ]);
+
+
+
+    $subCategory = ShopSubCategories::create([
+        'sub_category' => $request->sub_category,
+        'shop_category_id' => $request->category_id,
+    ]);
+
+    if($subCategory)
+    {
+        return back()->with('success', 'Sub Category Created Successfully' );
+    }
+    else
+    {
+        return back()->with('success', 'Unable to create New Sub Category' );
+    }
+ }    
+
+ public function allShopsSubCategoriesDelete(Request $request)
+ {
+   ShopSubCategories::find($request->sub_category_id)->delete();
+    // Led::with('images')->where('user_id',$request->user_id)->delete();
+    // Storage::deleteDirectory('public/led-images/'.$request->user_id);
+    return back()->with('success', 'Sub Category Deleted Successfully');
+ }   
    
 }
 

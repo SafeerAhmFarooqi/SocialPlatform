@@ -205,7 +205,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$category->category}}</a>
+                                        <a href="{{route('admin.all.shops.subcategories.edit.page',$category->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$category->sub_category}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -222,12 +222,12 @@
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.all.shops.categories.delete')}}" method="post">
+                                <form action="{{route('admin.all.shops.subcategories.delete')}}" method="post">
                                     @csrf
                                   <button type="submit" class="btn btn-danger" name="category_id" value="{{$category->id}}">Delete</button>
                                   
                                 </form>
-                                <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('admin.all.shops.subcategories.edit.page',$category->id)}}" class="btn btn-primary">Edit</a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}
                                 </div>
                                 
@@ -258,7 +258,7 @@
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Form-->
-            <form class="form" action="#" id="kt_modal_new_address_form" method="POST">
+            <form class="form" action="{{route('admin.all.shops.subcategories.create')}}" id="kt_modal_new_address_form" method="POST">
                 @csrf
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_new_address_header">
@@ -290,7 +290,7 @@
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input class="form-control form-control-solid" placeholder="" name="sub_category" />
-                            @error('category')
+                            @error('sub_category')
                             <div class="alert alert-danger" role="alert">
                                 {{$message}}
                             </div>
@@ -325,4 +325,11 @@
 
 @section('pageScripts')
 <script src="{{asset('assets/Metronic-Theme/js/custom/apps/ecommerce/reports/views/views.js')}}"></script>
+@if (count($errors) > 0)
+<script type="text/javascript">
+    $( document ).ready(function() {
+         $('#kt_modal_new_address').modal('show');
+    });
+</script>
+@endif
 @endsection
