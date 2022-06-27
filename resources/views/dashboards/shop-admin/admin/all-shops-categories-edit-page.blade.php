@@ -193,7 +193,7 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($category->subCategory as $category)
+                        @foreach ($category->subCategory as $subCategory)
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start">
@@ -205,7 +205,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('admin.all.shops.subcategories.edit.page',$category->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$category->sub_category}}</a>
+                                        <a href="{{route('admin.all.shops.subcategories.edit.page',$subCategory->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subCategory->sub_category}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@
                             <!--end::Product=-->
                             <!--begin::SKU=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$category->id}}</span>
+                                <span class="fw-bolder">{{$subCategory->id}}</span>
                             </td>
                             <!--end::SKU=-->
                             <!--begin::Rating-->
@@ -224,10 +224,10 @@
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
                                 <form action="{{route('admin.all.shops.subcategories.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="category_id" value="{{$category->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-danger" name="sub_category_id" value="{{$subCategory->id}}">Delete</button>
                                   
                                 </form>
-                                <a href="{{route('admin.all.shops.subcategories.edit.page',$category->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('admin.all.shops.subcategories.edit.page',$subCategory->id)}}" class="btn btn-primary">Edit</a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}
                                 </div>
                                 

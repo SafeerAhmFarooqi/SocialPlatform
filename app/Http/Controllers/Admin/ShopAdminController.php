@@ -184,7 +184,8 @@ class ShopAdminController extends BaseAdminController
 
  public function allShopsSubCategoriesDelete(Request $request)
  {
-   ShopSubCategories::find($request->sub_category_id)->delete();
+  // return $request->sub_category_id;
+   ShopSubCategories::findOrFail($request->sub_category_id)->delete();
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'Sub Category Deleted Successfully');
