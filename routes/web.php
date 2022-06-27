@@ -48,6 +48,11 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/Admin-Shops-list-Delete', [ShopAdminController::class,'allShopsListDelete'])->name('admin.all.shops.list.delete');
     Route::post('/Admin-Shops-list-Active', [ShopAdminController::class,'allShopsListActive'])->name('admin.all.shops.list.active');
     Route::post('/Admin-Shops-list-Deactive', [ShopAdminController::class,'allShopsListDeactive'])->name('admin.all.shops.list.deactive');
+    Route::get('/Admin-Shops-Categories', [ShopAdminController::class,'allShopsCategories'])->name('admin.all.shops.categories');
+    Route::get('/Admin-Shops-Categories-Edit-Page/{id?}', [ShopAdminController::class,'allShopsCategoriesEditShow'])->name('admin.all.shops.categories.edit.page');
+    Route::post('/Admin-Shops-Categories-Edit', [ShopAdminController::class,'allShopsCategoriesEdit'])->name('admin.all.shops.categories.edit');
+    Route::post('/Admin-Shops-Categories-Create', [ShopAdminController::class,'allShopsCategoriesCreate'])->name('admin.all.shops.categories.create');
+    Route::post('/Admin-Shops-Categories-Delete', [ShopAdminController::class,'allShopsCategoriesDelete'])->name('admin.all.shops.categories.delete');
     // Admin Group Management Routes
     Route::get('/Admin-Groups-list', [GroupAdminController::class,'allGroupsList'])->name('admin.all.groups.list');
     Route::get('/Admin-Groups-list-Show-Active', [GroupAdminController::class,'allGroupsListShowActive'])->name('admin.all.groups.list.show.active');
