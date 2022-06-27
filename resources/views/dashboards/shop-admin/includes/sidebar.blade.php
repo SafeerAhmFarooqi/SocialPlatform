@@ -141,6 +141,15 @@
                                 <span class="menu-title">De Active Shops</span>
                             </a>
                         </div>
+
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('admin.all.shops.categories')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Categories</span>
+                            </a>
+                        </div>
                         
                     </div>
                 </div>
