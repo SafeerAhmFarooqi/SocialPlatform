@@ -26,7 +26,8 @@ return new class extends Migration
             $table->timestamp('dob')->nullable();
             $table->string('residence')->nullable();
             $table->string('city')->nullable();
-            $table->string('address')->nullable();
+            $table->string('user_address')->nullable();
+            $table->string('shop_address')->nullable();
             $table->string('phone')->nullable();
             $table->string('about')->nullable();
             $table->string('longitude')->nullable();

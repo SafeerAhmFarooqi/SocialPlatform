@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-md-5 mb-xl-5">
                         <!--begin::Card widget 4-->
-                        <a href="#">
+                        <a href="{{route('admin.all.users.list')}}">
                             <div class="card card-flush h-md-20 mb-5 mb-xl-5">
                                 <!--begin::Header-->
                                 <div class="card-header pt-5" style="background-color: #a640b883;">
@@ -56,7 +56,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allUsersCount}}</span><br>
                                         <span style="color:#fff">Total Users</span>
                                     </div>
                                     <!--end::Info-->
@@ -75,7 +75,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-md-5 mb-xl-5">
                         <!--begin::Card widget 4-->
-                        <a href="#">
+                        <a href="{{route('admin.all.users.list.show.active')}}">
                             <div class="card card-flush h-md-20 mb-5 mb-xl-5">
                                 <!--begin::Header-->
                                 <div class="card-header pt-5" style="background-color: #45955f;">
@@ -83,7 +83,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allActiveUsersCount}}</span><br>
                                         <span style="color:#fff">Active Users</span>
                                     </div>
                                     <!--end::Info-->
@@ -102,7 +102,7 @@
 
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-md-5 mb-xl-5">
                         <!--begin::Card widget 4-->
-                        <a href="#">
+                        <a href="{{route('admin.all.users.list.show.deactive')}}">
                             <div class="card card-flush h-md-20 mb-5 mb-xl-5">
                                 <!--begin::Header-->
                                 <div class="card-header pt-5" style="background-color: #ff0000;">
@@ -110,7 +110,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allDeactiveUsersCount}}</span><br>
                                         <span style="color:#fff">Non Active Users</span>
                                     </div>
                                     <!--end::Info-->
@@ -413,7 +413,7 @@
                                     </div>
                                     <!--end::Info-->
                                     <!--begin::Subtitle-->
-                                    <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-solid fa-shop"></i></span>
+                                    <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-brands fa-blogger"></i></span>
                                     <!--end::Subtitle-->
         
                                     <!--end::Title-->
@@ -441,7 +441,7 @@
                                     </div>
                                     <!--end::Info-->
                                     <!--begin::Subtitle-->
-                                    <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-solid fa-shop"></i></span>
+                                    <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-brands fa-blogger"></i></span>
                                     <!--end::Subtitle-->
         
                                     <!--end::Title-->
@@ -469,7 +469,7 @@
                                     </div>
                                     <!--end::Info-->
                                     <!--begin::Subtitle-->
-                                    <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-solid fa-shop"></i></span>
+                                    <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-solid fa-comments"></i></span>
                                     <!--end::Subtitle-->
         
                                     <!--end::Title-->

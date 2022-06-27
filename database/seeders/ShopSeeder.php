@@ -16,11 +16,18 @@ class ShopSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::factory()->create([
-            'firstname' => 'ZaheerShop',
-            'email' => 'shop@asadsohail.com',
-            'password' => Hash::make('aaaaaaaa'),
-        ]);
-        $user->assignRole('Shop');
+
+        $shops=User::factory(10)->create();
+        foreach ($shops as $shop) {
+            $shop->assignRole('Shop');
+        }
+
+
+        // $user = User::factory(10)->create([
+        //     'firstname' => 'ZaheerShop',
+        //     'email' => 'shop@asadsohail.com',
+        //     'password' => Hash::make('aaaaaaaa'),
+        // ]);
+        // $user->assignRole('Shop');
     }
 }
