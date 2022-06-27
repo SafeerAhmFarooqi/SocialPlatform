@@ -299,7 +299,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allVouchersCount}}</span><br>
                                         <span style="color:#fff">Total Vouchers</span>
                                     </div>
                                     <!--end::Info-->
@@ -326,7 +326,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allActiveVouchersCount}}</span><br>
                                         <span style="color:#fff">Active Vouchers</span>
                                     </div>
                                     <!--end::Info-->
@@ -353,7 +353,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allDeactiveVouchersCount}}</span><br>
                                         <span style="color:#fff">Non Active Vouchers</span>
                                     </div>
                                     <!--end::Info-->
