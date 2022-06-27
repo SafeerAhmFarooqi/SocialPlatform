@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Group;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,10 +19,22 @@ class DashboardController extends BaseController
       $allUsersCount= User::role('User')->count();
       $allActiveUsersCount= User::role('User')->where('user_status',true)->count();
       $allDeactiveUsersCount= User::role('User')->where('user_status',false)->count();
+      $allShopsCount= User::role('Shop')->count();
+      $allActiveShopsCount= User::role('Shop')->where('shop_status',true)->count();
+      $allDeactiveShopsCount= User::role('Shop')->where('shop_status',false)->count();
+      $allGroupsCount= Group::count();
+      $allActiveGroupsCount= Group::where('group_status',true)->count();
+      $allDeactiveGroupsCount= Group::where('group_status',false)->count();
     return view('dashboards.shop-admin.dashboard',[
       'allUsersCount'=>$allUsersCount,
       'allActiveUsersCount'=>$allActiveUsersCount,
       'allDeactiveUsersCount'=>$allDeactiveUsersCount,
+      'allShopsCount'=>$allShopsCount,
+      'allActiveShopsCount'=>$allActiveShopsCount,
+      'allDeactiveShopsCount'=>$allDeactiveShopsCount,
+      'allGroupsCount'=>$allGroupsCount,
+      'allActiveGroupsCount'=>$allActiveGroupsCount,
+      'allDeactiveGroupsCount'=>$allDeactiveGroupsCount,
     ]);
    }
 

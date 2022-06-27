@@ -137,7 +137,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allShopsCount}}</span><br>
                                         <span style="color:#fff">Total Shops</span>
                                     </div>
                                     <!--end::Info-->
@@ -164,7 +164,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allActiveShopsCount}}</span><br>
                                         <span style="color:#fff">Active Shops</span>
                                     </div>
                                     <!--end::Info-->
@@ -191,7 +191,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allDeactiveShopsCount}}</span><br>
                                         <span style="color:#fff">Non Active Shops</span>
                                     </div>
                                     <!--end::Info-->
@@ -218,7 +218,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allGroupsCount}}</span><br>
                                         <span style="color:#fff">Total Groups</span>
                                     </div>
                                     <!--end::Info-->
@@ -245,7 +245,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allActiveGroupsCount}}</span><br>
                                         <span style="color:#fff">Active Groups</span>
                                     </div>
                                     <!--end::Info-->
@@ -272,7 +272,7 @@
         
                                     <!--begin::Info-->
                                     <div class="align-items-center pt-6 pb-10">
-                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">134</span><br>
+                                        <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$allDeactiveGroupsCount}}</span><br>
                                         <span style="color:#fff">Non Active Groups</span>
                                     </div>
                                     <!--end::Info-->
