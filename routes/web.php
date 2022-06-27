@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\ShopAdminController;
 use App\Http\Controllers\Admin\GroupAdminController;
 use App\Http\Controllers\Admin\VoucherAdminController;
+use App\Http\Controllers\Admin\PostAdminController;
+use App\Http\Controllers\Admin\CommentAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +73,14 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/Admin-Vouchers-list-Delete', [VoucherAdminController::class,'allVouchersListDelete'])->name('admin.all.vouchers.list.delete');
     Route::post('/Admin-Vouchers-list-Active', [VoucherAdminController::class,'allVouchersListActive'])->name('admin.all.vouchers.list.active');
     Route::post('/Admin-Vouchers-list-Deactive', [VoucherAdminController::class,'allVouchersListDeactive'])->name('admin.all.vouchers.list.deactive');
-     
+    // Admin Posts Management Routes
+    Route::get('/Admin-User-Post-list', [PostAdminController::class,'allUserPostShow'])->name('admin.all.user.posts.show');
+    Route::post('/Admin-User-Post-list-Delete', [PostAdminController::class,'allUserPostDelete'])->name('admin.all.users.post.delete');
+    Route::get('/Admin-Group-Post-list', [PostAdminController::class,'allGroupPostShow'])->name('admin.all.group.posts.show');
+    Route::post('/Admin-Group-Post-list-Delete', [PostAdminController::class,'allGroupPostDelete'])->name('admin.all.groups.post.delete');
+    // Admin Comments Management Routes
+    Route::get('/Admin-Post-Comment-list', [CommentAdminController::class,'allPostsCommentsShow'])->name('admin.all.post.comments.show');
+    Route::post('/Admin-Post-Comment-list-Delete', [CommentAdminController::class,'allPostsCommentsDelete'])->name('admin.all.post.comments.delete');
 });
 
 Route::group(['middleware' => ['role:Shop','auth']], function () {
