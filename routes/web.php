@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GroupAdminController;
 use App\Http\Controllers\Admin\VoucherAdminController;
 use App\Http\Controllers\Admin\PostAdminController;
 use App\Http\Controllers\Admin\CommentAdminController;
+use App\Http\Controllers\Shop\VoucherShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +85,13 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
 });
 
 Route::group(['middleware' => ['role:Shop','auth']], function () {
-
+// Shop Voucher Management Routes
+Route::get('/Shop-Vouchers-Show', [VoucherShopController::class,'myVouchersShow'])->name('shop.myvouchers.show');
+Route::post('/Shop-Voucher-Create', [VoucherShopController::class,'shopVoucherStore'])->name('shop.voucher.create');
+Route::post('/Shop-Voucher-Delete', [VoucherShopController::class,'shopVoucherDelete'])->name('shop.voucher.delete');
+Route::get('/Shop-Use-Voucher-Show', [VoucherShopController::class,'useVoucherShow'])->name('shop.usevoucher.show');
+Route::post('/Shop-Use-Voucher-Submit', [VoucherShopController::class,'useVoucherSubmit'])->name('shop.usevoucher.submit');
+Route::get('/Shop-Use-Voucher-List-Show', [VoucherShopController::class,'useVoucherListShow'])->name('shop.usevoucher.list.show');
 });
 
 Route::group(['middleware' => ['role:User','auth']], function () {

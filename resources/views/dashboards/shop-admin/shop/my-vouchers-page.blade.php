@@ -31,6 +31,11 @@
             {{ session()->get('success') }}
         </div>
        @endif
+       @if(session()->has('error'))
+        <div class="alert alert-danger">
+            {{ session()->get('error') }}
+        </div>
+       @endif
         <!--begin::Products-->
         <div class="card card-flush">
             <!--begin::Card header-->
@@ -57,32 +62,8 @@
                 <!--end::Card title-->
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                    <!--begin::Daterangepicker-->
-                    {{-- <input class="form-control form-control-solid w-100 mw-250px" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" /> --}}
-                    <!--end::Daterangepicker-->
-                    <!--begin::Filter-->
-                    {{-- <div class="w-150px">
-                        <!--begin::Select2-->
-                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Rating" data-kt-ecommerce-order-filter="rating">
-                            <option></option>
-                            <option value="all">All</option>
-                            <option value="rating-5">5 Stars</option>
-                            <option value="rating-4">4 Stars</option>
-                            <option value="rating-3">3 Stars</option>
-                            <option value="rating-2">2 Stars</option>
-                            <option value="rating-1">1 Stars</option>
-                        </select>
-                        <!--end::Select2-->
-                    </div> --}}
-
-                    {{-- <div class="w-150px">
-                        <!--begin::Select2-->
-                        <a href="{{route('client.led.add')}}" class="btn btn-primary">Add New Led</a>
-                        <!--end::Select2-->
-                    </div> --}}
-                    <!--end::Filter-->
-                    <!--begin::Export dropdown-->
-                    <a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add New Category</a>
+                  
+                    <a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add New Voucher</a>
                     <button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr078.svg-->
                     <span class="svg-icon svg-icon-2">
@@ -130,10 +111,11 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Category</th>
+                            <th class="text-start min-w-70px">Sr No.</th>
+                            <th class="text-start min-w-100px">Title</th>
                             <th class="text-start min-w-100px">Id</th>
-                            
+                            <th class="text-start min-w-100px">Code</th>
+                            <th class="text-start min-w-100px">Discount</th>
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -142,19 +124,19 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($categories as $category)
+                        @foreach ($vouchers as $voucher)
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start">
                                 <span class="fw-bolder">{{++$srNo}}</span>
                             </td>
                             <td>
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-start">
                                     <!--begin::Thumbnail-->
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$category->category}}</a>
+                                        <a href="{{route('admin.all.shops.categories.edit.page',$voucher->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$voucher->title}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -162,22 +144,25 @@
                             <!--end::Product=-->
                             <!--begin::SKU=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$category->id}}</span>
+                                <span class="fw-bolder">{{$voucher->id}}</span>
+                            </td>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$voucher->code}}</span>
+                            </td>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$voucher->discount}}</span>
                             </td>
                             <!--end::SKU=-->
                             <!--begin::Rating-->
                            
                         
-                            <td class="text-end pe-0">
-                                <div class="rating justify-content-end">
+                            <td class="text-start pe-0">
+                                <div class="rating justify-content-start">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.all.shops.categories.delete')}}" method="post">
+                                <form action="{{route('shop.voucher.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="category_id" value="{{$category->id}}">Delete</button>
-                                  
+                                  <button type="submit" class="btn btn-danger" name="voucher_id" value="{{$voucher->id}}">Delete</button>
                                 </form>
-                                <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="btn btn-primary">Edit</a>
-                                {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}
                                 </div>
                                 
                             </td>
@@ -207,12 +192,12 @@
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Form-->
-            <form class="form" action="{{route('admin.all.shops.categories.create')}}" id="kt_modal_new_address_form" method="POST" enctype="multipart/form-data">
+            <form class="form" action="{{route('shop.voucher.create')}}" id="kt_modal_new_address_form" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_new_address_header">
                     <!--begin::Modal title-->
-                    <h2>Add New Category</h2>
+                    <h2>Add New Voucher</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -232,27 +217,41 @@
                 <div class="modal-body py-10 px-lg-17">
                     <!--begin::Scroll-->
                     <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
-                        <!--begin::Notice-->
-                        <!--begin::Notice-->
                        
-                        <!--end::Notice-->
-                        <!--end::Notice-->
-                        <!--begin::Input group-->
-                        
-
-                      
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
                         <div class="d-flex flex-column mb-5 fv-row">
                             <!--begin::Label-->
-                            <label class="required fs-5 fw-bold mb-2">Category Name</label>
+                            <label class="required fs-5 fw-bold mb-2">Title</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="" name="category" />
-                            @error('category')
+                            <input class="form-control form-control-solid" placeholder="" name="title" />
+                            @error('title')
+                            <div class="alert alert-danger" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <!--end::Input-->
+                        </div>
+                        <div class="d-flex flex-column mb-5 fv-row">
+                            <!--begin::Label-->
+                            <label class="required fs-5 fw-bold mb-2">Discount</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input class="form-control form-control-solid" placeholder="" name="discount" />
+                            @error('discount')
+                            <div class="alert alert-danger" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <!--end::Input-->
+                        </div>
+                        <div class="d-flex flex-column mb-5 fv-row">
+                            <!--begin::Label-->
+                            <label class="required fs-5 fw-bold mb-2">Image</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            
+                            <input class="form-control form-control-solid" type="file" name="image" accept=".png, .jpg, .jpeg, .bmp" />
+                            @error('image')
                             <div class="alert alert-danger" role="alert">
                                 {{$message}}
                             </div>

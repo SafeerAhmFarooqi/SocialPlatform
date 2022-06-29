@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Voucher extends Model
+class UseVoucher extends Model
 {
     use HasFactory;
 
-    protected $table="vouchers";
+    protected $table="use_vouchers";
 
     protected $fillable = [
         'title',
@@ -20,7 +20,8 @@ class Voucher extends Model
         'location',
         'shop_category',
         'sub_category',
-        'voucher_status',
+        'email',
     ];
 
+    
 }
