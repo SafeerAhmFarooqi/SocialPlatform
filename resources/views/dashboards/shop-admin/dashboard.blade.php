@@ -491,7 +491,88 @@
                 @endrole
             
                 @role('Shop')
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-md-5 mb-xl-5">
+                                <!--begin::Card widget 4-->
+                                <a href="{{route('shop.myvouchers.show')}}">
+                                    <div class="card card-flush h-md-20 mb-5 mb-xl-5">
+                                        <!--begin::Header-->
+                                        <div class="card-header pt-5" style="background-color: #a640b883;">
+                                            <!--begin::Title-->
+                
+                                            <!--begin::Info-->
+                                            <div class="align-items-center pt-6 pb-10">
+                                                <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$shopMyVouchersCount}}</span><br>
+                                                <span style="color:#fff">My Vouchers</span>
+                                            </div>
+                                            <!--end::Info-->
+                                            <!--begin::Subtitle-->
+                                            <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-solid fa-ticket"></i></span>
+                                            <!--end::Subtitle-->
+                
+                                            <!--end::Title-->
+                                        </div>
+                                        <!--end::Header-->
+                
+                                        <!--end::Card body-->
+                                    </div>
+                                </a>
+                            </div>
 
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-md-5 mb-xl-5">
+                                <!--begin::Card widget 4-->
+                                <a href="{{route('shop.usevoucher.list.show')}}">
+                                    <div class="card card-flush h-md-20 mb-5 mb-xl-5">
+                                        <!--begin::Header-->
+                                        <div class="card-header pt-5" style="background-color: #a640b883;">
+                                            <!--begin::Title-->
+                
+                                            <!--begin::Info-->
+                                            <div class="align-items-center pt-6 pb-10">
+                                                <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$shopMyUseVouchersCount}}</span><br>
+                                                <span style="color:#fff">Use Vouchers</span>
+                                            </div>
+                                            <!--end::Info-->
+                                            <!--begin::Subtitle-->
+                                            <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-solid fa-ticket"></i></span>
+                                            <!--end::Subtitle-->
+                
+                                            <!--end::Title-->
+                                        </div>
+                                        <!--end::Header-->
+                
+                                        <!--end::Card body-->
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-md-5 mb-xl-5">
+                                <!--begin::Card widget 4-->
+                                
+                                    <div class="card card-flush h-md-20 mb-5 mb-xl-5">
+                                        <!--begin::Header-->
+                                        <div class="card-header pt-5" style="background-color: #a640b883;">
+                                            <!--begin::Title-->
+                
+                                            <!--begin::Info-->
+                                            <div class="align-items-center pt-6 pb-10">
+                                                <span class="fs-2hx fw-bolder me-2 lh-1" style="color:#fff">{{$shopMyUseVoucherSpend}}</span><br>
+                                                <span style="color:#fff">Spend</span>
+                                            </div>
+                                            <!--end::Info-->
+                                            <!--begin::Subtitle-->
+                                            <span style="padding-bottom:10px;" class="text-gray-400 pt-1 fw-bold fs-6"> <i style="font-size: 70px;color: #fff;" class="fa-solid fa-dollar"></i></span>
+                                            <!--end::Subtitle-->
+                
+                                            <!--end::Title-->
+                                        </div>
+                                        <!--end::Header-->
+                
+                                        <!--end::Card body-->
+                                    </div>
+                                
+                            </div>
+                        </div>
                 @endrole
                 
             <!--begin::Col-->

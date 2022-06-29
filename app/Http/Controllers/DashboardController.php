@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\Voucher;
+use App\Models\UseVoucher;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,6 +30,12 @@ class DashboardController extends BaseController
       $allVouchersCount= Voucher::count();
       $allActiveVouchersCount= Voucher::where('voucher_status',true)->count();
       $allDeactiveVouchersCount= Voucher::where('voucher_status',false)->count();
+      $shopMyVouchersCount= Voucher::where('shop_id',Auth::user()->id)->count();
+      $shopMyUseVouchers= UseVoucher::where('shop_id',Auth::user()->id)->get();
+      $shopMyUseVoucherSpend=0;
+      foreach ($shopMyUseVouchers as $shopMyUseVoucher) {
+        $shopMyUseVoucherSpend+=$shopMyUseVoucher->discount;
+      }
     return view('dashboards.shop-admin.dashboard',[
       'allUsersCount'=>$allUsersCount,
       'allActiveUsersCount'=>$allActiveUsersCount,
@@ -42,6 +49,9 @@ class DashboardController extends BaseController
       'allVouchersCount'=>$allVouchersCount,
       'allActiveVouchersCount'=>$allActiveVouchersCount,
       'allDeactiveVouchersCount'=>$allDeactiveVouchersCount,
+      'shopMyVouchersCount'=>$shopMyVouchersCount,
+      'shopMyUseVouchersCount'=>$shopMyUseVouchers->count(),
+      'shopMyUseVoucherSpend'=>$shopMyUseVoucherSpend,
     ]);
    }
 
