@@ -1,0 +1,10 @@
+@extends('layouts.master-layout')
+@section('theme-head')
+    @include('friendfinder-theme.head')
+@endsection
+@section('theme-content')
+    @yield('body-content')
+@endsection
+@section('theme-script')
+    @include('friendfinder-theme.script')
+@endsection
