@@ -115,35 +115,67 @@
                 <p class="text-muted">Be cool and join today. Meet millions</p>
                 
                 <!--Register Form-->
-                <form name="registration_form" id='registration_form' class="form-inline">
+                <form  id='registration_form' class="form-inline" method="POST" action="{{ route('register') }}">
+                  @csrf
                   <div class="row">
                     <div class="form-group col-xs-6">
                       <label for="firstname" class="sr-only">First Name</label>
-                      <input id="firstname" class="form-control input-group-lg" type="text" name="firstname" title="Enter first name" placeholder="First name"/>
+                      <input id="firstname" class="form-control input-group-lg" type="text" name="firstname" title="Enter first name" placeholder="First name" value="{{old('firstname')}}"/>
+                      @error('firstname')
+                                    <div class="bg-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                     </div>
                     <div class="form-group col-xs-6">
                       <label for="lastname" class="sr-only">Last Name</label>
-                      <input id="lastname" class="form-control input-group-lg" type="text" name="lastname" title="Enter last name" placeholder="Last name"/>
+                      <input id="lastname" class="form-control input-group-lg" type="text" name="lastname" title="Enter last name" placeholder="Last name" value="{{old('lastname')}}"/>
+                      @error('lastname')
+                                    <div class="bg-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-xs-12">
                       <label for="email" class="sr-only">Email</label>
-                      <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
+                      <input id="email" class="form-control input-group-lg" type="text" name="email" title="Enter Email" placeholder="Your Email" value="{{old('email')}}"/>
+                      @error('email')
+                                    <div class="bg-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-xs-12">
                       <label for="password" class="sr-only">Password</label>
                       <input id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
+                      @error('password')
+                                    <div class="bg-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-xs-12">
+                      <label for="password" class="sr-only">Confirm Password</label>
+                      <input id="password" class="form-control input-group-lg" type="password" name="password_confirmation" title="Enter password" placeholder="Confirm Password"/>
+                      @error('password_confirmation')
+                                    <div class="bg-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                     </div>
                   </div>
                   <div class="row">
                     <p class="birth"><strong>Date of Birth</strong></p>
                     <div class="form-group col-sm-3 col-xs-6">
-                      <label for="month" class="sr-only"></label>
-                      <select class="form-control" id="day">
-                        <option value="Day" disabled selected>Day</option>
+                      <label for="month" class="sr-only"></label>  
+                      <select class="form-control" id="day" name="day" value="{{old('day')}}">
+                        <option value="day" disabled selected>Day</option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -176,10 +208,15 @@
                         <option>30</option>
                         <option>31</option>
                       </select>
+                      @error('day')
+                      <div class="bg-danger" role="alert">
+                          {{$message}}
+                      </div>
+                      @enderror
                     </div>
                     <div class="form-group col-sm-3 col-xs-6">
                       <label for="month" class="sr-only"></label>
-                      <select class="form-control" id="month">
+                      <select class="form-control" id="month" name="month" value="{{old('month')}}">
                         <option value="month" disabled selected>Month</option>
                         <option>Jan</option>
                         <option>Feb</option>
@@ -194,11 +231,28 @@
                         <option>Nov</option>
                         <option>Dec</option>
                       </select>
+                      @error('month')
+                      <div class="bg-danger" role="alert">
+                          {{$message}}
+                      </div>
+                      @enderror
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                       <label for="year" class="sr-only"></label>
-                      <select class="form-control" id="year">
+                      <select class="form-control" id="year" name="year" value="{{old('year')}}">
                         <option value="year" disabled selected>Year</option>
+                        <option>1888</option>
+                        <option>1889</option>
+                        <option>1990</option>
+                        <option>1991</option>
+                        <option>1992</option>
+                        <option>1993</option>
+                        <option>1994</option>
+                        <option>1995</option>
+                        <option>1996</option>
+                        <option>1997</option>
+                        <option>1998</option>
+                        <option>1999</option>
                         <option>2000</option>
                         <option>2001</option>
                         <option>2002</option>
@@ -212,24 +266,34 @@
                         <option>2011</option>
                         <option>2012</option>
                       </select>
+                      @error('year')
+                      <div class="bg-danger" role="alert">
+                          {{$message}}
+                      </div>
+                      @enderror
                     </div>
                   </div>
-                  <div class="form-group gender">
+                  {{-- <div class="form-group gender">
                     <label class="radio-inline">
                       <input type="radio" name="optradio" checked>Male
                     </label>
                     <label class="radio-inline">
                       <input type="radio" name="optradio">Female
                     </label>
-                  </div>
+                  </div> --}}
                   <div class="row">
                     <div class="form-group col-xs-6">
                       <label for="city" class="sr-only">City</label>
-                      <input id="city" class="form-control input-group-lg reg_name" type="text" name="city" title="Enter city" placeholder="Your city"/>
+                      <input id="city" class="form-control input-group-lg reg_name" type="text" name="city" title="Enter city" placeholder="Your city" value="{{old('city')}}"/>
+                      @error('city')
+                      <div class="bg-danger" role="alert">
+                          {{$message}}
+                      </div>
+                      @enderror
                     </div>
                     <div class="form-group col-xs-6">
                       <label for="country" class="sr-only"></label>
-                      <select class="form-control" id="country">
+                      <select class="form-control" id="country" name="country" value="{{old('country')}}">
                         <option value="country" disabled selected>Country</option>
                         <option value="AFG">Afghanistan</option>
                         <option value="ALA">�land Islands</option>
@@ -481,11 +545,17 @@
                         <option value="ZMB">Zambia</option>
                         <option value="ZWE">Zimbabwe</option>
                       </select>
+                      @error('country')
+                      <div class="bg-danger" role="alert">
+                          {{$message}}
+                      </div>
+                      @enderror
                     </div>
                   </div>
+                  <p><a href="#login" data-toggle="tab">Already have an account?</a></p>
+                <button class="btn btn-primary" type="submit">Register Now</button>
                 </form><!--Register Now Form Ends-->
-                <p><a href="#">Already have an account?</a></p>
-                <button class="btn btn-primary">Register Now</button>
+                
               </div><!--Registration Form Contents Ends-->
               
               <!--Login-->
@@ -509,6 +579,7 @@
                   </div>
                 </form><!--Login Form Ends--> 
                 <p><a href="#">Forgot Password?</a></p>
+                <p><a href="#register" data-toggle="tab">Don't have an account, register Now</a></p>
                 <button class="btn btn-primary">Login Now</button>
               </div>
             </div>

@@ -23,7 +23,7 @@ use App\Http\Controllers\Shop\VoucherShopController;
 
 Route::get('/', function () {
     return view('landing');
-});
+})->name('landing');
 
 Route::get('/check', function () {
     return view('landing');
