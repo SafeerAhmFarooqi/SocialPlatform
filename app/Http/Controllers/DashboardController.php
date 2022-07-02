@@ -18,6 +18,7 @@ class DashboardController extends BaseController
 
    public function dashboard()
    {
+    if (Auth::check()&&(Auth::user()->hasRole('Shop')||Auth::user()->hasRole('Admin'))) {
       $allUsersCount= User::role('User')->count();
       $allActiveUsersCount= User::role('User')->where('user_status',true)->count();
       $allDeactiveUsersCount= User::role('User')->where('user_status',false)->count();
@@ -53,6 +54,11 @@ class DashboardController extends BaseController
       'shopMyUseVouchersCount'=>$shopMyUseVouchers->count(),
       'shopMyUseVoucherSpend'=>$shopMyUseVoucherSpend,
     ]);
+    } else {
+      return view('dashboards.user.dashboard');
+    }
+    
+     
    }
 
    public function landingPage()

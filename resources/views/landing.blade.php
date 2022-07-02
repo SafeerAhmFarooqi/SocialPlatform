@@ -98,19 +98,34 @@
 				  <div class="line-divider"></div>
 				  <div class="form-wrapper">
 					  <p class="signup-text">Sign in  now and meet awesome people around the world</p>
-					  <form action="#">
+					  <form method="POST" action="{{ route('login') }}">
+						@csrf
 						  {{-- <fieldset class="form-group">
 							  <input type="text" class="form-control" id="example-name" placeholder="Enter name">
 						  </fieldset> --}}
 						  <fieldset class="form-group">
-							  <input type="email" class="form-control" id="example-email" placeholder="Enter email">
+							  <input type="email" class="form-control" name="email" placeholder="Enter email" value="{{old('email')}}">
+							  @error('email')
+							  <div style="color: red;">
+									  {{$message}}
+							  </div>
+							  @enderror
 						  </fieldset>
 						  <fieldset class="form-group">
-							  <input type="password" class="form-control" id="example-password" placeholder="Enter a password">
-						  </fieldset>
-					  </form>
+							  <input type="password" class="form-control" name="password" placeholder="Enter a password" value="{{old('password')}}">
+							  @error('password')
+							  <div style="color: red;">
+									  {{$message}}
+							  </div>
+							  @enderror
+							</fieldset>
+							<button class="btn-secondary" type="submit">Sign In</button>
+						</form>
+						<span>@if (Auth::check())
+							LOged IN
+						@endif</span>
 					  {{-- <p>By signning up you agree to the terms</p> --}}
-					  <button class="btn-secondary">Sign In</button>
+
 				  </div>
 				  <a href="{{route('register.ff')}}">Don't have an account?Register Here</a>
 				  <img class="form-shadow" src="{{asset('assets/FriendFinder-Theme/images/bottom-shadow.png')}}" alt="" />

@@ -564,23 +564,35 @@
                 <p class="text-muted">Log into your account</p>
                 
                 <!--Login Form-->
-                <form name="Login_form" id='Login_form'>
+                <form  method="POST" action="{{ route('login') }}">
+                  @csrf
                    <div class="row">
                     <div class="form-group col-xs-12">
                       <label for="my-email" class="sr-only">Email</label>
-                      <input id="my-email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Your Email"/>
+                      <input id="my-email" class="form-control input-group-lg" type="text" name="email" title="Enter Email" placeholder="Your Email"/>
+                      @error('email')
+                      <div style="color: red;">
+                          {{$message}}
+                      </div>
+                      @enderror
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-xs-12">
                       <label for="my-password" class="sr-only">Password</label>
                       <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Password"/>
+                      @error('password')
+                      <div style="color: red;">
+                          {{$message}}
+                      </div>
+                      @enderror
                     </div>
                   </div>
-                </form><!--Login Form Ends--> 
-                <p><a href="#">Forgot Password?</a></p>
+                  <p><a href="#">Forgot Password?</a></p>
                 <p><a href="#register" data-toggle="tab">Don't have an account, register Now</a></p>
-                <button class="btn btn-primary">Login Now</button>
+                <button class="btn btn-primary" type="submit">Login Now</button>
+                </form><!--Login Form Ends--> 
+                
               </div>
             </div>
           </div>
