@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Carbon\Carbon;
 
 class RegisteredUserController extends Controller
 {
@@ -38,16 +39,44 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        //return "safeer";
+        //return $request;
+
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            //Validation Rules
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'day' => ['required', 'string', 'max:255'],
+            'month' => ['required', 'string', 'max:255'],
+            'year' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+        ],[
+            //Validation Messages
+            'required'=>':attribute Required',
+        ],[
+            //Validation Attributes
+            'firstname' =>'First Name',
+            'lastname' =>'Last Name',
+            'email' =>'Email',
+            'password' =>'Password',
+            'day' =>'Day',
+            'month' =>'Month',
+            'year' =>'Year',
+            'city' =>'City',
+            'country' =>'Country',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'dob' => Carbon::parse($request->year.'-'.$request->month.'-'.$request->day)->format('y-m-d'),
+            'city' => $request->city,
+            'country' => $request->country,
         ]);
 
         event(new Registered($user));

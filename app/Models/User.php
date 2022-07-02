@@ -19,10 +19,33 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
+        'shopname',
+        'shop_sub_category',
+        'shop_category',
         'password',
+        'pdf_password',
+        'dob',
+        'residence',
+        'city',
+        'user_address',
+        'shop_address',
+        'phone',
+        'about',
+        'longitude',
+        'latitude',
+        'profile_pic_path',
+        'pdf_file_path',
+        'options',
+        'user_status',
+        'shop_status',
+        'location',
+        'email_verified_at',
     ];
+
+    protected $dates = ['dob'];
 
     /**
      * The attributes that should be hidden for serialization.
