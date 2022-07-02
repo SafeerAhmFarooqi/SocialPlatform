@@ -97,11 +97,11 @@
 				  <h2 class="text-white">Find My Friends</h2>
 				  <div class="line-divider"></div>
 				  <div class="form-wrapper">
-					  <p class="signup-text">Signup now and meet awesome people around the world</p>
+					  <p class="signup-text">Sign in  now and meet awesome people around the world</p>
 					  <form action="#">
-						  <fieldset class="form-group">
+						  {{-- <fieldset class="form-group">
 							  <input type="text" class="form-control" id="example-name" placeholder="Enter name">
-						  </fieldset>
+						  </fieldset> --}}
 						  <fieldset class="form-group">
 							  <input type="email" class="form-control" id="example-email" placeholder="Enter email">
 						  </fieldset>
@@ -109,10 +109,10 @@
 							  <input type="password" class="form-control" id="example-password" placeholder="Enter a password">
 						  </fieldset>
 					  </form>
-					  <p>By signning up you agree to the terms</p>
-					  <button class="btn-secondary">Signup</button>
+					  {{-- <p>By signning up you agree to the terms</p> --}}
+					  <button class="btn-secondary">Sign In</button>
 				  </div>
-				  <a href="#">Already have an account?</a>
+				  <a href="{{route('register.ff')}}">Don't have an account?Register Here</a>
 				  <img class="form-shadow" src="{{asset('assets/FriendFinder-Theme/images/bottom-shadow.png')}}" alt="" />
 			  </div><!-- Sign Up Form End -->
 
