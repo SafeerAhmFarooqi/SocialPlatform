@@ -23,6 +23,11 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
+    public function createFF()
+    {
+        return view('auth.register-ff');
+    }
+
     /**
      * Handle an incoming registration request.
      *
