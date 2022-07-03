@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Mail\UserAccountActivationEmail;
+use App\Mail\UserAccountDeactivationEmail;
 
 class UserAdminController extends BaseAdminController
 {
@@ -44,9 +47,10 @@ class UserAdminController extends BaseAdminController
     $user=User::find($request->user_id);
     $user->user_status=true;
     $user->save();
+    Mail::to($user->email)->send(new UserAccountActivationEmail());
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
-    return back()->with('success', 'User Activated Successfully');
+    return back()->with('success', 'User Activated Successfully And Email Notification Has Been Sent');
  } 
 
  public function allUsersListDeactive(Request $request)
@@ -54,9 +58,10 @@ class UserAdminController extends BaseAdminController
     $user=User::find($request->user_id);
     $user->user_status=false;
     $user->save();
+    Mail::to($user->email)->send(new UserAccountDeactivationEmail());
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
-    return back()->with('success', 'User Deactivated Successfully');
+    return back()->with('success', 'User Deactivated Successfully And Email Notification Has Been Sent');
  } 
 
  public function showUserOrders(Request $request)
