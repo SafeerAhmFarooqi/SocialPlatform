@@ -29,7 +29,7 @@ Route::get('/check', function () {
     return view('landing');
 });
 
-Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified'])->name('dashboard');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
