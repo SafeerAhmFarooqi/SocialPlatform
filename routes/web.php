@@ -26,10 +26,10 @@ Route::get('/', function () {
 })->name('landing');
 
 Route::get('/check', function () {
-    return view('landing');
+    return view('check');
 });
 
-Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified'])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified','admin.dashboard.approved'])->name('dashboard');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

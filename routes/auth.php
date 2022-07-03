@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Auth\AdminApprovalPromptController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -50,7 +51,12 @@ Route::middleware('auth')->group(function () {
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
                 ->middleware('throttle:6,1')
                 ->name('verification.send');
-
+    Route::get('/pending-admin-user-approval', [AdminApprovalPromptController::class, '__invokeUser'])
+    ->name('admin.user.approval.notice');
+    Route::get('/pending-admin-dashboard-approval', [AdminApprovalPromptController::class, '__invokeDashboard'])
+    ->name('admin.dashboard.approval.notice');
+    Route::get('/pending-admin-shop-approval', [AdminApprovalPromptController::class, '__invokeShop'])
+    ->name('admin.shop.approval.notice');
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
                 ->name('password.confirm');
 
