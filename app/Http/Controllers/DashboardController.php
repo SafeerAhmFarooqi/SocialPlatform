@@ -18,7 +18,7 @@ class DashboardController extends BaseController
 
    public function dashboard()
    {
-    if ((Auth::user()->hasRole('Shop')&&!Auth::user()->hasRole('User'))||(Auth::user()->hasRole('Admin'))) {
+    if ((Auth::user()->hasRole('Shop')&&!Auth::user()->hasRole('User')&&Auth::user()->shop_status==true)||(Auth::user()->hasRole('Shop')&&Auth::user()->hasRole('User')&&Auth::user()->user_status==false&&Auth::user()->shop_status==true)||(Auth::user()->hasRole('Admin'))) {
       $allUsersCount= User::role('User')->count();
       $allActiveUsersCount= User::role('User')->where('user_status',true)->count();
       $allDeactiveUsersCount= User::role('User')->where('user_status',false)->count();

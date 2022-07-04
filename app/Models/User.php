@@ -29,7 +29,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'pdf_password',
         'dob',
-        'residence',
         'city',
         'user_address',
         'shop_address',
@@ -66,4 +65,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setOptionsAttribute($value)
+    {
+        $this->attributes['options'] = json_encode($value);
+    }
+
+    public function getOptionsAttribute($value)
+    {
+        return $this->attributes['options'] = json_decode($value);
+    }
 }

@@ -127,7 +127,8 @@
 					  {{-- <p>By signning up you agree to the terms</p> --}}
 
 				  </div>
-				  <a href="{{route('register.ff')}}">Don't have an account?Register Here</a>
+				  <p><a href="{{route('register.ff')}}">Don't have a user account?Register Here</a></p>
+				  <a href="{{route('register.shop')}}">Don't have a shop account?Register Here</a>
 				  <img class="form-shadow" src="{{asset('assets/FriendFinder-Theme/images/bottom-shadow.png')}}" alt="" />
 			  </div><!-- Sign Up Form End -->
 

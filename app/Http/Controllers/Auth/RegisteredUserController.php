@@ -29,6 +29,11 @@ class RegisteredUserController extends Controller
         return view('auth.register-ff');
     }
 
+    public function createShop()
+    {
+        return view('auth.register-shop');
+    }
+
     /**
      * Handle an incoming registration request.
      *
@@ -42,49 +47,69 @@ class RegisteredUserController extends Controller
         //return "safeer";
         //return $request;
 
-        $request->validate([
-            //Validation Rules
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'day' => ['required', 'string', 'max:255'],
-            'month' => ['required', 'string', 'max:255'],
-            'year' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:255'],
-        ],[
-            //Validation Messages
-            'required'=>':attribute Required',
-        ],[
-            //Validation Attributes
-            'firstname' =>'First Name',
-            'lastname' =>'Last Name',
-            'email' =>'Email',
-            'password' =>'Password',
-            'day' =>'Day',
-            'month' =>'Month',
-            'year' =>'Year',
-            'city' =>'City',
-            'country' =>'Country',
-        ]);
+        if(!isset($request->role)||$request->role!='shop'&&$request->role!='user'||is_null($request->role))
+        {
+            return back();
+        }
 
-        $user = User::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'dob' => Carbon::parse($request->year.'-'.$request->month.'-'.$request->day)->format('y-m-d'),
-            'city' => $request->city,
-            'country' => $request->country,
-        ]);
+        if ($request->role=='user') {
+            $request->validate([
+                //Validation Rules
+                'firstname' => ['required', 'string', 'max:255'],
+                'lastname' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'day' => ['required', 'string', 'max:255'],
+                'month' => ['required', 'string', 'max:255'],
+                'year' => ['required', 'string', 'max:255'],
+                'address' => ['required', 'string', 'max:255'],
+                'city' => ['required', 'string', 'max:255'],
+                'country' => ['required', 'string', 'max:255'],
+                'document' => ['required','max:2048','image','mimes:jpeg,png,jpg,gif,svg,bmp'],
+                'category' => ['required'],
+            ],[
+                //Validation Messages
+                'required'=>':attribute Required',
+            ],[
+                //Validation Attributes
+                'firstname' =>'First Name',
+                'lastname' =>'Last Name',
+                'email' =>'Email',
+                'password' =>'Password',
+                'day' =>'Day',
+                'month' =>'Month',
+                'year' =>'Year',
+                'address' =>'Address',
+                'city' =>'City',
+                'country' =>'Country',
+                'document' =>'Document',
+                'category' =>'Category',
+            ]);
 
-        event(new Registered($user));
+            $user = User::create([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'dob' => Carbon::parse($request->year.'-'.$request->month.'-'.$request->day)->format('y-m-d'),
+                'address' => $request->address,
+                'city' => $request->city,
+                'country' => $request->country,
+                'document' =>$request->document,
+                'options' =>$request->category,
+            ]);
+    
+            event(new Registered($user));
+    
+            $user->assignRole('User');
+    
+            Auth::login($user);
+    
+            return redirect(RouteServiceProvider::HOME);
+        }
 
-        $user->assignRole('User');
+       
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+       
     }
 }

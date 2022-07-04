@@ -115,8 +115,9 @@
                 <p class="text-muted">Be cool and join today. Meet millions</p>
                 
                 <!--Register Form-->
-                <form  id='registration_form' class="form-inline" method="POST" action="{{ route('register') }}">
+                <form  id='registration_form' class="form-inline" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                   @csrf
+                  <input type="hidden" name="role" value="user">
                   <div class="row">
                     <div class="form-group col-xs-6">
                       <label for="firstname" class="sr-only">First Name</label>
@@ -281,6 +282,17 @@
                       <input type="radio" name="optradio">Female
                     </label>
                   </div> --}}
+                  <div class="row">
+                    <div class="form-group col-xs-12">
+                      <label for="email" class="sr-only">Address</label>
+                      <input  class="form-control input-group-lg" type="text" name="address" title="Enter Address" placeholder="Your Address" value="{{old('address')}}"/>
+                      @error('address')
+                                    <div class="bg-danger" role="alert">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="form-group col-xs-6">
                       <label for="city" class="sr-only">City</label>
@@ -552,6 +564,46 @@
                       @enderror
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="form-group col-xs-12">
+                      <label  class="sr-only">Document For Verification</label>
+                      <input  class="form-control input-group-lg reg_name" type="file" name="document"/>
+                      <span>@error('document')
+                        <div class="bg-danger" role="alert">
+                          {{$message}}
+                      </div>
+                      @enderror</span>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                    <div class="form-group gender">
+                     <label class="radio-inline">
+                       <input type="checkbox" name="category[]"  value="army"> &nbsp; armed forces
+                     </label>
+                     <label class="radio-inline">
+                       <input type="checkbox" name="category[]" value="police">  &nbsp; police
+                     </label>
+                     <label class="radio-inline">
+                       <input type="checkbox" name="category[]" value="fire"> &nbsp; fire  
+
+                     </label>
+                     <label class="radio-inline">
+                       <input type="checkbox" name="category[]" value="Paramedic" > &nbsp; Paramedic
+                     </label>
+                     <label class="radio-inline">
+                       <input type="checkbox" name="category[]" value="thw" >  &nbsp; THW
+                     </label> 
+                   </div>
+                   </div>
+                   <div class="row">
+                    <span>@error('category')
+                      <div class="bg-danger" role="alert">
+                        {{$message}}
+                    </div>
+                    @enderror</span>
+                </div>
+                <p><span href="#" style="color:#D10000">* Document Must Upload For Verification</span></p>
                   <p><a href="#login" data-toggle="tab">Already have an account?</a></p>
                 <button class="btn btn-primary" type="submit">Register Now</button>
                 </form><!--Register Now Form Ends-->
