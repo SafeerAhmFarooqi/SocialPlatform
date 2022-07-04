@@ -11,3 +11,4 @@
     }
 </style>
 @yield('pageStyles')
+@livewireStyles

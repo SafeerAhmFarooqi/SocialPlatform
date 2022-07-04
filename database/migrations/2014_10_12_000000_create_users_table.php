@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('pdf_password')->nullable();
             $table->timestamp('dob')->nullable();
-            $table->string('residence')->nullable();
             $table->string('city')->nullable();
             $table->string('user_address')->nullable();
             $table->string('shop_address')->nullable();
