@@ -4,7 +4,7 @@
 		  <div class="container">
 	  <div class="sign-up-form">
 				  <a href="#" class="logo"><img src="{{asset('assets/FriendFinder-Theme/images/logo.png')}}" alt="Friend Finder"/></a>
-				  <h2 class="text-white">Verify Email</h2>
+				  <h2 class="text-white">Admin Approval</h2>
 				  <div class="line-divider"></div>
 				  <div class="form-wrapper">
 					  <p class="signup-text">Thanks for signing up! Before getting started, your account must be approved from Administrator. Please wait until your account is approved.</p>
