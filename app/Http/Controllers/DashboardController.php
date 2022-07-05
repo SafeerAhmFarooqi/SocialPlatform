@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Response;
 class DashboardController extends BaseController
 {
 
-   public function dashboard()
+   public function dashboard(Request $request)
    {
     if ((Auth::user()->hasRole('Shop')&&!Auth::user()->hasRole('User')&&Auth::user()->shop_status==true)||(Auth::user()->hasRole('Shop')&&Auth::user()->hasRole('User')&&Auth::user()->user_status==false&&Auth::user()->shop_status==true)||(Auth::user()->hasRole('Admin'))) {
       $allUsersCount= User::role('User')->count();
@@ -55,10 +55,29 @@ class DashboardController extends BaseController
       'shopMyUseVoucherSpend'=>$shopMyUseVoucherSpend,
     ]);
     } 
-    else {
+    if(Auth::user()->hasRole('User')&&Auth::user()->user_status==true){
       return view('dashboards.user.dashboard');
     }
     
+    if((Auth::user()->hasRole('Shop')&&!Auth::user()->hasRole('User')&&Auth::user()->user_status==true)){
+      Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+    if((Auth::user()->hasRole('User')&&!Auth::user()->hasRole('Shop')&&Auth::user()->shop_status==true)){
+      Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+    return redirect()->route('admin.dashboard.approval.notice');
      
    }
 

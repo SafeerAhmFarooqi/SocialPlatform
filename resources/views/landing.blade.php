@@ -121,6 +121,10 @@
 							</fieldset>
 							<button class="btn-secondary" type="submit">Sign In</button>
 						</form>
+						{{-- <form action="{{route('logout')}}" method="post">
+						@csrf
+						<button type="submit">Log out</button>
+						</form> --}}
 						<span>@if (Auth::check())
 							LOged IN
 						@endif</span>
