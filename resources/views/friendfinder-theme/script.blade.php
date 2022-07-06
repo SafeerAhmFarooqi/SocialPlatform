@@ -8,6 +8,7 @@
 	<script src="{{asset('assets/FriendFinder-Theme/js/jquery.incremental-counter.js')}}"></script>
     <script src="{{asset('assets/FriendFinder-Theme/js/script.js')}}"></script>
 @yield('pageScripts')
+@livewireScripts
 
 
 
