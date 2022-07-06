@@ -10,3 +10,4 @@
 <!--Favicon-->
 <link rel="shortcut icon" type="image/png" href="{{asset('assets/FriendFinder-Theme/images/fav.png')}}"/>
 @yield('pageStyles')
+@livewireStyles
