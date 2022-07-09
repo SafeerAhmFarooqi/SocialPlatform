@@ -1,7 +1,7 @@
 <div class="col-md-3 static">
     <div class="profile-card">
-        <img src="{{asset('assets/FriendFinder-Theme/images/users/user-1.jpg')}}" alt="user" class="profile-photo" />
-        <h5><a href="#" class="text-white">Sarah Cruiz</a></h5>
+        <img src="{{Auth::user()->profile_pic_path?'storage/'.Auth::user()->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="user" class="profile-photo" />
+        <h5><a href="#" class="text-white">{{Auth::user()->firstname.' '.Auth::user()->lastname}}</a></h5>
         <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
     </div><!--profile card ends-->
     <ul class="nav-news-feed">

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\VoucherAdminController;
 use App\Http\Controllers\Admin\PostAdminController;
 use App\Http\Controllers\Admin\CommentAdminController;
 use App\Http\Controllers\Shop\VoucherShopController;
+use App\Http\Controllers\User\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,7 +95,8 @@ Route::post('/Shop-Use-Voucher-Submit', [VoucherShopController::class,'useVouche
 Route::get('/Shop-Use-Voucher-List-Show', [VoucherShopController::class,'useVoucherListShow'])->name('shop.usevoucher.list.show');
 });
 
-Route::group(['middleware' => ['role:User','auth']], function () {
-
+Route::group(['middleware' => ['role:User','auth','verified','admin.user.approved']], function () {
+    Route::get('/user-profile-page', [UserProfileController::class,'userProfilePageShow'])->name('user.profile.basic.show');
+    Route::post('/user-profile-image-store', [UserProfileController::class,'userProfileImageStore'])->name('user.profile.image.change');
 });
 require __DIR__.'/auth.php';
