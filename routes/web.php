@@ -98,5 +98,6 @@ Route::get('/Shop-Use-Voucher-List-Show', [VoucherShopController::class,'useVouc
 Route::group(['middleware' => ['role:User','auth','verified','admin.user.approved']], function () {
     Route::get('/user-profile-page', [UserProfileController::class,'userProfilePageShow'])->name('user.profile.basic.show');
     Route::post('/user-profile-image-store', [UserProfileController::class,'userProfileImageStore'])->name('user.profile.image.change');
+    Route::post('/user-profile-data-store', [UserProfileController::class,'userProfileDataStore'])->name('user.profile.data.change');
 });
 require __DIR__.'/auth.php';

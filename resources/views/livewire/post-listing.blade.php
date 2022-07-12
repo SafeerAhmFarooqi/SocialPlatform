@@ -7,7 +7,7 @@
       @endif
       
       <div class="post-container">
-        <img src="{{$post->user->profile_pic_path?'storage/'.$post->user->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="user" class="profile-photo-md pull-left" />
+        <img src="{{!is_null(Auth::user()->profile_pic_path)?(Auth::user()->profile_pic_path?'storage/'.Auth::user()->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')) : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="user" class="profile-photo-md pull-left" />
         <div class="post-detail">
           <div class="user-info">
             <h5><a href="#" class="profile-link">{{$post->user->firstname.' '.$post->user->lastname}}</a>  {{-- <span class="following">following</span> --}}</h5>  

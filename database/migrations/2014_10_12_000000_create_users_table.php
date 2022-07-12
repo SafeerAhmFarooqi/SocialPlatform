@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('pdf_password')->nullable();
             $table->timestamp('dob')->nullable();
             $table->string('city')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->string('user_address')->nullable();
             $table->string('shop_address')->nullable();
             $table->string('phone')->nullable();
@@ -37,6 +38,7 @@ return new class extends Migration
             $table->boolean('user_status')->default(1);
             $table->boolean('shop_status')->default(1);
             $table->string('location')->nullable();
+            $table->string('about_me')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
