@@ -93,7 +93,7 @@
 	  <!-- Sign Up Form
 	  ================================================= -->
 	  <div class="sign-up-form">
-				  <a href="#" class="logo"><img src="{{asset('assets/FriendFinder-Theme/images/logo.png')}}" alt="Friend Finder"/></a>
+				  <a href="/" class="logo"><img src="{{asset('assets/FriendFinder-Theme/images/logo.png')}}" alt="Friend Finder"/></a>
 				  <h2 class="text-white">Find My Friends</h2>
 				  <div class="line-divider"></div>
 				  <div class="form-wrapper">
@@ -131,6 +131,7 @@
 					  {{-- <p>By signning up you agree to the terms</p> --}}
 
 				  </div>
+				  <p><a href="{{ route('password.request') }}">Forgot Password?</a></p>
 				  <p><a href="{{route('register.ff')}}">Don't have a user account?Register Here</a></p>
 				  <a href="{{route('register.shop')}}">Don't have a shop account?Register Here</a>
 				  <img class="form-shadow" src="{{asset('assets/FriendFinder-Theme/images/bottom-shadow.png')}}" alt="" />
