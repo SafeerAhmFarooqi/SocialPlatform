@@ -30,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'pdf_password',
         'dob',
         'city',
+        'country_id',
         'user_address',
         'shop_address',
         'phone',
@@ -42,6 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'user_status',
         'shop_status',
         'location',
+        'about_me',
         'email_verified_at',
     ];
 
@@ -73,6 +75,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getOptionsAttribute($value)
     {
-        return $this->attributes['options'] = json_decode($value);
+        return $this->attributes['options'] = json_decode(json_encode($value));
     }
 }
