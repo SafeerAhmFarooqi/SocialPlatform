@@ -640,7 +640,7 @@
                       @enderror
                     </div>
                   </div>
-                  <p><a href="#">Forgot Password?</a></p>
+                  <p><a href="{{ route('password.request') }}">Forgot Password?</a></p>
                 <p><a href="#register" data-toggle="tab">Don't have an account, register Now</a></p>
                 <button class="btn btn-primary" type="submit">Login Now</button>
                 </form><!--Login Form Ends--> 

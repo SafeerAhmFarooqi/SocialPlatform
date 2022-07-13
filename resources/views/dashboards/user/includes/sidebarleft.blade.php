@@ -5,8 +5,8 @@
         <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
     </div><!--profile card ends-->
     <ul class="nav-news-feed">
-      <li><i class="icon ion-ios-paper"></i><div><a href="#">My Newsfeed</a></div></li>
-      <li><i class="icon ion-ios-people"></i><div><a href="#">People Nearby</a></div></li>
+      <li><i class="icon ion-ios-paper"></i><div><a href="{{route('dashboard')}}">My Newsfeed</a></div></li>
+      <li><i class="icon ion-ios-people"></i><div><a href="{{route('user.dashboard.people-nearby')}}">People Nearby</a></div></li>
       <li><i class="icon ion-ios-people-outline"></i><div><a href="#">Friends</a></div></li>
       <li><i class="icon ion-chatboxes"></i><div><a href="#">Messages</a></div></li>
       <li><i class="icon ion-images"></i><div><a href="#">Images</a></div></li>
