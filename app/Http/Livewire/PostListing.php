@@ -11,6 +11,7 @@ class PostListing extends Component
 {
     public $commentText='';
     public $selectedPostId='';
+    public $groupId=0;
 
     protected $validationAttributes = [
         'commentText' => 'Comment',
@@ -50,7 +51,7 @@ class PostListing extends Component
 
     public function render()
     {
-        $posts=Posts::orderBy('created_at','DESC')->get();
+        $posts=Posts::orderBy('created_at','DESC')->where('group_id',$this->groupId??0)->get();
         return view('livewire.post-listing',[
             'posts'=>$posts,
         ]);

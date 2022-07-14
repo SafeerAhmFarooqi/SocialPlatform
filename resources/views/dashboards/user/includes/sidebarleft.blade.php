@@ -1,13 +1,13 @@
 <div class="col-md-3 static">
     <div class="profile-card">
-        <img src="{{Auth::user()->profile_pic_path?'storage/'.Auth::user()->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="user" class="profile-photo" />
+        <img src="{{Auth::user()->profile_pic_path? asset('storage/'.Auth::user()->profile_pic_path) : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="user" class="profile-photo" />
         <h5><a href="#" class="text-white">{{Auth::user()->firstname.' '.Auth::user()->lastname}}</a></h5>
         <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
     </div><!--profile card ends-->
     <ul class="nav-news-feed">
       <li><i class="icon ion-ios-paper"></i><div><a href="{{route('dashboard')}}">My Newsfeed</a></div></li>
       <li><i class="icon ion-ios-people"></i><div><a href="{{route('user.dashboard.people-nearby')}}">People Nearby</a></div></li>
-      <li><i class="icon ion-ios-people-outline"></i><div><a href="#">Friends</a></div></li>
+      <li><i class="icon  fa fa-users"></i><div><a href="{{route('user.dashboard.groups')}}">Groups</a></div></li>
       <li><i class="icon ion-chatboxes"></i><div><a href="#">Messages</a></div></li>
       <li><i class="icon ion-images"></i><div><a href="#">Images</a></div></li>
       <li><i class="icon ion-ios-videocam"></i><div><a href="#">Videos</a></div></li>

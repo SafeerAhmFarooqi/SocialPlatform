@@ -10,4 +10,18 @@ class Group extends Model
     use HasFactory;
 
     protected $table="groups";
+
+    protected $fillable = [
+        'title',
+        'location',
+        'owner_id',
+        'group_status',
+        'created_by',
+    ];
+
+    public function members()
+    {
+        return $this->hasMany(GroupMembers::class, 'group_id');
+    }
+
 }

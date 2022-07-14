@@ -6,7 +6,7 @@
 
             <div class="col-md-7 col-sm-7">
                 <div class="form-group">
-                  <img src="{{Auth::user()->profile_pic_path?'storage/'.Auth::user()->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="" class="profile-photo-md" />
+                  <img src="{{Auth::user()->profile_pic_path? asset('storage/'.Auth::user()->profile_pic_path) : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="" class="profile-photo-md" />
                   <textarea wire:model="postText" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
                 </div>
               </div>

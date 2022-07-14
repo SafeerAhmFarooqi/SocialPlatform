@@ -15,6 +15,7 @@ class PublishPost extends Component
 
     public $postText='';
     public $postImage='';
+    public $groupId=0;
 
     protected $validationAttributes = [
         'postText' => 'Post Text',
@@ -51,6 +52,7 @@ class PublishPost extends Component
         $post = Posts::create([
             'post_text' => $this->postText,
             'image_path' => $filePath,
+            'group_id' => $this->groupId??0,
         ]);
 
         $this->postText='';
