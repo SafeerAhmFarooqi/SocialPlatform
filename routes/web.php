@@ -104,6 +104,7 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::get('/user-people-nearby', [UserPeopleNearbyController::class,'userPeopleNearbyPageShow'])->name('user.dashboard.people-nearby');
     Route::get('/user-groups-dashboard', [UserGroupsController::class,'userGroupsPageShow'])->name('user.dashboard.groups');
     Route::post('/user-groups-store', [UserGroupsController::class,'userGroupsStore'])->name('user.dashboard.groups.store');
+    Route::post('/user-groups-member-store', [UserGroupsController::class,'userGroupsMemberStore'])->name('user.dashboard.groups.member.store');
     Route::get('/user-groups-posts/{id?}', [UserGroupsController::class,'userGroupPostPageShow'])->name('user.dashboard.groups.post');
 });
 require __DIR__.'/auth.php';
