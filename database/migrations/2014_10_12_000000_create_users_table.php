@@ -35,10 +35,11 @@ return new class extends Migration
             $table->string('profile_pic_path')->nullable();
             $table->string('pdf_file_path')->nullable();
             $table->string('options')->nullable();
-            $table->boolean('user_status')->default(1);
-            $table->boolean('shop_status')->default(1);
+            $table->boolean('user_status')->default(0);
+            $table->boolean('shop_status')->default(0);
             $table->string('location')->nullable();
             $table->string('about_me')->nullable();
+            $table->string('profession')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

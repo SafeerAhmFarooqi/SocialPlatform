@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CommentAdminController;
 use App\Http\Controllers\Shop\VoucherShopController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\UserPeopleNearbyController;
+use App\Http\Controllers\User\UserGroupsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,5 +102,8 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::post('/user-profile-image-store', [UserProfileController::class,'userProfileImageStore'])->name('user.profile.image.change');
     Route::post('/user-profile-data-store', [UserProfileController::class,'userProfileDataStore'])->name('user.profile.data.change');
     Route::get('/user-people-nearby', [UserPeopleNearbyController::class,'userPeopleNearbyPageShow'])->name('user.dashboard.people-nearby');
+    Route::get('/user-groups-dashboard', [UserGroupsController::class,'userGroupsPageShow'])->name('user.dashboard.groups');
+    Route::post('/user-groups-store', [UserGroupsController::class,'userGroupsStore'])->name('user.dashboard.groups.store');
+    Route::get('/user-groups-posts/{id?}', [UserGroupsController::class,'userGroupPostPageShow'])->name('user.dashboard.groups.post');
 });
 require __DIR__.'/auth.php';
