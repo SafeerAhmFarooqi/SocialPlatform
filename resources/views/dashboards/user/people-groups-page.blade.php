@@ -120,9 +120,8 @@
         </div>
         <div class="modal-body">
         {{-- <form action="{{route('group_members.update',$group->id)}}" method="post" onsubmit="return confirm('Are you sure you want to Add Members')"> --}}
-            <form action="" method="post" onsubmit="return confirm('Are you sure you want to Add Members')">
+            <form action="{{route('user.dashboard.groups.member.store')}}" method="post" onsubmit="return confirm('Are you sure you want to Add Members')">
           @csrf
-          @method('PUT')
         <div class="form-group">
         <label for="usr">Group</label>
         <input type="text" class="form-control" name="group_title" value="{{$group->title}}" disabled="">
@@ -142,7 +141,7 @@
         </div>
         <div class="modal-footer justify-content-center">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" name="submit" value="Add">
+        <button type="submit" class="btn btn-primary">Add</button>
         </div>
         </form>
         </div>
@@ -170,61 +169,40 @@
        
          <h2 style="background:#333;color:#fff;border:none;margin:15px;border-radius: 0;width:100%" type="button" class="btn btn-primary my-example-model"> Groups You Are Member Of </h2>
        
-       @foreach($groups as $group)
-       
-        <?php 
-            $g_members= DB::table('group_members')->where('group_id',$group->id)->first();
-            $chech_member=explode(',', $g_members->member_id);
-       
-            $current_user=Auth::user()->id;
-       
-            foreach ($chech_member as $chech_member) {
-              if($current_user == $chech_member ){
-       
-         
-        ?>
-       
-       
-       <div class="col-sm-12" style="padding:15px">
-        <div class="card b-1 hover-shadow mb-20">
-           <div class="media card-body">
-             {{-- <div class="media-left pr-12"><img alt="..." class="avatar avatar-xl no-radius" src="https://bootdey.com/img/Content/avatar/avatar1.png"></div> --}}
-             <div class="col-sm-6">
-               <div class="mb-2">
-                 <span class="fs-20 pr-16">{{$group->title}}</span>
+       @foreach($groups as $group) 
+        @if ($group->members->where('member_id',Auth::user()->id)->first())
+        <div class="col-sm-12" style="padding:15px">
+            <div class="card b-1 hover-shadow mb-20">
+               <div class="media card-body">
+                 {{-- <div class="media-left pr-12"><img alt="..." class="avatar avatar-xl no-radius" src="https://bootdey.com/img/Content/avatar/avatar1.png"></div> --}}
+                 <div class="col-sm-6">
+                   <div class="mb-2">
+                     <span class="fs-20 pr-16">{{$group->title}}</span>
+                   </div>
+           
+                         
+           
+                   <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a}} </small><Br>
+                      <strong>Status :</strong> <span>{{$group->group_status?'Active' : 'Non-active'}}</span>
+                   
+                 </div>
+                  
                </div>
-       
-                       <?php 
-       $t_members= DB::table('group_members')->where('group_id',$group->id)->first();
-       $new=explode(',',$t_members->member_id);
-       $a=0;
-        foreach ($new as $test) {
-         $a++;
-        }
-       ?>
-       
-               <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a}} </small><Br>
-                  <strong>Status :</strong> <span>{{$group->group_status?'Active' : 'Non-active'}}</span>
-               
+               <footer class="card-footer flexbox align-items-center">
+                 <div>
+                   <strong>Created on:</strong> <span>{{$group->created_at}}</span>
+                 </div>
+                 @if ($group->group_status==1)
+                 <div class="card-hover-show"> 
+                  {{-- <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('user.dashboard.groups.post',[$group->id])}}">   Enter Group</a>  --}}
+                  <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('user.dashboard.groups.post',[$group->id])}}">   Enter Group</a>
+               </div>    
+                 @endif
+                 
+               </footer>
              </div>
-              
            </div>
-           <footer class="card-footer flexbox align-items-center">
-             <div>
-               <strong>Created on:</strong> <span>{{$group->created_at}}</span>
-             </div>
-             @if ($group->group_status==1)
-             <div class="card-hover-show"> 
-              {{-- <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('user.dashboard.groups.post',[$group->id])}}">   Enter Group</a>  --}}
-              <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('user.dashboard.groups.post',[$group->id])}}">   Enter Group</a>
-           </div>    
-             @endif
-             
-           </footer>
-         </div>
-       </div>
-       
-        <?php }}?>
+        @endif
         @endforeach
        
         

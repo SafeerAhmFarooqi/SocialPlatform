@@ -44,6 +44,26 @@ class UserGroupsController extends BaseUserController
     return back();
  }
 
+ public function userGroupsMemberStore(Request $request)
+ {
+    //return $request;
+    foreach ($request->members as $value) {
+        $check=false;
+        $check=GroupMembers::where('group_id',$request->group_id)->where('member_id',$value)->first();
+        if(!$check)
+        {
+            GroupMembers::create([
+                'group_id'=>$request->group_id,
+                'member_id'=>$value,
+            ]);
+        }
+        
+    }
+
+    return back();
+ }
+ 
+
  public function userGroupPostPageShow($id=null)
  {
     //return $id;
