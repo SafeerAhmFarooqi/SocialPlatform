@@ -77,6 +77,7 @@ class UserGroupsController extends BaseUserController
     //return "true";
     return view('dashboards.user.group-post-page',[
         'id'=>$id,
+        'group'=>Group::findOrFail($id),
     ]);
   } else {
     return back();
