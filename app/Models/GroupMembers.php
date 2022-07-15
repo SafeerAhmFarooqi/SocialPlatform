@@ -14,4 +14,9 @@ class GroupMembers extends Model
         'member_id',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'member_id');
+    }
 }
