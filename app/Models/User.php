@@ -77,4 +77,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->attributes['options'] = json_decode(json_encode($value));
     }
+
+    public function accountSetting()
+    {
+        return $this->hasMany(AccountSetting::class, 'user_id');
+    }
 }

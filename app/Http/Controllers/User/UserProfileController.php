@@ -11,15 +11,25 @@ use App\Models\Group;
 use App\Models\Voucher;
 use App\Models\UseVoucher;
 use App\Models\Countries;
+use App\Models\AccountSetting;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 class UserProfileController extends BaseUserController
 {
  public function userProfilePageShow()
  {
-    return view('dashboards.user.settings-basic-information-page',[
+    return view('dashboards.user.profile-basic-information-page',[
         'activeLink'=>1,
         'countries'=>Countries::all(),
+    ]);
+ }
+
+ public function userProfileSettingPageShow()
+ {
+   //return "safeer";
+    return view('dashboards.user.profile-account-setting-page',[
+        'activeLink'=>4,
     ]);
  }
 
@@ -43,6 +53,34 @@ class UserProfileController extends BaseUserController
     $user->save();
 
         return back()->with('success_1', 'Profile Image Updated');
+ }
+
+ public function userProfileSettingStore(Request $request)
+ {
+    //return "safeer";
+    //return $request;
+    $accountSetting=Auth::user()->accountSetting->first()??new collection();
+    if ($accountSetting->count()>0) {
+        $accountSetting->user_dob=in_array('dob',$request->setting??[])?true : false;
+        $accountSetting->user_address=in_array('address',$request->setting??[])?true : false;
+        $accountSetting->user_phone=in_array('phone',$request->setting??[])?true : false;
+        $accountSetting->user_about=in_array('about',$request->setting??[])?true : false;
+        $accountSetting->save();
+        return back()->with('success', 'Profile Settings Updated');
+    } else {
+        $accountSetting = AccountSetting::create([
+            'user_dob' => in_array('dob',$request->setting??[])?true : false,
+            'user_address' => in_array('address',$request->setting??[])?true : false,
+            'user_phone' => in_array('phone',$request->setting??[])?true : false,
+            'user_about' => in_array('about',$request->setting??[])?true : false,
+        ]);
+        if ($accountSetting) {
+            return back()->with('success', 'Profile Settings Updated');
+        } else {
+            return back()->with('error', 'Profile Settings Not Updated');
+        }
+    }
+    
  }
 
  public function userProfileDataStore(Request $request)
