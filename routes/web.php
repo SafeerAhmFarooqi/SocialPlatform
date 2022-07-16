@@ -106,5 +106,7 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::post('/user-groups-store', [UserGroupsController::class,'userGroupsStore'])->name('user.dashboard.groups.store');
     Route::post('/user-groups-member-store', [UserGroupsController::class,'userGroupsMemberStore'])->name('user.dashboard.groups.member.store');
     Route::get('/user-groups-posts/{id?}', [UserGroupsController::class,'userGroupPostPageShow'])->name('user.dashboard.groups.post');
+    Route::get('/user-profile-setting-page', [UserProfileController::class,'userProfileSettingPageShow'])->name('user.profile.setting.show');
+    Route::post('/user-profile-setting-store', [UserProfileController::class,'userProfileSettingStore'])->name('user.profile.setting.change');
 });
 require __DIR__.'/auth.php';
