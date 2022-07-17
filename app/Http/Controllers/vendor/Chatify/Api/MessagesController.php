@@ -1,6 +1,6 @@
 <?php
 
-namespace Chatify\Http\Controllers\Api;
+namespace App\Http\Controllers\vendor\Chatify\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -31,7 +31,7 @@ class MessagesController extends Controller
         $authData = json_encode([
             'user_id' => Auth::user()->id,
             'user_info' => [
-                'name' => Auth::user()->name
+                'name' => Auth::user()->firstname.' '.Auth::user()->lastname
             ]
         ]);
         // check if user authorized
@@ -230,7 +230,7 @@ class MessagesController extends Controller
         ->where('users.id','!=',Auth::user()->id)
         ->select('users.*',DB::raw('MAX(ch_messages.created_at) max_created_at'))
         ->orderBy('max_created_at', 'desc')
-        ->groupBy('users.id')
+        //->groupBy('users.id')
         ->paginate($request->per_page ?? $this->perPage);
 
         return response()->json([
@@ -293,7 +293,8 @@ class MessagesController extends Controller
     {
         $input = trim(filter_var($request['input']));
         $records = User::where('id','!=',Auth::user()->id)
-                    ->where('name', 'LIKE', "%{$input}%")
+                    ->where('firstname', 'LIKE', "%{$input}%")
+                    ->orWhere('lastname', 'LIKE', "%{$input}%")
                     ->paginate($request->per_page ?? $this->perPage);
 
         foreach ($records->items() as $index => $record) {
