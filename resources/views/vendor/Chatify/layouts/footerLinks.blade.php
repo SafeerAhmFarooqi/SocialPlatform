@@ -20,4 +20,4 @@
     const getAllowedExtensions = [...allowedImages, ...allowedFiles];
     const getMaxUploadSize = {{ Chatify::getMaxUploadSize() }};
 </script>
-<script src="{{ asset('js/chatify/code.js') }}"></script>
+<script src="{{ asset('assets/chatify/js/code.js') }}"></script>
