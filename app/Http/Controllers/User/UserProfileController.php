@@ -25,6 +25,28 @@ class UserProfileController extends BaseUserController
     ]);
  }
 
+ public function userProfilePasswordPageShow()
+ {
+    return view('dashboards.user.profile-password-page',[
+        'activeLink'=>5,
+    ]);
+ }
+
+ public function userProfilePasswordChange(Request $request)
+ {
+    if(Auth::check())
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('password.request',$page='password-change');
+    }
+    return back();
+ }
+
  public function userProfileSettingPageShow()
  {
    //return "safeer";
