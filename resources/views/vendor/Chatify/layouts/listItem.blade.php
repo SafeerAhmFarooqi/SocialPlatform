@@ -33,7 +33,7 @@
         {{-- center side --}}
         <td>
         <p data-id="{{ $user->id }}" data-type="user">
-            {{ strlen($user->name) > 12 ? trim(substr($user->name,0,12)).'..' : $user->name }}
+            {{ strlen($user->firstname.' '.$user->lastname) > 12 ? trim(substr($user->firstname.' '.$user->lastname,0,12)).'..' : $user->firstname.' '.$user->lastname }}
             <span>{{ $lastMessage->created_at->diffForHumans() }}</span></p>
         <span>
             {{-- Last Message user indicator --}}
@@ -74,7 +74,7 @@
         {{-- center side --}}
         <td>
             <p data-id="{{ $user->id }}" data-type="user">
-            {{ strlen($user->name) > 12 ? trim(substr($user->name,0,12)).'..' : $user->name }}
+            {{ strlen($user->firstname.' '.$user->lastname) > 12 ? trim(substr($user->firstname.' '.$user->lastname,0,12)).'..' : $user->firstname.' '.$user->lastname }}
         </td>
 
     </tr>
