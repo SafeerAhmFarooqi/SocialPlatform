@@ -41,7 +41,7 @@
 		  <div class="container">
 	  <div class="sign-up-form">
 				  <a href="/" class="logo"><img src="{{asset('assets/FriendFinder-Theme/images/logo.png')}}" alt="Friend Finder"/></a>
-				  <h2 class="text-white">Forgot Password</h2>
+				  <h2 class="text-white">{{!is_null($page)?($page=='password-change'? 'Change' : 'Forgot') : 'Forgot'}} Password</h2>
 				  <div class="line-divider"></div>
 				  <div class="form-wrapper">
 					  <p class="signup-text">No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
