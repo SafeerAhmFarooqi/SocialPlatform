@@ -23,5 +23,9 @@ class UseVoucher extends Model
         'email',
     ];
 
+    public function shop()
+    {
+        return $this->hasOne(User::class, 'id');
+    }
     
 }
