@@ -23,4 +23,9 @@ class Voucher extends Model
         'voucher_status',
     ];
 
+    public function shop()
+    {
+        return $this->belongsTo(User::class, 'shop_id');
+    }
+
 }

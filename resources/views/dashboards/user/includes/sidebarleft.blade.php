@@ -8,10 +8,10 @@
       <li><i class="icon ion-ios-paper"></i><div><a href="{{route('dashboard')}}">My Newsfeed</a></div></li>
       <li><i class="icon ion-ios-people"></i><div><a href="{{route('user.dashboard.people-nearby')}}">People Nearby</a></div></li>
       <li><i class="icon  fa fa-users"></i><div><a href="{{route('user.dashboard.groups')}}">Groups</a></div></li>
-      <li><i class="icon ion-chatboxes"></i><div><a href="{{route('chatify')}}">Messages</a></div></li>
+      <li><i class="icon ion-chatboxes"></i><div><a href="{{route(config('chatify.routes.prefix'))}}">Messages</a></div></li>
       <li><i class="icon ion-chatboxes"></i><div><a href="{{route('user.dashboard.users.page')}}">Users</a></div></li>
-      <li><i class="icon ion-images"></i><div><a href="#">Images</a></div></li>
-      <li><i class="icon ion-ios-videocam"></i><div><a href="#">Videos</a></div></li>
+      <li><i class="icon ion-chatboxes"></i><div><a href="{{route('user.dashboard.voucher.page')}}">Vouchers</a></div></li>
+      <li><i class="icon ion-chatboxes"></i><div><a href="{{route('user.dashboard.saving.page')}}">Savings</a></div></li>
     </ul><!--news-feed links ends-->
     <div id="chat-block">
       <div class="title">Chat online</div>
