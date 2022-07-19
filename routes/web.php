@@ -12,6 +12,7 @@ use App\Http\Controllers\Shop\VoucherShopController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\UserPeopleNearbyController;
 use App\Http\Controllers\User\UserGroupsController;
+use App\Http\Controllers\User\UserListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,5 +111,7 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::post('/user-profile-setting-store', [UserProfileController::class,'userProfileSettingStore'])->name('user.profile.setting.change');
     Route::get('/user-profile-password-page', [UserProfileController::class,'userProfilePasswordPageShow'])->name('user.profile.password.show');
     Route::get('/user-profile-password-change', [UserProfileController::class,'userProfilePasswordChange'])->name('user.profile.password.change');
+    Route::get('/user-list-page', [UserListController::class,'userListPageShow'])->name('user.dashboard.users.page');
+    Route::get('/user-info-page/{id?}', [UserListController::class,'userInfoPageShow'])->name('user.dashboard.user.information');
 });
 require __DIR__.'/auth.php';
