@@ -19,8 +19,11 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
                 <ul class="dropdown-menu newsfeed-home">
-                  <li><a href="#">Landing Page 1</a></li>
-                  <li><a href="#">Landing Page 2</a></li>
+                  <li><a href="#">User</a></li>
+                  @role('shop')
+                  <li><a href="#">Shop</a></li>
+                  @endrole
+                  <li><a href="/">Landing Page</a></li>
                 </ul>
             </li>
             <li class="dropdown">
