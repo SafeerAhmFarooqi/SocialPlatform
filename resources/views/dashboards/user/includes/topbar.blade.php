@@ -19,38 +19,15 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
                 <ul class="dropdown-menu newsfeed-home">
-                  <li><a href="#">User</a></li>
+                  <li><a href="{{route('dashboard')}}">User Dashboard</a></li>
                   @role('shop')
-                  <li><a href="#">Shop</a></li>
+                  <li><a href="#">Shop Dashboard</a></li>
                   @endrole
                   <li><a href="/">Landing Page</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Newsfeed <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
-                <ul class="dropdown-menu newsfeed-home">
-                  <li><a href="#">Newsfeed</a></li>
-                  <li><a href="#">Poeple Nearly</a></li>
-                  <li><a href="#">My friends</a></li>
-                  <li><a href="#">Chatroom</a></li>
-                  <li><a href="#">Images</a></li>
-                  <li><a href="#">Videos</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Timeline <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
-              <ul class="dropdown-menu login">
-                <li><a href="#">Timeline</a></li>
-                <li><a href="#">Timeline About</a></li>
-                <li><a href="#">Timeline Album</a></li>
-                <li><a href="#">Timeline Friends</a></li>
-                <li><a href="#">Edit: Basic Info</a></li>
-                <li><a href="#">Edit: Work</a></li>
-                <li><a href="#">Edit: Interests</a></li>
-                <li><a href="#">Account Settings</a></li>
-                <li><a href="#">Change Password</a></li>
-              </ul>
-            </li>
+            
+            
          
             <li class="dropdown">
               <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
