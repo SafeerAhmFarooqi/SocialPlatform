@@ -83,7 +83,7 @@
         }
        ?>
        
-               <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a}}  </small><Br>
+               <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a??''}}  </small><Br>
                 <strong>Status :</strong> <span>{{$group->group_status?'Active' : 'Non-active'}}</span>
                
              </div>
@@ -182,7 +182,7 @@
            
                          
            
-                   <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a}} </small><Br>
+                   <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a??''}} </small><Br>
                       <strong>Status :</strong> <span>{{$group->group_status?'Active' : 'Non-active'}}</span>
                    
                  </div>
