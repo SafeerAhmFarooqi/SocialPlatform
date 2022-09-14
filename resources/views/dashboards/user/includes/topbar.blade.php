@@ -32,6 +32,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
               <ul class="dropdown-menu page-list">
+                <li><a>{{Auth::user()->email}}</a></li>
                 <li><a href="{{route('user.profile.basic.show')}}">My Profile</a></li>
                 <li><a href="#"> 
                   <form action="{{route('logout')}}" method="post" style="display: inline; padding: 0% 0%;">
