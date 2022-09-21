@@ -1,341 +1,512 @@
-@extends('layouts.friendfinder-theme')
+@extends('layouts.ressoli-theme')
 @section('body-content')
-<header id="header" class="lazy-load">
-	<nav class="navbar navbar-default navbar-fixed-top menu">
-	  <div class="container">
+<header class="navbar-light header-static bg-transparent">
+    <!-- Navbar START -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <!-- Logo START -->
+        <a class="navbar-brand" href="index-2.html">
+          <img class="light-mode-item navbar-brand-item" src="{{asset('assets/ressoli-theme/assets/images/logo.svg')}}" alt="logo">
+				  <img class="dark-mode-item navbar-brand-item" src="{{asset('assets/ressoli-theme/assets/images/logo.svg')}}" alt="logo">		
+        </a>
+        <!-- Logo END -->
 
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>
-		  <a class="navbar-brand" href="#"><img src="{{asset('assets/FriendFinder-Theme/images/logo.png')}}" alt="logo" /></a>
-		</div>
+        <!-- Responsive navbar toggler -->
+			<button class="navbar-toggler ms-auto icon-md btn btn-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-animation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		  <ul class="nav navbar-nav navbar-right main-menu">
-			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
-				<ul class="dropdown-menu newsfeed-home">
-				  <li><a href="#">Landing Page 1</a></li>
-				  <li><a href="#">Landing Page 2</a></li>
-				</ul>
-			</li>
-			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Newsfeed <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
-				<ul class="dropdown-menu newsfeed-home">
-				  <li><a href="#">Newsfeed</a></li>
-				  <li><a href="#">Poeple Nearly</a></li>
-				  <li><a href="#">My friends</a></li>
-				  <li><a href="#">Chatroom</a></li>
-				  <li><a href="#">Images</a></li>
-				  <li><a href="#">Videos</a></li>
-				</ul>
-			</li>
-			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Timeline <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
-			  <ul class="dropdown-menu login">
-				<li><a href="#">Timeline</a></li>
-				<li><a href="#">Timeline About</a></li>
-				<li><a href="#">Timeline Album</a></li>
-				<li><a href="#">Timeline Friends</a></li>
-				<li><a href="#">Edit: Basic Info</a></li>
-				<li><a href="#">Edit: Work</a></li>
-				<li><a href="#">Edit: Interests</a></li>
-				<li><a href="#">Account Settings</a></li>
-				<li><a href="#">Change Password</a></li>
-			  </ul>
-			</li>
-			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">All Pages <span><img src="{{asset('assets/FriendFinder-Theme/images/down-arrow.png')}}" alt="" /></span></a>
-			  <ul class="dropdown-menu page-list">
-				<li><a href="#">Landing Page 1</a></li>
-				<li><a href="#">Landing Page 2</a></li>
-				<li><a href="#">Newsfeed</a></li>
-				<li><a href="#">Poeple Nearly</a></li>
-				<li><a href="#">My friends</a></li>
-				<li><a href="#">Chatroom</a></li>
-				<li><a href="#">Images</a></li>
-				<li><a href="#">Videos</a></li>
-				<li><a href="#">Timeline</a></li>
-				<li><a href="#">Timeline About</a></li>
-				<li><a href="#">Timeline Album</a></li>
-				<li><a href="#">Timeline Friends</a></li>
-				<li><a href="#">Edit Profile</a></li>
-				<li><a href="#">Contact Us</a></li>
-				<li><a href="#">FAQ Page</a></li>
-				<li><a href="#">404 Not Found</a></li>
-			  </ul>
-			</li>
-			<li class="dropdown"><a href="#">Contact</a></li>
-		  </ul>
-		  <form class="navbar-form navbar-right hidden-sm">
-			<div class="form-group">
-			  <i class="icon ion-android-search"></i>
-			  <input type="text" class="form-control" placeholder="Search friends, photos, videos">
-			</div>
-		  </form>
-		</div><!-- /.navbar-collapse -->
-	  </div><!-- /.container -->
-	</nav>
-  </header>
-  <!--Header End-->
+        <!-- Main navbar START -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <!-- Nav item -->
+            <li class="nav-item">
+              <a class="nav-link" href="settings.html">Security</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Main navbar END -->
 
-  <!-- Top Banner
-  ================================================= -->
-	  <section id="banner">
-		  <div class="container">
+        <!-- Nav right START -->
+        <div class="ms-3 ms-lg-auto">
+          <a class="btn btn-dark" href="app-download.html"> Download app </a>
+        </div>
+          <!-- Nav right END -->
+        </div>
+      </nav>
+      <!-- Navbar END -->
+    </header>
 
-	  <!-- Sign Up Form
-	  ================================================= -->
-	  <div class="sign-up-form">
-				  <a href="/" class="logo"><img src="{{asset('assets/FriendFinder-Theme/images/logo.png')}}" alt="Friend Finder"/></a>
-				  <h2 class="text-white">Find My Friends</h2>
-				  <div class="line-divider"></div>
-				  <div class="form-wrapper">
-					  <p class="signup-text">Sign in  now and meet awesome people around the world</p>
-					  <form method="POST" action="{{ route('login') }}">
-						@csrf
-						  {{-- <fieldset class="form-group">
-							  <input type="text" class="form-control" id="example-name" placeholder="Enter name">
-						  </fieldset> --}}
-						  <fieldset class="form-group">
-							  <input type="email" class="form-control" name="email" placeholder="Enter email" value="{{old('email')}}">
-							  @error('email')
-							  <div style="color: red;">
-									  {{$message}}
-							  </div>
-							  @enderror
-						  </fieldset>
-						  <fieldset class="form-group">
-							  <input type="password" class="form-control" name="password" placeholder="Enter a password" value="{{old('password')}}">
-							  @error('password')
-							  <div style="color: red;">
-									  {{$message}}
-							  </div>
-							  @enderror
-							</fieldset>
-							<button class="btn-secondary" type="submit">Sign In</button>
-						</form>
-						{{-- <form action="{{route('logout')}}" method="post">
-						@csrf
-						<button type="submit">Log out</button>
-						</form> --}}
-						<span>@if (Auth::check())
-							LOged IN
-						@endif</span>
-					  {{-- <p>By signning up you agree to the terms</p> --}}
+    <!-- =======================
+    Header END -->
 
-				  </div>
-				  <p><a href="{{ route('password.request') }}">Forgot Password?</a></p>
-				  <p><a href="{{route('register.ff')}}">Don't have a user account?Register Here</a></p>
-				  <a href="{{route('register.shop')}}">Don't have a shop account?Register Here</a>
-				  <img class="form-shadow" src="{{asset('assets/FriendFinder-Theme/images/bottom-shadow.png')}}" alt="" />
-			  </div><!-- Sign Up Form End -->
+  <main>
+  
+  <!-- **************** MAIN CONTENT START **************** -->
 
-	  <svg class="arrows hidden-xs hidden-sm">
-		<path class="a1" d="M0 0 L30 32 L60 0"></path>
-		<path class="a2" d="M0 20 L30 52 L60 20"></path>
-		<path class="a3" d="M0 40 L30 72 L60 40"></path>
-	  </svg>
-		  </div>
-	  </section>
+  <!-- Main banner START -->
+  <section class="pt-5 pb-0 position-relative">
 
-  <!-- Features Section
-  ================================================= -->
-	  <section id="features">
-		  <div class="container wrapper">
-			  <h1 class="section-title slideDown">social herd</h1>
-			  <div class="row slideUp">
-				  <div class="feature-item col-md-2 col-sm-6 col-xs-6 col-md-offset-2">
-					  <div class="feature-icon"><i class="icon ion-person-add"></i></div>
-					  <h3>Make Friends</h3>
-				  </div>
-				  <div class="feature-item col-md-2 col-sm-6 col-xs-6">
-					  <div class="feature-icon"><i class="icon ion-images"></i></div>
-					  <h3>Publish Posts</h3>
-				  </div>
-				  <div class="feature-item col-md-2 col-sm-6 col-xs-6">
-					  <div class="feature-icon"><i class="icon ion-chatbox-working"></i></div>
-					  <h3>Private Chats</h3>
-				  </div>
-				  <div class="feature-item col-md-2 col-sm-6 col-xs-6">
-					  <div class="feature-icon"><i class="icon ion-compose"></i></div>
-					  <h3>Create Polls</h3>
-				  </div>
-			  </div>
-			  <h2 class="sub-title">find awesome people like you</h2>
-			  <div id="incremental-counter" data-value="101242"></div>
-			  <p>People Already Signed Up</p>
-			  <img src="{{asset('assets/FriendFinder-Theme/images/face-map.png')}}" alt="" class="img-responsive face-map slideUp hidden-sm hidden-xs" />
-		  </div>
+    <!-- Container START -->
+    <div class="container">
+      <!-- Row START -->
+      <div class="row text-center position-relative z-index-1">
+        <div class="col-lg-7 mx-auto">
+          <!-- Heading -->
+          <h1 class="display-3">Download The Best Social App</h1>
+          <p class="lead">See resolved goodness felicity shy civility domestic had but perceive laughing six did far. </p>
+          <div class="d-sm-flex justify-content-center">
+            <!-- button -->
+            <button class="btn btn-primary">Sign up free</button>
+            <div class="mt-2 mt-sm-0 ms-sm-3">
+              <!-- Rating START -->
+              <div class="hstack justify-content-center justify-content-sm-start gap-1">
+                <div><i class="fa-solid fa-star text-warning"></i></div>
+                <div><i class="fa-solid fa-star text-warning"></i></div>
+                <div><i class="fa-solid fa-star text-warning"></i></div>
+                <div><i class="fa-solid fa-star text-warning"></i></div>
+                <div><i class="fa-solid fa-star-half-stroke text-warning"></i></div>
+              </div>
+              <!-- Rating END -->
+              <i>"I can't believe it's free!"</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row END -->
 
-	  </section>
+      <!-- Row START -->
+      <div class="row g-0 align-items-center mt-2 position-relative z-index-1">
+        <div class="col-lg-4">
+          <!-- iphone-x mockup START -->
+          <div class="iphone-x iphone-x-small" style="background: url(assets/images/mockup/app-placeholder2.jpg); background-size: 100%;">
+            <i></i>
+            <b></b>
+          </div>
+          <!-- iphone-x mockup END -->
+        </div>
+        <div class="col-lg-8">
+          <!-- Mac desk START -->
+          <div class="mac_container ">
+            <div class="mac_scaler">
+              <div class="mac_holder">
+                <div class="mac_screen">
+                  <div class="mac_camera"></div>
+                  <div class="mac_screen_content" style="background:url(assets/images/mockup/mac-placeholder.jpg); background-size: 100%;">
+                  </div>
+                </div>
+                <div class="mac_bottom">
+                  <div class="mac_bottom_top_half">
+                    <div class="mac_thumb_space"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Mac desk START -->
+        </div>
+      </div>
+      <!-- Row END -->
+    </div> 
+    <!-- Container END -->
 
-  <!-- Download Section
-  ================================================= -->
-	  <section id="app-download">
-		  <div class="container wrapper">
-			  <h1 class="section-title slideDown">download</h1>
-			  <ul class="app-btn list-inline slideUp">
-				  <li><button class="btn-secondary"><img src="{{asset('assets/FriendFinder-Theme/images/app-store.png')}}" alt="App Store" /></button></li>
-				  <li><button class="btn-secondary"><img src="{{asset('assets/FriendFinder-Theme/images/google-play.png')}}" alt="Google Play" /></button></li>
-			  </ul>
-			  <h2 class="sub-title">stay connected anytime, anywhere</h2>
-			  <img src="{{asset('assets/FriendFinder-Theme/images/iPhone.png')}}" alt="iPhone" class="img-responsive" />
-		  </div>
-	  </section>
+    <!-- Svg decoration START -->
+    <div class="position-absolute top-0 end-0 mt-5 pt-5">
+      <img class="h-300px blur-9 mt-5 pt-5" src="{{asset('assets/ressoli-theme/assets/images/elements/07.svg')}}" alt="">
+    </div>
+    <div class="position-absolute top-0 start-0 mt-n5 pt-n5">
+      <img class="h-300px blur-9" src="{{asset('assets/ressoli-theme/assets/images/elements/01.svg')}}" alt="">
+    </div>
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <img class="h-300px blur-9" src="{{asset('assets/ressoli-theme/assets/images/elements/04.svg')}}" alt="">
+    </div>
+    <!-- Svg decoration END -->
+    
+  </section>
+  <!-- Main banner END -->
 
-  <!-- Image Divider
-  ================================================= -->
-  <div class="img-divider hidden-sm hidden-xs"></div>
+  <!-- Messaging feature START -->
+  <section class="py-4 py-sm-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Title -->
+        <div class="col-lg-12 text-center mb-4">
+          <h2 class="h1">More than messaging</h2>
+          <p>Express besides it present if at an opinion visitor. </p>
+        </div>
+      </div>
+      <!-- Row START -->
+      <div class="row g-4 g-lg-5">
+        <!-- Feature START -->
+        <div class="col-md-4 text-center">
+          <img class="h-100px mb-4" src="{{asset('assets/ressoli-theme/assets/images/elements/02.svg')}}" alt="">
+          <h4>Voice and video calls</h4>
+          <p class="mb-0">Place voice no arises along to. Parlors waiting so against me no. Wishing calling is warrant settled was lucky.</p>
+        </div>
+        <!-- Feature END -->
 
-  <!-- Facts Section
-  ================================================= -->
-	  <section id="site-facts">
-		  <div class="container wrapper">
-			  <div class="circle">
-				  <ul class="facts-list">
-					  <li>
-						  <div class="fact-icon"><i class="icon ion-ios-people-outline"></i></div>
-						  <h3 class="text-white">1,01,242</h3>
-						  <p>People registered</p>
-					  </li>
-					  <li>
-						  <div class="fact-icon"><i class="icon ion-images"></i></div>
-						  <h3 class="text-white">21,01,242</h3>
-						  <p>Posts published</p>
-					  </li>
-					  <li>
-						  <div class="fact-icon"><i class="icon ion-checkmark-round"></i></div>
-						  <h3 class="text-white">41,242</h3>
-						  <p>People online</p>
-					  </li>
-				  </ul>
-			  </div>
-		  </div>
-	  </section>
+        <!-- Feature START -->
+        <div class="col-md-4 text-center">
+          <img class="h-100px mb-4" src="{{asset('assets/ressoli-theme/assets/images/elements/07.svg')}}" alt="">
+          <h4>Auto save contacts</h4>
+          <p class="mb-0">Handsome met debating sir dwelling age material. As style lived he worse dried. visitors subjects distance.</p>
+        </div>
+        <!-- Feature END -->
 
-  <!-- Live Feed Section
-  ================================================= -->
-	  <section id="live-feed">
-		  <div class="container wrapper">
-			  <h1 class="section-title slideDown">live feed</h1>
-			  <ul class="online-users list-inline slideUp">
-				  <li><a href="#" title="Alexis Clark"><img src="{{asset('assets/FriendFinder-Theme/images/users/user-5.jpg')}}" alt="" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-		<li><a href="#" title="James Carter"><img src="{{asset('assets/FriendFinder-Theme/images/users/user-6.jpg')}}" alt="" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-		<li><a href="#" title="Robert Cook"><img src="{{asset('assets/FriendFinder-Theme/images/users/user-7.jpg')}}" alt="" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-		
-			  </ul>
-			  <h2 class="sub-title">see what’s happening now</h2>
-			  <div class="row">
-				  <div class="col-md-4 col-sm-6 col-md-offset-2">
-					  <div class="feed-item">
-						  <img src="{{asset('assets/FriendFinder-Theme/images/users/user-1.jpg')}}" alt="user" class="img-responsive profile-photo-sm" />
-						  <div class="live-activity">
-							  <p><a href="#" class="profile-link">Sarah</a> just posted a photo from Moscow</p>
-							  <p class="text-muted">20 Secs ago</p>
-						  </div>
-					  </div>
-					  <div class="feed-item">
-						  <img src="{{asset('assets/FriendFinder-Theme/images/users/user-4.jpg')}}" alt="user" class="img-responsive profile-photo-sm" />
-						  <div class="live-activity">
-							  <p><a href="#" class="profile-link">John</a> Published a post from Sydney</p>
-							  <p class="text-muted">1 min ago</p>
-						  </div>
-					  </div>
-				  </div>
-				  <div class="col-md-4 col-sm-6">
-					  <div class="feed-item">
-						  <img src="{{asset('assets/FriendFinder-Theme/images/users/user-17.jpg')}}" alt="user" class="img-responsive profile-photo-sm" />
-						  <div class="live-activity">
-							  <p><a href="#" class="profile-link">Nora</a> Shared an article from Ohio</p>
-							  <p class="text-muted">22 mins ago</p>
-						  </div>
-					  </div>
-					  <div class="feed-item">
-						  <img src="{{asset('assets/FriendFinder-Theme/images/users/user-18.jpg')}}" alt="user" class="img-responsive profile-photo-sm" />
-						  <div class="live-activity">
-							  <p><a href="#" class="profile-link">Addison</a> Created a poll from Barcelona</p>
-							  <p class="text-muted">23 mins ago</p>
-						  </div>
-					  </div>
-					  
-				  </div>
-			  </div>
-		  </div>
-	  </section>
+        <!-- Feature START -->
+        <div class="col-md-4 text-center">
+          <img class="h-100px mb-4" src="{{asset('assets/ressoli-theme/assets/images/elements/01.svg')}}" alt="">
+          <h4>End to end encryption</h4>
+          <p class="mb-0">Yet uncommonly his ten who diminution astonished. Demesne new manners savings staying had. </p>
+        </div>
+        <!-- Feature END -->
+      </div>
+      <!-- Row START -->
+    </div>
+  </section>
+  <!-- Messaging feature END -->
 
-  <!-- Footer
-  ================================================= -->
-	  <footer id="footer">
-	<div class="container">
-		<div class="row">
-		<div class="footer-wrapper">
-		  <div class="col-md-3 col-sm-3">
-			<a href="#"><img src="{{asset('assets/FriendFinder-Theme/images/logo-black.png')}}" alt="" class="footer-logo" /></a>
-			<ul class="list-inline social-icons">
-				<li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
-				<li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
-				<li><a href="#"><i class="icon ion-social-googleplus"></i></a></li>
-				<li><a href="#"><i class="icon ion-social-pinterest"></i></a></li>
-				<li><a href="#"><i class="icon ion-social-linkedin"></i></a></li>
-			</ul>
-		  </div>
-		  <div class="col-md-2 col-sm-2">
-			<h5>For individuals</h5>
-			<ul class="footer-links">
-			  <li><a href="#">Signup</a></li>
-			  <li><a href="#">login</a></li>
-			  <li><a href="#">Explore</a></li>
-			  <li><a href="#">Finder app</a></li>
-			  <li><a href="#">Features</a></li>
-			  <li><a href="#">Language settings</a></li>
-			</ul>
-		  </div>
-		  <div class="col-md-2 col-sm-2">
-			<h5>For businesses</h5>
-			<ul class="footer-links">
-			  <li><a href="#">Business signup</a></li>
-			  <li><a href="#">Business login</a></li>
-			  <li><a href="#">Benefits</a></li>
-			  <li><a href="#">Resources</a></li>
-			  <li><a href="#">Advertise</a></li>
-			  <li><a href="#">Setup</a></li>
-			</ul>
-		  </div>
-		  <div class="col-md-2 col-sm-2">
-			<h5>About</h5>
-			<ul class="footer-links">
-			  <li><a href="#">About us</a></li>
-			  <li><a href="#">Contact us</a></li>
-			  <li><a href="#">Privacy Policy</a></li>
-			  <li><a href="#">Terms</a></li>
-			  <li><a href="#">Help</a></li>
-			</ul>
-		  </div>
-		  <div class="col-md-3 col-sm-3">
-			<h5>Contact Us</h5>
-			<ul class="contact">
-			  <li><i class="icon ion-ios-telephone-outline"></i>+1 (234) 222 0754</li>
-			  <li><i class="icon ion-ios-email-outline"></i>info@thunder-team.com</li>
-			  <li><i class="icon ion-ios-location-outline"></i>228 Park Ave S NY, USA</li>
-			</ul>
-		  </div>
-		</div>
-		</div>
-	</div>
-	<div class="copyright">
-	  <p>copyright @thunder-team 2016. All rights reserved</p>
-	</div>
-	  </footer>
+  <!-- features START -->
+  <section class="py-4 py-sm-5">
+    <div class="container">
+      <div class="row g-4 g-lg-5 align-items-center">
+        <!-- Title -->
+        <div class="col-lg-4">
+          <h2 class="h1">Take a look at our big set of features</h2>
+          <p class="mb-4">Express besides it present if at an opinion visitor. </p>
+          <a class="btn btn-dark" href="#">Download now</a>
+        </div>
+        <!-- Feature item START -->
+        <div class="col-lg-8">
+          <div class="card card-body bg-mode shadow-none border-0 p-4 p-sm-5 pb-sm-0 overflow-hidden">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <!-- Info -->
+                <img class="h-50px" src="{{asset('assets/ressoli-theme/assets/images/elements/05.svg')}}" alt="">
+                <h4 class="mt-4">Built-in digital wallet</h4>
+                <p class="mb-0">Yet uncommonly his ten who diminution astonished. Demesne new manners savings staying had. Under folly balls.</p>
+              </div>
+              <div class="col-md-6 text-end"> 
+                <!-- image -->
+                <!-- iphone-x mockup START -->
+                  <div class="iphone-x iphone-x-small iphone-x-half mb-n5 mt-0" style="background: url(assets/images/mockup/app-placeholder3.jpg); background-size: 100%;">
+                    <i></i>
+                    <b></b>
+                  </div>
+                  <!-- iphone-x mockup END -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Feature item END -->
 
-  <!--preloader-->
-  <div id="spinner-wrapper">
-	<div class="spinner"></div>
+        <!-- Feature item START -->
+        <div class="col-md-4">
+          <div class="card card-body bg-mode shadow-none border-0 p-4 p-lg-5">
+            <!-- Image -->
+            <div>
+              <img class="h-50px" src="{{asset('assets/ressoli-theme/assets/images/elements/03.svg')}}" alt="">
+            </div>
+            <!-- Info -->
+            <h4 class="mt-4">Safer communities</h4>
+            <p class="mb-0">Departure defective arranging rapturous did believe him all had supported simple set nature.</p>
+          </div>
+        </div>
+        <!-- Feature item START -->
+
+        <div class="col-md-4">
+          <div class="card card-body bg-mode shadow-none border-0 p-4 p-lg-5">
+            <!-- Image -->
+            <div>
+              <img class="h-50px" src="{{asset('assets/ressoli-theme/assets/images/elements/09.svg')}}" alt="">
+            </div>
+            <!-- Info -->
+            <h4 class="mt-4">Genuine users</h4>
+            <p class="mb-0">Satisfied conveying a dependent contented he gentleman agreeable do be warrant removed.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-body bg-mode shadow-none border-0 p-4 p-lg-5">
+            <!-- Image -->
+            <div>
+              <img class="h-50px" src="{{asset('assets/ressoli-theme/assets/images/elements/06.svg')}}" alt="">
+            </div>
+            <!-- Info -->
+            <h4 class="mt-4">Stronger communities</h4>
+            <p class="mb-0">Meant balls it if up doubt small purse. Required his you put the outlived answered position.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- features END -->
+
+  <!-- Get Discovered START -->
+  <section class="py-4 py-sm-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 ms-auto">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-5 col-lg-5 position-relative">
+              <!-- Image -->
+              <img class="rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/post/4by3/01.jpg')}}" alt="">
+              <!-- Chat START -->
+              <div class="position-absolute top-50 start-0 translate-middle d-none d-lg-block">
+                <!-- Chat item -->
+                <div class="bg-mode border p-3 rounded-3 rounded-start-top-0 d-flex align-items-center mb-3">
+                  <!-- Avatar -->
+                  <div class="avatar avatar-xs me-3">
+                    <a href="#!"> <img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/avatar/12.jpg')}}" alt=""> </a>
+                  </div>
+                  <!-- Comment box  -->
+                  <div class="d-flex">
+                    <h6 class="mb-0 ">Happy birthday </h6>
+                    <span class="ms-2">🎂</span>
+                  </div>
+                </div>
+
+                <!-- Chat item -->
+                <div class="bg-mode border p-3 rounded-3 rounded-start-top-0 d-flex align-items-center mb-3">
+                  <!-- Avatar -->
+                  <div class="avatar avatar-xs me-3">
+                    <a href="#!"> <img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/avatar/10.jpg')}}" alt=""> </a>
+                  </div>
+                <!-- Comment box  -->
+                  <div class="d-flex">
+                    <h6 class="mb-0 ">New connection request </h6>
+                    <span class="ms-2">🤘</span>
+                  </div>
+                </div>
+
+                <!-- Chat item -->
+                <div class="bg-mode border p-3 rounded-3 rounded-start-top-0 d-flex align-items-center mb-3">
+                  <!-- Avatar -->
+                  <div class="avatar avatar-xs me-3">
+                    <a href="#!"> <img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/avatar/09.jpg')}}" alt=""> </a>
+                  </div>
+                  <!-- Comment box  -->
+                    <div class="d-flex">
+                      <h6 class="mb-0 ">Congratulations </h6>
+                      <span class="ms-2">🎂</span>
+                    </div>
+                  </div>
+               </div>
+               <!-- Chat END -->
+            </div>
+            <div class="col-md-6">
+              <div class="ms-4">
+                <!-- Info -->
+                <h2 class="h1">Get Discovered</h2>
+                <p class="lead mb-4">Enjoy special interactive features such as Live Battles, Interactive Gifts, Happy Moments & Exclusive Posts to help you rise the ranks and grow your audience!</p>
+                <a class="btn btn-primary" href="#"> Let's start </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Get Discovered START -->
+
+  <!-- Video call START -->
+  <section class="py-4 py-sm-5 position-relative">
+    <!-- Svg decoration START -->
+    <div class="position-absolute top-0 start-0 mt-n5 pt-n5">
+      <img class="h-300px blur-9" src="{{asset('assets/ressoli-theme/assets/images/elements/06.svg')}}" alt="">
+    </div>
+    <!-- Svg decoration END -->
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="row g-4 align-items-center position-relative z-index-1">
+            <div class="col-md-6">
+              <div class="me-4">
+                <!-- TItle -->
+                <h2 class="h1 mb-4">Video call</h2>
+                
+                <!-- Meet creators -->
+                <div class="mb-3 d-flex align-items-start">
+                  <img class="h-40px" src="{{asset('assets/ressoli-theme/assets/images/elements/04.svg')}}" alt="">
+                  <div class="ms-4">
+                    <h5 class="mt-2">Meet creators</h5>
+                    <p class="mb-0">In no impression assistance contrasted Manners she wishing justice hastily.</p>
+                  </div>
+                </div>
+                
+                <!-- Support artists   -->
+                <div class="mb-3 d-flex align-items-start">
+                  <img class="h-40px" src="{{asset('assets/ressoli-theme/assets/images/elements/10.svg')}}" alt="">
+                  <div class="ms-4">
+                    <h5 class="mt-2">Support artists</h5>
+                    <p class="mb-0">Handsome met debating sir dwelling age material. As style lived he worse dried. </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-5 position-relative">
+              <!-- Image -->
+              <img class="rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/post/4by3/02.jpg')}}" alt="">
+
+              <div class="position-absolute top-50 start-100 translate-middle d-none d-lg-block">
+                <!-- Video screen -->
+                <!-- Video action -->
+                <div class="position-absolute top-0 end-0 m-3 z-index-1">
+                  <div class="avatar avatar-lg">
+                    <a href="#!"><img class="avatar-img rounded border border-white border-1" src="{{asset('assets/ressoli-theme/assets/images/post/1by1/07.jpg')}}" alt=""></a>
+                  </div>
+                </div>
+
+                <!-- Video action -->
+                <div class="position-absolute bottom-0 start-50 translate-middle-x z-index-1">
+                  <button class="btn btn-white icon-md rounded-circle mb-3"> <i class="bi bi-mic-mute"></i></button>
+                  <button class="btn btn-danger icon-md rounded-circle mb-3"> <i class="bi bi-x-lg"></i></button>
+                </div>
+
+                <!-- HTML video START -->
+                <div class="player-wrapper plyr__controls-none rounded-3">
+                  <video class="player-html" crossorigin="anonymous" autoplay loop muted="" controls>
+                    <source src="{{asset('assets/ressoli-theme/assets/images/videos/video-call.mp4')}}" type="video/mp4">
+                  </video>
+                </div>
+                <!-- HTML video END -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Video call START -->
+
+  <!-- Action box START -->
+  <section class="py-4 py-sm-5">
+    <div class="container">
+      <div class="card card-body bg-light shadow-none border-0 p-4 p-sm-5 text-center">
+          <div class="col-lg-8 mx-auto">
+            <!-- Title -->
+            <h2 class="h1">People prefer to message</h2>
+            <p class="lead mb-4">Frequently sufficient to be unaffected. The furnished she concluded depending procuring concealed. </p>
+            <div class="d-flex justify-content-center">
+              <a href="app-download.html"><img class="h-40px" src="{{asset('assets/ressoli-theme/assets/images/app-store.svg')}}" alt="app-store"></a>
+              <a href="app-download.html"><img class="h-40px ms-1 ms-sm-2" src="{{asset('assets/ressoli-theme/assets/images/google-play.svg')}}" alt="google-play"></a>
+            </div>
+            <!-- Box List -->
+            <ul class="nav nav-divider justify-content-center mt-4">
+              <li class="nav-item"> Easy set-up </li>
+              <li class="nav-item"> Free Forever </li>
+              <li class="nav-item"> Secure </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Action box END -->
+
+  <!-- Main content END -->
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+<!-- Footer START -->
+<footer class="pt-5 bg-mode">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <!-- Footer Widget -->
+        <img src="{{asset('assets/ressoli-theme/assets/images/logo.svg')}}" alt="">
+        <p class="mt-3">Match way these she avoids seeing death their fat off. </p>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <!-- Footer Widget -->
+        <h5 class="mb-4">Download</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link pt-0" href="#"> <i class="bi bi-globe fa-fw pe-2"></i>Web Browser</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> <i class="bi bi-windows fa-fw pe-2"></i>Windows</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> <i class="bi bi-apple fa-fw pe-2"></i>macOS</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> <i class="bi bi-phone fa-fw pe-2"></i>iOS & Android</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <!-- Footer Widget -->
+        <h5 class="mb-4">About</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link pt-0" href="#"> About social</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> Security</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> Customer Support</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> Partners</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> Careers - <b> Join Us! </b></a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <!-- Footer Widget -->
+        <h5 class="mb-4">Resources</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link pt-0" href="#"> Join</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> Help Center</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> Developers</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> Status</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"> Communities </a></li>
+        </ul>
+      </div>
+    </div>
   </div>
+  <hr class="mb-0 mt-5">
+  <div class="bg- light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- Footer nav START -->
+          <ul class="nav justify-content-center justify-content-lg-start lh-1">
+            <li class="nav-item">
+              <a class="nav-link ps-0" href="#">Support </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" href="docs/index.html">Docs </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Terms of Use</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Privacy &amp; terms</a>
+            </li>
+          </ul>
+          <!-- Footer nav START -->
+        </div>
+        <div class="col-lg-6">
+          <!-- Copyright START -->
+          <p class="text-center text-lg-end mb-0">©2022 <a class="text-body" target="_blank" href="https://www.webestica.com/"> Webestica </a>All rights reserved.</p>
+          <!-- Copyright END -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer END -->
+
+ <!-- QR-code START -->
+ <div class="position-fixed bottom-0 end-0 m-5 text-center d-none d-xxl-block">
+  <h6 class="mt-3">Scan here <br> to download</h6>
+  <!-- SVG START -->
+  <svg class="h-80px" width="59" height="126" viewBox="0 0 59 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M38.2 56.6C38.5 56.2 38.8 56 38.9 55.7C45.1 45.5 50.4 34.9 53.5 23.2C54.9 17.9 55.5 12.5 55.8 7.09999C55.9 5.69999 56.1 4.19999 56.3 2.79999C56.4 2.29999 56.6 1.69999 56.9 1.29999C57.1 1.09999 57.6 0.899987 57.9 0.999987C58.2 1.09999 58.4 1.59999 58.4 1.89999C58 15.2 55.8 28.2 50 40.3C47 46.5 43.9 52.6 40.2 58.4C39.8 59 39.3 59.9 39.4 60.5C40.7 68.3 39.4 75.9 37.1 83.2C33.6 94.5 29.6 105.6 25.8 116.8C25.6 117.5 25.3 118.3 25.4 119.3C31.6 114.5 37.7 109.6 44 104.7C44.8 105.8 44.6 106.6 44.1 107.4C43.5 108.3 42.9 109.3 42.1 110.1C37.6 114.4 33.1 118.7 28.5 122.9C27.5 123.8 26.3 124.5 25.1 125.1C22.7 126.2 20.8 125.1 20.4 122.5C19.7 117.4 19.1 112.4 18.6 107.3C18.4 105.8 19 104.9 20.1 104.7C21.1 104.6 22 105.3 22.3 106.8C22.8 109.4 23.1 112 23.6 114.9C23.9 114.4 24.1 114.2 24.2 113.9C27.6 102.6 31.1 91.3 34.3 79.9C35.3 76.5 35.6 72.8 36.1 69.3C36.3 67.9 36.1 66.4 36.1 64.6C35.4 65.2 34.9 65.7 34.5 66.1C31.5 69.5 28.1 72.6 24.2 75C20.7 77.1 17 78.4 12.8 78.3C11.4 78.2 9.89998 78.1 8.49998 77.7C2.29998 76 -1.00002 70.4 0.399976 63.9C1.99998 55.8 10.1 45.9 21.8 46C28.4 46 33.4 49.1 37 54.6C37.4 55.2 37.8 55.9 38.2 56.6ZM12.7 75.5C16.5 75.4 19.7 74.4 22.6 72.6C27.3 69.9 31.1 66.1 34.5 62C35.3 61.1 35.3 60.2 35 59.1C33.2 53.4 27.2 49.2 21.3 49.4C13.3 49.7 5.09998 56.5 3.39998 64.4C2.19998 69.7 4.79998 73.8 9.99998 75.1C11 75.3 12.1 75.4 12.7 75.5Z" class="fill-secondary"/>
+  </svg>
+  <!-- SVG END -->
+  <!-- image -->
+  <div class="mt-3"> 
+    <img class="w-100px" src="{{asset('assets/ressoli-theme/assets/images/qr-code.png')}}" alt="">
+  </div>
+</div>
+@endsection
+
+@section('pageScripts')
+    
 @endsection

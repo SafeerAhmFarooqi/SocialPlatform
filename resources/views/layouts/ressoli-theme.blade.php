@@ -1,0 +1,10 @@
+@extends('layouts.master-layout')
+@section('theme-head')
+    @include('ressoli-theme.head')
+@endsection
+@section('theme-content')
+    @yield('body-content')
+@endsection
+@section('theme-script')
+    @include('ressoli-theme.script')
+@endsection
