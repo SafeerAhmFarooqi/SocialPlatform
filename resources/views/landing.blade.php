@@ -3,61 +3,7 @@
 <header class="navbar-dark navbar-transparent header-static">
 
   <!-- Logo Nav START -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
- 
-
-      <!-- Responsive navbar toggler -->
-      <button class="navbar-toggler ms-auto icon-md btn btn-light p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-animation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </button>
-
-      <!-- Main navbar START -->
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-
-        <ul class="navbar-nav navbar-nav-scroll ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-
-
-          <li class="nav-item">
-            <a class="nav-link" href="">AGB</a>
-          </li>
-
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('register.ff')}}">Register</a>
-          </li>
-
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('login')}}">Login</a>
-          </li>
-
-        </ul>
-      </div>
-      <!-- Main navbar END -->
-
-      <!-- Nav right START -->
-      <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
-        <!-- Notification dropdown END -->
-        <li class="nav-item ms-2 dropdown">
-          <a class="nav-link btn icon-md p-0" href="{{route('register.shop')}}"  >
-            <img class="avatar-img rounded-2" src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/shop-icon.png" alt="">
-          </a>
-          
-        </li>
-        <!-- Profile START -->
-        
-      </ul>
-      <!-- Nav right END -->
-    </div>
-  </nav>
+ @include('dashboards.app.includes.topbar')
   <!-- Logo Nav END -->
 </header>
 <!-- =======================
@@ -405,79 +351,8 @@ Header END -->
 <!-- **************** MAIN CONTENT END **************** -->
 
 <!-- Footer START -->
-<footer class="pt-5 bg-mode">
-  <div class="container pt-4">
-    <div class="row g-4">
-      <div class="col-sm-6 col-lg-3">
-        <!-- Footer Widget -->
-        <img src="assets/images/logo.svg" alt="">
-        <p class="mt-3">Match way these she avoids seeing death their fat off. </p>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <!-- Footer Widget -->
-        <h5 class="mb-4">Download</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item"><a class="nav-link pt-0" href="#"> <i class="bi bi-globe fa-fw pe-2"></i>Web Browser</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> <i class="bi bi-windows fa-fw pe-2"></i>Windows</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> <i class="bi bi-apple fa-fw pe-2"></i>macOS</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> <i class="bi bi-phone fa-fw pe-2"></i>iOS & Android</a></li>
-        </ul>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <!-- Footer Widget -->
-        <h5 class="mb-4">About</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item"><a class="nav-link pt-0" href="#"> About social</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Security</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Customer Support</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Partners</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Careers - <b> Join Us! </b></a></li>
-        </ul>
-      </div>
-      <div class="col-sm-6 col-lg-3">
-        <!-- Footer Widget -->
-        <h5 class="mb-4">Resources</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item"><a class="nav-link pt-0" href="#"> Join</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Help Center</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Developers</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Status</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"> Communities </a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <hr class="mb-0 mt-5">
-  <div class="bg- light py-3">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <!-- Footer nav START -->
-          <ul class="nav justify-content-center justify-content-lg-start lh-1">
-            <li class="nav-item">
-              <a class="nav-link ps-0" href="#">Support </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="_blank" href="docs/index.html">Docs </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Terms of Use</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Privacy &amp; terms</a>
-            </li>
-          </ul>
-          <!-- Footer nav START -->
-        </div>
-        <div class="col-lg-6">
-          <!-- Copyright START -->
-          <p class="text-center text-lg-end mb-0">©2022 <a class="text-body" target="_blank" href="https://www.webestica.com/"> Webestica </a>All rights reserved.</p>
-          <!-- Copyright END -->
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+@include('dashboards.app.includes.footer')
+
 <!-- Footer END -->
 
 <!-- =======================
