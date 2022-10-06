@@ -28,8 +28,7 @@
                     </div>
                   </nav>
                 </div>
-                @include("dashboards.user.includes.sidebarleft") 
-                @yield("page-content")  
+                 @yield("page-content")  
                 @include("dashboards.user.includes.sidebarright") 
               </div> <!-- Row END -->
             </div>

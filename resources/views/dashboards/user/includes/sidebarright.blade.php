@@ -5,7 +5,7 @@
         <div class="card">
           <!-- Card header START -->
           <div class="card-header pb-0 border-0">
-            <h5 class="card-title mb-0">Who to follow</h5>
+            <h5 class="card-title mb-0">Groups List</h5>
           </div>
           <!-- Card header END -->
           <!-- Card body START -->
@@ -14,84 +14,22 @@
             <div class="hstack gap-2 mb-3">
               <!-- Avatar -->
               <div class="avatar">
-                <a href="#!"><img class="avatar-img rounded-circle" src="assets/images/avatar/04.jpg" alt=""></a>
+                <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/bg/04.jpg')}}" alt=""></a>
               </div>
               <!-- Title -->
               <div class="overflow-hidden">
-                <a class="h6 mb-0" href="#!">Judy Nguyen </a>
-                <p class="mb-0 small text-truncate">News anchor</p>
+                <a class="h6 mb-0" href="#!">Office Guys </a>
+                <p class="mb-0 small text-truncate">102 Members</p>
               </div>
               <!-- Button -->
               <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
             </div>
-            <!-- Connection item END -->
-            <!-- Connection item START -->
-              <div class="hstack gap-2 mb-3">
-                <!-- Avatar -->
-                <div class="avatar avatar-story">
-                  <a href="#!"> <img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt=""> </a>
-                </div>
-                <!-- Title -->
-                <div class="overflow-hidden">
-                  <a class="h6 mb-0" href="#!">Amanda Reed </a>
-                  <p class="mb-0 small text-truncate">Web Developer</p>
-                </div>
-                <!-- Button -->
-                <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
-            </div>
-            <!-- Connection item END -->
+ 
 
-            <!-- Connection item START -->
-            <div class="hstack gap-2 mb-3">
-              <!-- Avatar -->
-              <div class="avatar">
-                <a href="#"> <img class="avatar-img rounded-circle" src="assets/images/avatar/11.jpg" alt=""> </a>
-              </div>
-              <!-- Title -->
-              <div class="overflow-hidden">
-                <a class="h6 mb-0" href="#!">Billy Vasquez </a>
-                <p class="mb-0 small text-truncate">News anchor</p>
-              </div>
-              <!-- Button -->
-              <a class="btn btn-primary rounded-circle icon-md ms-auto" href="#"><i class="bi bi-person-check-fill"> </i></a>
-            </div>
-            <!-- Connection item END -->
-            
-            <!-- Connection item START -->
-            <div class="hstack gap-2 mb-3">
-              <!-- Avatar -->
-              <div class="avatar">
-                <a href="#"> <img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt=""> </a>
-              </div>
-              <!-- Title -->
-              <div class="overflow-hidden">
-                <a class="h6 mb-0" href="#!">Lori Ferguson </a>
-                <p class="mb-0 small text-truncate">Web Developer at Webestica</p>
-              </div>
-              <!-- Button -->
-              <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
-            </div>
-            <!-- Connection item END -->
-
-            <!-- Connection item START -->
-            <div class="hstack gap-2 mb-3">
-              <!-- Avatar -->
-              <div class="avatar">
-                <a href="#"> <img class="avatar-img rounded-circle" src="assets/images/avatar/placeholder.jpg" alt=""> </a>
-              </div>
-              <!-- Title -->
-              <div class="overflow-hidden">
-                <a class="h6 mb-0" href="#!">Carolyn Ortiz </a>
-                <p class="mb-0 small text-truncate">News anchor</p>
-              </div>
-              <!-- Button -->
-              <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
-            </div>
-            <!-- Connection item END -->
 
             <!-- View more button -->
             <div class="d-grid mt-3">
-              <a class="btn btn-sm btn-primary-soft" href="#!">View more</a>
+              <a class="btn btn-sm btn-primary-soft" href="#!">View All Groups</a>
             </div>
           </div>
           <!-- Card body END -->
@@ -104,31 +42,22 @@
         <div class="card">
           <!-- Card header START -->
           <div class="card-header pb-0 border-0">
-            <h5 class="card-title mb-0">Today’s news</h5>
+            <h5 class="card-title mb-0">Today’s Activity</h5>
           </div>
           <!-- Card header END -->
           <!-- Card body START -->
           <div class="card-body">
             <!-- News item -->
             <div class="mb-3">
-              <h6 class="mb-0"><a href="blog-details.html">Ten questions you should answer truthfully</a></h6>
+              <h6 class="mb-0"><a href="#">Jack Send you message</a></h6>
               <small>2hr</small>
             </div>
             <!-- News item -->
             <div class="mb-3">
-              <h6 class="mb-0"><a href="blog-details.html">Five unbelievable facts about money</a></h6>
+              <h6 class="mb-0"><a href="#">Steve Follow you</a></h6>
               <small>3hr</small>
             </div>
-            <!-- News item -->
-            <div class="mb-3">
-              <h6 class="mb-0"><a href="blog-details.html">Best Pinterest Boards for learning about business</a></h6>
-              <small>4hr</small>
-            </div>
-            <!-- News item -->
-            <div class="mb-3">
-              <h6 class="mb-0"><a href="blog-details.html">Skills that you can learn from business</a></h6>
-              <small>6hr</small>
-            </div>
+          
             <!-- Load more comments -->
             <a href="#!" role="button" class="btn btn-link btn-link-loader btn-sm text-secondary d-flex align-items-center" data-bs-toggle="button" aria-pressed="true">
               <div class="spinner-dots me-2">
@@ -136,7 +65,7 @@
                 <span class="spinner-dot"></span>
                 <span class="spinner-dot"></span>
               </div>
-              View all latest news
+              View all latest Activity
             </a>
           </div>
           <!-- Card body END -->
