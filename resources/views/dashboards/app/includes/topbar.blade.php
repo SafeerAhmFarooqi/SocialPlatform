@@ -21,10 +21,24 @@
 
 
           <li class="nav-item">
-            <a class="nav-link" href="">AGB</a>
+            <a class="nav-link" href="{{route('app.agb')}}">AGB</a>
           </li>
-
-
+          @if (Auth::check())
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{Auth::user()->firstname??'Options'}}</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item">{{Auth::user()->email??''}}</a></li>
+              <li><a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <form action="{{route('logout')}}" method="post">
+              @csrf
+              <li><a class="dropdown-item" href="#"  onclick="event.preventDefault();
+                this.closest('form').submit();">Sign Out</a></li>
+            </form>
+             
+            </ul>
+          </li>
+          @else
           <li class="nav-item">
             <a class="nav-link" href="{{route('register.ff')}}">Register</a>
           </li>
@@ -32,24 +46,16 @@
 
           <li class="nav-item">
             <a class="nav-link" href="{{route('login')}}">Login</a>
-          </li>
+          </li>    
+          @endif
+          
 
         </ul>
       </div>
       <!-- Main navbar END -->
 
       <!-- Nav right START -->
-      <ul class="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
-        <!-- Notification dropdown END -->
-        <li class="nav-item ms-2 dropdown">
-          <a class="nav-link btn icon-md p-0" href="{{route('register.shop')}}"  >
-            <img class="avatar-img rounded-2" src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/shop-icon.png" alt="">
-          </a>
-          
-        </li>
-        <!-- Profile START -->
-        
-      </ul>
+     
       <!-- Nav right END -->
     </div>
   </nav>

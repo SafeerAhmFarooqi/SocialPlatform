@@ -6,7 +6,7 @@ Header START -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <!-- Logo START -->
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{{route('dashboard')}}">
         <img class="light-mode-item navbar-brand-item" src="{{asset('assets/ressoli-theme/assets/images/social7.png')}}" alt="logo"> 
       </a>
       <!-- Logo END -->
