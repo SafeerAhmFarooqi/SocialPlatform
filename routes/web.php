@@ -28,19 +28,16 @@ use App\Http\Controllers\User\UserSavingController;
 */
 
 Route::get('/', function () {
-    return view('landing');
+    return view('dashboards.app.landing');
 })->name('landing');
-
-Route::get('/check', function () {
-    return view('check');
-});
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified','admin.dashboard.approved'])->name('dashboard');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
+
+Route::name('app.')->group(function () {
+    Route::get('/agb',[DashboardController::class,'agb'])->name('agb');
+});
 
 Route::group(['middleware' => ['role:Admin','auth']], function () {
     // Admin User Management Routes

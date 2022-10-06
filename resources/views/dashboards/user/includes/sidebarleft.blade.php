@@ -12,7 +12,7 @@
           </div>
           <!-- Info -->
           <h5 class="mb-0"> <a href="#!">{{Auth::user()->firstname.' '.Auth::user()->lastname}} </a> </h5>
-          <small>Fire</small>
+          <small>{{Auth::user()->printOptions()??''}}</small>
           <p class="mt-3">{{old('about_me')??Auth::user()->about_me}}</p>
 
           <!-- User stat START -->

@@ -85,6 +85,11 @@ class DashboardController extends BaseController
    {
     return view('dashboards.shop-admin.dashboard');
    }
+
+   public function agb()
+   {
+    return view('dashboards.app.agb');
+   }
 }
 
 
