@@ -8,12 +8,12 @@
           <div class="text-center">
           <!-- Avatar -->
           <div class="avatar avatar-lg mt-n5 mb-3">
-            <a href="#!"><img class="avatar-img rounded border border-white border-3" src="assets/images/avatar/07.jpg" alt=""></a>
+            <a href="#!"><img class="avatar-img rounded border border-white border-3" src="{{Auth::user()->profile_pic_path? asset('storage/'.Auth::user()->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""></a>
           </div>
           <!-- Info -->
-          <h5 class="mb-0"> <a href="#!">Sam Lanson </a> </h5>
-          <small>Web Developer at Webestica</small>
-          <p class="mt-3">I'd love to change the world, but they won’t give me the source code.</p>
+          <h5 class="mb-0"> <a href="#!">{{Auth::user()->firstname.' '.Auth::user()->lastname}} </a> </h5>
+          <small>Fire</small>
+          <p class="mt-3">{{old('about_me')??Auth::user()->about_me}}</p>
 
           <!-- User stat START -->
           <div class="hstack gap-2 gap-xl-3 justify-content-center">
@@ -46,25 +46,25 @@
         <!-- Side Nav START -->
         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
           <li class="nav-item">
-            <a class="nav-link" href="my-profile.html"> <img class="me-2 h-20px fa-fw" src="assets/images/icon/home-outline-filled.svg" alt=""><span>Feed </span></a>
+            <a class="nav-link" href="{{route('user.dashboard.people-nearby')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon001.png')}}" alt=""><span>People Nearby </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="my-profile-connections.html"> <img class="me-2 h-20px fa-fw" src="assets/images/icon/person-outline-filled.svg" alt=""><span>Connections </span></a>
+            <a class="nav-link" href="{{route('user.dashboard.groups')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon002.png')}}" alt=""><span>Groups </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="blog.html"> <img class="me-2 h-20px fa-fw" src="assets/images/icon/earth-outline-filled.svg" alt=""><span>Latest News </span></a>
+            <a class="nav-link" href="{{route(config('chatify.routes.prefix'))}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon004.png')}}" alt=""><span>Messages </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="events.html"> <img class="me-2 h-20px fa-fw" src="assets/images/icon/calendar-outline-filled.svg" alt=""><span>Events </span></a>
+            <a class="nav-link" href="{{route('user.dashboard.users.page')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon003.png')}}" alt=""><span>Users </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="groups.html"> <img class="me-2 h-20px fa-fw" src="assets/images/icon/chat-outline-filled.svg" alt=""><span>Groups </span></a>
+            <a class="nav-link" href="{{route('user.dashboard.voucher.page')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon005.png')}}" alt=""><span>Vouchers </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="notifications.html"> <img class="me-2 h-20px fa-fw" src="assets/images/icon/notification-outlined-filled.svg" alt=""><span>Notifications </span></a>
+            <a class="nav-link" href="{{route('user.dashboard.saving.page')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon006.png')}}" alt=""><span>Savings </span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="settings.html"> <img class="me-2 h-20px fa-fw" src="assets/images/icon/cog-outline-filled.svg" alt=""><span>Settings </span></a>
+            <a class="nav-link" href="{{route('user.profile.basic.show')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon007.png')}}" alt=""><span>Settings </span></a>
           </li>
         </ul>
         <!-- Side Nav END -->
@@ -72,7 +72,7 @@
       <!-- Card body END -->
       <!-- Card footer -->
       <div class="card-footer text-center py-2">
-        <a class="btn btn-link btn-sm" href="my-profile.html">View Profile </a>
+        <a class="btn btn-link btn-sm" href="{{route('user.profile.basic.show')}}">View Profile </a>
       </div>
     </div>
     <!-- Card END -->

@@ -1,43 +1,89 @@
-@extends('layouts.friendfinder-theme')
+@extends('layouts.ressoli-theme')
 @section('body-content')
-	  <section id="banner">
-		  <div class="container">
-	  <div class="sign-up-form">
-				  <a href="#" class="logo"><img src="{{asset('assets/FriendFinder-Theme/images/logo.png')}}" alt="Friend Finder"/></a>
-				  <h2 class="text-white">Admin Approval</h2>
-				  <div class="line-divider"></div>
-				  <div class="form-wrapper">
-					  <p class="signup-text">Thanks for signing up! Before getting started, your account must be approved from Administrator. Please wait until your account is approved.</p>
-					 
-                       
-						
-					  {{-- <p>By signning up you agree to the terms</p> --}}
 
-				  </div>
-                  <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    
-                        <button class="btn-secondary" type="submit">Log Out</button>
-                    </form>
-                    
-				  
-				  <img class="form-shadow" src="{{asset('assets/FriendFinder-Theme/images/bottom-shadow.png')}}" alt="" />
-			  </div><!-- Sign Up Form End -->
+<!DOCTYPE html>
+<html lang="en">
 
-	  <svg class="arrows hidden-xs hidden-sm">
-		<path class="a1" d="M0 0 L30 32 L60 0"></path>
-		<path class="a2" d="M0 20 L30 52 L60 20"></path>
-		<path class="a3" d="M0 40 L30 72 L60 40"></path>
-	  </svg>
-		  </div>
-	  </section>
+<head>
+  <title>Social - Network, Community and Event Theme</title>
 
- 
-	 
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Webestica.com">
+  <meta name="description" content="Bootstrap 5 based Social Media Network and Community Theme">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+
+  <!-- Theme CSS -->
+  <link id="style-switch" rel="stylesheet" type="text/css" href="assets/css/style.css">
+   
+</head>
+
+<body>
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+  
+  <!-- Container START -->
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100 py-5">
+      <!-- Main content START -->
+      <div class="col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+        <!-- Sign in START -->
+        <div class="card card-body text-center p-4 p-sm-5">
+          <!-- Title -->
+          <h1 class="mb-2"><img src="{{asset('assets/ressoli-theme/assets/images/social6.png')}}"></h1>
+          <p class="mb-0">Resoli  Approval Required  <br>   Before getting started, your account must be approved from Administrator. Please wait until your account is approved.
+
+</a></p>
+           <br><Br>
+
+          <A href="{{ route('landing') }}" class="btn btn-lg btn-warning"> Landing Page </A>
+                        
+                           
+                        
 
 
-  <!--preloader-->
-  <div id="spinner-wrapper">
-	<div class="spinner"></div>
+
+          <!-- Form END -->
+        </div>
+        <!-- Sign in START -->
+      </div>
+    </div> <!-- Row END -->
   </div>
+  <!-- Container END -->
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+ 
+
+<!-- =======================
+JS libraries, plugins and custom scripts -->
+
+<!-- Bootstrap JS -->
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Vendors -->
+<script src="assets/vendor/pswmeter/pswmeter.min.js"></script>
+
+<!-- Template Functions -->
+<script src="assets/js/functions.js"></script>
+  
+</body>
+  </html>
+ 
+@endsection
+
+@section('pageScripts')
+    
 @endsection
