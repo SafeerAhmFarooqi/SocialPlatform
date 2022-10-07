@@ -144,7 +144,10 @@ class UserProfileController extends BaseUserController
         return back()->with('success_2', 'Profile Updated');
  }
 
- 
+ public function supportPage()
+ {
+    return view('dashboards.user.support-page');
+ }
    
 }
 

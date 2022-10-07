@@ -129,7 +129,7 @@ Header START -->
             <!-- Links -->
             <li><a class="dropdown-item" href="{{route('user.profile.basic.show')}}"><i class="bi bi-gear fa-fw me-2"></i>Settings </a></li>
             <li> 
-              <a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
+              <a class="dropdown-item" href="{{route('user.support.page')}}">
                 <i class="fa-fw bi bi-life-preserver me-2"></i>Support
               </a> 
             </li>
