@@ -11,6 +11,7 @@
 
 <!-- Template Functions -->
 <script src="{{asset('assets/ressoli-theme/assets/js/functions.js')}}"></script>
+<script src="{{asset('assets/FriendFinder-Theme/js/jquery-3.1.1.min.js')}}"></script>
 @yield('pageScripts')
 @livewireScripts
 

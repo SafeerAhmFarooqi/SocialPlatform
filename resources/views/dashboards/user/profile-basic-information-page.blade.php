@@ -211,36 +211,22 @@
                 <!-- Title START -->
                 <div class="card-header border-0 pb-0">
                   <h5 class="card-title">Change your password</h5>
-                  <p class="mb-0">See resolved goodness felicity shy civility domestic had but.</p>
+                  <p class="mb-0">No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
                 </div>
                 <!-- Title START -->
                 <div class="card-body">
                   <!-- Settings START -->
                   <form class="row g-3">
+                    @csrf
                     <!-- Current password -->
                      
                     <!-- New password -->
-                    <div class="col-12">
-                      <label class="form-label">New password</label>
-                      <!-- Input group -->
-                      <div class="input-group">
-                        <input class="form-control fakepassword" type="password" id="psw-input" placeholder="Enter new password">
-                        <span class="input-group-text p-0">
-                          <i class="fakepasswordicon fa-solid fa-eye-slash cursor-pointer p-2 w-40px"></i>
-                        </span>
-                      </div>
-                      <!-- Pswmeter -->
-                      <div id="pswmeter" class="mt-2 password-strength-meter"><div class="password-strength-meter-score"></div></div>
-                      <div id="pswmeter-message" class="rounded mt-1">Write your password...</div>
-                    </div>
+                
                     <!-- Confirm password -->
-                    <div class="col-12">
-                      <label class="form-label">Confirm password</label>
-                      <input type="text" class="form-control" placeholder="">
-                    </div>
+                   
                     <!-- Button  -->
                     <div class="col-12 text-end">
-                      <button type="submit" class="btn btn-primary mb-0">Update password</button>
+                      <a href="{{ route('user.profile.password.change') }}" class="btn btn-primary mb-0">Reset password</a>
                     </div>
                   </form>
                   <!-- Settings END -->
@@ -261,60 +247,66 @@
                 </div>
                 <!-- Card header START -->
                 <!-- Card body START -->
-                <div class="card-body pb-0">
-                  <!-- Notification START -->
-                  <ul class="list-group list-group-flush">
-                    <!-- Notification list item -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                      <div class="me-2">
-                        <h6 class="mb-0">Date of Birth</h6>
-                        <p class="small mb-0">Joy say painful removed reached end.</p>
-                      </div>
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked" checked="">
-                        
-                      </div>
-                    </li>
-                    <!-- Notification list item -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                      <div class="me-2">
-                        <h6 class="mb-0">Address</h6>
-                        <p class="small mb-0">Ask a quick six seven offer see among.</p>
-                      </div>
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked2" checked="">
-                      </div>
-                    </li>
-                    <!-- Notification list item -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                      <div class="me-2">
-                        <h6 class="mb-0"> Phone Number</h6>
-                        <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
-                      </div>
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked3">
-                      </div>
-                    </li>
-                    <!-- Notification list item -->
-                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
-                      <div class="me-2">
-                        <h6 class="mb-0">About Me</h6>
-                        <p class="small mb-0">Contented he gentleman agreeable do be</p>
-                      </div>
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked4">
-                      </div>
-                    </li>
-        
-                  </ul>
-                  <!-- Notification END -->
-                  
-                </div>
+                <form action="{{route('user.profile.setting.change')}}" method="post">
+                  @csrf
+                  <div class="card-body pb-0">
+                    <!-- Notification START -->
+                    <ul class="list-group list-group-flush">
+                      <!-- Notification list item -->
+                      <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                        <div class="me-2">
+                          <h6 class="mb-0">Date of Birth</h6>
+                          <p class="small mb-0">Joy say painful removed reached end.</p>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox"  name="setting[]" value='dob' {{!isset(Auth::user()->accountSetting->first()->user_dob)? '' : (Auth::user()->accountSetting->first()->user_dob? 'checked' : '')}}>
+                          
+                        </div>
+                      </li>
+                      <!-- Notification list item -->
+                      <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                        <div class="me-2">
+                          <h6 class="mb-0">Address</h6>
+                          <p class="small mb-0">Ask a quick six seven offer see among.</p>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='address' {{!isset(Auth::user()->accountSetting->first()->user_address)? '' : (Auth::user()->accountSetting->first()->user_address? 'checked' : '')}}>
+                        </div>
+                      </li>
+                      <!-- Notification list item -->
+                      <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                        <div class="me-2">
+                          <h6 class="mb-0"> Phone Number</h6>
+                          <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='phone' {{!isset(Auth::user()->accountSetting->first()->user_phone)? '' : (Auth::user()->accountSetting->first()->user_phone? 'checked' : '')}}>
+                        </div>
+                      </li>
+                      <!-- Notification list item -->
+                      <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                        <div class="me-2">
+                          <h6 class="mb-0">About Me</h6>
+                          <p class="small mb-0">Contented he gentleman agreeable do be</p>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='about' {{!isset(Auth::user()->accountSetting->first()->user_about)? '' : (Auth::user()->accountSetting->first()->user_about? 'checked' : '')}}>
+                        </div>
+                      </li>
+          
+                    </ul>
+                   
+                    <!-- Notification END -->
+                    
+                  </div>
+                  <div class="card-footer pt-0 text-end border-0">
+                    <button type="submit" class="btn btn-sm btn-primary mb-0">Save changes</button>
+                  </div>
+                </form>
+               
               <!-- Card body END -->
               <!-- Button save -->
-              <div class="card-footer pt-0 text-end border-0">
-                <button type="submit" class="btn btn-sm btn-primary mb-0">Save changes</button>
-              </div>
+              
             </div>
               <!-- Notification END -->
             </div>
@@ -687,4 +679,23 @@
           {{-- @include('dashboards.user.includes.modals') --}}
 
      
+@endsection
+
+@section('pageScripts')
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'address';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
 @endsection
