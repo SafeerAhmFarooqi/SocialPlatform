@@ -66,6 +66,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('user.profile.basic.show')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon007.png')}}" alt=""><span>Settings </span></a>
           </li>
+          <li class="nav-item"> 
+            <a class="nav-link" href="{{route('user.support.page')}}">
+              <i class="fa-fw bi bi-life-preserver me-2"></i>Support
+            </a> 
+          </li>
         </ul>
         <!-- Side Nav END -->
       </div>
