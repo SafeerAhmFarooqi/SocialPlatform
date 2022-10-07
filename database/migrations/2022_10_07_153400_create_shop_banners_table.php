@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('shop_banners', function (Blueprint $table) {
             $table->id();
-            $table->string('country');
-            $table->string('code');
-            $table->boolean('status')->default(0);
+            $table->unsignedBigInteger('shop_id');
+            $table->string('path')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('shop_banners');
     }
 };

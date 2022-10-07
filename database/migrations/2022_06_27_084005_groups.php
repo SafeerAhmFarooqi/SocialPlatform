@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('location')->nullable();
             $table->unsignedBigInteger('owner_id');
-            $table->boolean('group_status')->default(1);
+            $table->boolean('group_status')->default(0);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
         });

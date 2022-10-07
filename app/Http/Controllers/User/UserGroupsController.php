@@ -21,7 +21,8 @@ class UserGroupsController extends BaseUserController
     $users= User::where('id', '!=',Auth::user()->id)->get();
     return view('dashboards.user.people-groups-page',[
         'countries'=>Countries::all(),
-        'groups'=>Group::all(),
+        'myGroups'=>Group::where('owner_id',Auth::user()->id)->get(),
+        'joinedGroups'=>Group::whereRelation('members', 'member_id', Auth::user()->id)->where('owner_id','!=',Auth::user()->id)->get(),
         'users'=> $users,
     ]);
  }
@@ -49,11 +50,11 @@ class UserGroupsController extends BaseUserController
     //return $request;
     foreach ($request->members as $value) {
         $check=false;
-        $check=GroupMembers::where('group_id',$request->group_id)->where('member_id',$value)->first();
+        $check=GroupMembers::where('group_id',$request->groupId)->where('member_id',$value)->first();
         if(!$check)
         {
             GroupMembers::create([
-                'group_id'=>$request->group_id,
+                'group_id'=>$request->groupId,
                 'member_id'=>$value,
             ]);
         }
