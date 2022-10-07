@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\VoucherAdminController;
 use App\Http\Controllers\Admin\PostAdminController;
 use App\Http\Controllers\Admin\CommentAdminController;
 use App\Http\Controllers\Shop\VoucherShopController;
+use App\Http\Controllers\Shop\ShopProfileController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\UserPeopleNearbyController;
 use App\Http\Controllers\User\UserGroupsController;
@@ -87,14 +88,15 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/Admin-Post-Comment-list-Delete', [CommentAdminController::class,'allPostsCommentsDelete'])->name('admin.all.post.comments.delete');
 });
 
-Route::group(['middleware' => ['role:Shop','auth']], function () {
+Route::name('shop.')->middleware(['role:Shop','auth'])->group(function () {
 // Shop Voucher Management Routes
-Route::get('/Shop-Vouchers-Show', [VoucherShopController::class,'myVouchersShow'])->name('shop.myvouchers.show');
-Route::post('/Shop-Voucher-Create', [VoucherShopController::class,'shopVoucherStore'])->name('shop.voucher.create');
-Route::post('/Shop-Voucher-Delete', [VoucherShopController::class,'shopVoucherDelete'])->name('shop.voucher.delete');
-Route::get('/Shop-Use-Voucher-Show', [VoucherShopController::class,'useVoucherShow'])->name('shop.usevoucher.show');
-Route::post('/Shop-Use-Voucher-Submit', [VoucherShopController::class,'useVoucherSubmit'])->name('shop.usevoucher.submit');
-Route::get('/Shop-Use-Voucher-List-Show', [VoucherShopController::class,'useVoucherListShow'])->name('shop.usevoucher.list.show');
+Route::get('/Shop-Vouchers-Show', [VoucherShopController::class,'myVouchersShow'])->name('myvouchers.show');
+Route::post('/Shop-Voucher-Create', [VoucherShopController::class,'shopVoucherStore'])->name('voucher.create');
+Route::post('/Shop-Voucher-Delete', [VoucherShopController::class,'shopVoucherDelete'])->name('voucher.delete');
+Route::get('/Shop-Use-Voucher-Show', [VoucherShopController::class,'useVoucherShow'])->name('usevoucher.show');
+Route::post('/Shop-Use-Voucher-Submit', [VoucherShopController::class,'useVoucherSubmit'])->name('usevoucher.submit');
+Route::get('/Shop-Use-Voucher-List-Show', [VoucherShopController::class,'useVoucherListShow'])->name('usevoucher.list.show');
+Route::resource('profile', ShopProfileController::class);
 });
 
 Route::group(['middleware' => ['role:User','auth','verified','admin.user.approved']], function () {

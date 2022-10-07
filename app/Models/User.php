@@ -29,7 +29,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'pdf_password',
         'dob',
-        'city',
+        'city_id',
+        'phone2',
         'country_id',
         'user_address',
         'shop_address',
@@ -45,6 +46,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'location',
         'about_me',
         'email_verified_at',
+        'shopbanner_id',
+        'shoplogo_id',
     ];
 
     protected $dates = ['dob'];
@@ -88,5 +91,22 @@ class User extends Authenticatable implements MustVerifyEmail
     public function accountSetting()
     {
         return $this->hasOne(AccountSetting::class, 'user_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Countries::class, 'country_id');
+    }
+
+    
+    public function banner()
+    {
+        return $this->belongsTo(ShopBanner::class, 'shopbanner_id');
+    }
+
+    
+    public function logo()
+    {
+        return $this->belongsTo(ShopLogo::class, 'shoplogo_id');
     }
 }

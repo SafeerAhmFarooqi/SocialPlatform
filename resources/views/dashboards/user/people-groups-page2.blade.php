@@ -152,7 +152,7 @@
          </div>
        </div>
        
-        <?php }}?>
+      
         @endforeach
        
        
