@@ -81,7 +81,7 @@ class UserProfileController extends BaseUserController
  {
     //return "safeer";
     //return $request;
-    $accountSetting=Auth::user()->accountSetting->first()??new collection();
+    $accountSetting=Auth::user()->accountSetting??collect();
     if ($accountSetting->count()>0) {
         $accountSetting->user_dob=in_array('dob',$request->setting??[])?true : false;
         $accountSetting->user_address=in_array('address',$request->setting??[])?true : false;
