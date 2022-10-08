@@ -1,6 +1,6 @@
-@extends('layouts.ressoli-theme')
-@section('body-content')
-        @include("dashboards.user.includes.topbar")   
+@extends('dashboards.user.dashboard-layout')
+@section('page-content')
+        
         <main style="padding:0">
             <!-- Container START -->
   <livewire:people-nearby />

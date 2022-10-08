@@ -45,7 +45,7 @@
         </div>
   @endforeach
 
- <!--        <div class="nearby-user">
+ {{-- <!--        <div class="nearby-user">
             <div class="row">
               <div class="col-md-2 col-sm-2">
                 <img src="{{$user->profile_pic_path?'storage/'.$user->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="user" class="profile-photo-lg" />
@@ -59,7 +59,7 @@
                 <button class="btn btn-primary pull-right">Add Friend</button>
               </div>
             </div>
-          </div> -->
+          </div> --> --}}
        
       </div>
 </div>
