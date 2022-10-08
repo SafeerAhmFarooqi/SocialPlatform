@@ -259,7 +259,7 @@
                           <p class="small mb-0">Joy say painful removed reached end.</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox"  name="setting[]" value='dob' {{!isset(Auth::user()->accountSetting->first()->user_dob)? '' : (Auth::user()->accountSetting->first()->user_dob? 'checked' : '')}}>
+                          <input class="form-check-input" type="checkbox"  name="setting[]" value='dob' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_dob?'checked' : ''):''):''}}>
                           
                         </div>
                       </li>
@@ -270,7 +270,7 @@
                           <p class="small mb-0">Ask a quick six seven offer see among.</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="setting[]" value='address' {{!isset(Auth::user()->accountSetting->first()->user_address)? '' : (Auth::user()->accountSetting->first()->user_address? 'checked' : '')}}>
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='address' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_address?'checked' : ''):''):''}}>
                         </div>
                       </li>
                       <!-- Notification list item -->
@@ -280,7 +280,7 @@
                           <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="setting[]" value='phone' {{!isset(Auth::user()->accountSetting->first()->user_phone)? '' : (Auth::user()->accountSetting->first()->user_phone? 'checked' : '')}}>
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='phone' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_phone?'checked' : ''):''):''}}>
                         </div>
                       </li>
                       <!-- Notification list item -->
@@ -290,7 +290,7 @@
                           <p class="small mb-0">Contented he gentleman agreeable do be</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="setting[]" value='about' {{!isset(Auth::user()->accountSetting->first()->user_about)? '' : (Auth::user()->accountSetting->first()->user_about? 'checked' : '')}}>
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='about' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_about?'checked' : ''):''):''}}>
                         </div>
                       </li>
           
