@@ -26,7 +26,6 @@ class ShopRegister extends Component
     public $email;
     public $password;
     public $address;
-    public $city;
     public $phone;
 
     protected $validationAttributes = [
@@ -38,7 +37,6 @@ class ShopRegister extends Component
             'shopName' => 'Shop Name',
             'password' => 'Password',
             'address' => 'Address',
-            'city' => 'City',
             'phone' => 'Phone Number',
     ];
 
@@ -58,7 +56,6 @@ class ShopRegister extends Component
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Password::min(8),Password::defaults()],
             'address' => 'required',
-            'city' => 'required',
             'phone' => 'required',
         ];
     }
@@ -72,16 +69,16 @@ class ShopRegister extends Component
             'email' => $this->email,
             'password' => Hash::make($this->password),
             'address' => $this->address,
-            'shop_category' => $this->selectedCategory,
-            'shop_sub_category' => $this->selectedSubCategory,
+            'shop_category_id' => $this->selectedCategory,
+            'shop_sub_category_id' => $this->selectedSubCategory,
             'city_id' => $this->selectedCity,
             'country_id' => $this->selectedCountry,
             'phone' => $this->phone,
         ]);
 
-        event(new Registered($user));
-    
         $user->assignRole('Shop');
+
+        event(new Registered($user)); 
 
         Auth::login($user);
 
