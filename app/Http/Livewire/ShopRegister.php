@@ -78,6 +78,11 @@ class ShopRegister extends Component
 
         $user->assignRole('Shop');
 
+        if(Auth::check())
+        {
+            Auth::logout();
+        }
+
         event(new Registered($user)); 
 
         Auth::login($user);

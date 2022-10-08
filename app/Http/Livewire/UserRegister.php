@@ -106,11 +106,17 @@ class UserRegister extends Component
         $pdf->setEncryption($pdfPassword);
         Storage::put('ProfileProof/'.$user->id.'/myProof.pdf', $pdf->output());
         Storage::disk('public')->delete($imagePath);
+     
 
         $user->update([
             'pdf_file_path' => 'ProfileProof/'.$user->id.'/myProof.pdf',
             'pdf_password' => $pdfPassword,
         ]);
+
+        if(Auth::check())
+        {
+            Auth::logout();
+        }
 
         event(new Registered($user)); 
 
