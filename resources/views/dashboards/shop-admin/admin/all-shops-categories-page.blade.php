@@ -131,10 +131,10 @@
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Category</th>
+                            <th class="min-w-150px">Category Name</th>
                             <th class="text-start min-w-100px">Id</th>
-                            
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="text-start min-w-100px">Status</th>
+                            <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -154,7 +154,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$category->category}}</a>
+                                        <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$category->name??''}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -164,17 +164,25 @@
                             <td class="text-start pe-0">
                                 <span class="fw-bolder">{{$category->id}}</span>
                             </td>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$category->status?'Active' : 'Deactive'}}</span>
+                            </td>
                             <!--end::SKU=-->
                             <!--begin::Rating-->
                            
                         
-                            <td class="text-end pe-0">
+                            <td class="text-start pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
                                 <form action="{{route('admin.all.shops.categories.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="category_id" value="{{$category->id}}">Delete</button>
-                                  
+                                  <button type="submit" class="btn btn-danger" name="category_id" value="{{$category->id}}">Deactivate</button>
+                                  <input type="hidden" name="status" value="deactive">
+                                </form>
+                                <form action="{{route('admin.all.shops.categories.delete')}}" method="post">
+                                    @csrf
+                                  <button type="submit" class="btn btn-success" name="category_id" value="{{$category->id}}">Activate</button>
+                                  <input type="hidden" name="status" value="active">
                                 </form>
                                 <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="btn btn-primary">Edit</a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}

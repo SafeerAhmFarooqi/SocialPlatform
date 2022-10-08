@@ -59,7 +59,7 @@
                          <!--end::Label-->
                          <!--begin::Col-->
                          <div class="col-lg-8 fv-row">
-                             <input type="text" name="category" class="form-control form-control-lg form-control-solid" placeholder="Category" value="{{old('category')?old('category') : $category->category}}" />
+                             <input type="text" name="category" class="form-control form-control-lg form-control-solid" placeholder="Category" value="{{old('category')?old('category') : $category->name}}" />
                              @error('category')
                              <div class="alert alert-danger">
                                      {{$message}}
@@ -182,9 +182,9 @@
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Sub Category</th>
+                            <th class="min-w-150px">Sub Category Name</th>
                             <th class="text-start min-w-100px">Id</th>
-                            
+                            <th class="text-start min-w-100px">Status</th>
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -205,7 +205,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('admin.all.shops.subcategories.edit.page',$subCategory->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subCategory->sub_category}}</a>
+                                        <a href="{{route('admin.all.shops.subcategories.edit.page',$subCategory->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subCategory->name??''}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -214,6 +214,9 @@
                             <!--begin::SKU=-->
                             <td class="text-start pe-0">
                                 <span class="fw-bolder">{{$subCategory->id}}</span>
+                            </td>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$subCategory->status?'Active' : 'Deactive'}}</span>
                             </td>
                             <!--end::SKU=-->
                             <!--begin::Rating-->
@@ -224,8 +227,13 @@
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
                                 <form action="{{route('admin.all.shops.subcategories.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="sub_category_id" value="{{$subCategory->id}}">Delete</button>
-                                  
+                                  <button type="submit" class="btn btn-danger" name="sub_category_id" value="{{$subCategory->id}}">Deactive</button>
+                                  <input type="hidden" name="status" value="deactive">
+                                </form>
+                                <form action="{{route('admin.all.shops.subcategories.delete')}}" method="post">
+                                    @csrf
+                                  <button type="submit" class="btn btn-success" name="sub_category_id" value="{{$subCategory->id}}">Activate</button>
+                                  <input type="hidden" name="status" value="active">
                                 </form>
                                 <a href="{{route('admin.all.shops.subcategories.edit.page',$subCategory->id)}}" class="btn btn-primary">Edit</a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}
@@ -289,8 +297,8 @@
                             <label class="required fs-5 fw-bold mb-2">Sub Category Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="" name="sub_category" />
-                            @error('sub_category')
+                            <input class="form-control form-control-solid" placeholder="Sub Category Name" name="name" />
+                            @error('name')
                             <div class="alert alert-danger" role="alert">
                                 {{$message}}
                             </div>

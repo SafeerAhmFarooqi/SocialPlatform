@@ -15,14 +15,16 @@ return new class extends Migration
     {
         Schema::create('shop_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category');
+            $table->string('name')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
 
         Schema::create('shop_sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('shop_category_id');
-            $table->string('sub_category');
+            $table->unsignedBigInteger('category_id');
+            $table->string('name')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

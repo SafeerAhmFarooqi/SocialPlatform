@@ -71,7 +71,16 @@ class ShopAdminController extends BaseAdminController
 
  public function allShopsCategoriesDelete(Request $request)
  {
-   ShopCategories::find($request->category_id)->delete();
+   if ($request->status=='active') {
+      ShopCategories::find($request->category_id)->update([
+         'status' => true,
+      ]);   
+   }
+   if ($request->status=='deactive') {
+      ShopCategories::find($request->category_id)->update([
+         'status' => false,
+      ]);   
+   }
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'Category Deleted Successfully');
@@ -86,7 +95,8 @@ class ShopAdminController extends BaseAdminController
 
 
     $category = ShopCategories::create([
-        'category' => $request->category,
+        'name' => $request->category,
+        'status' => true,
     ]);
 
     if($category)
@@ -128,7 +138,7 @@ class ShopAdminController extends BaseAdminController
       'category' => ['required', 'string', 'max:255'],
   ]);
     $category = ShopCategories::find($request->category_id);
-    $category->category=$request->category;
+    $category->name=$request->category;
     $category->save();
     if($category)
     {
@@ -147,7 +157,7 @@ class ShopAdminController extends BaseAdminController
       'sub_category' => ['required', 'string', 'max:255'],
   ]);
     $subCategory = ShopSubCategories::find($request->sub_category_id);
-    $subCategory->sub_category=$request->sub_category;
+    $subCategory->name=$request->sub_category;
     $subCategory->save();
     if($subCategory)
     {
@@ -162,14 +172,15 @@ class ShopAdminController extends BaseAdminController
  public function allShopsSubCategoriesCreate(Request $request)
  {
     $request->validate([
-        'sub_category' => ['required', 'string', 'max:255'],
+        'name' => ['required', 'string', 'max:255'],
     ]);
 
 
 
     $subCategory = ShopSubCategories::create([
-        'sub_category' => $request->sub_category,
-        'shop_category_id' => $request->category_id,
+        'name' => $request->name,
+        'category_id' => $request->category_id,
+        'status' => true,
     ]);
 
     if($subCategory)
@@ -185,10 +196,22 @@ class ShopAdminController extends BaseAdminController
  public function allShopsSubCategoriesDelete(Request $request)
  {
   // return $request->sub_category_id;
-   ShopSubCategories::findOrFail($request->sub_category_id)->delete();
+  if ($request->status=='deactive') {
+   ShopSubCategories::findOrFail($request->sub_category_id)->update([
+      'status' => false,
+   ]);
+   return back()->with('success', 'Sub Category Deactivate Successfully');
+  }
+  if ($request->status=='active') {
+   ShopSubCategories::findOrFail($request->sub_category_id)->update([
+      'status' => true,
+   ]);
+   return back()->with('success', 'Sub Category Activated Successfully');
+  }
+   //ShopSubCategories::findOrFail($request->sub_category_id)->delete();
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
-    return back()->with('success', 'Sub Category Deleted Successfully');
+   // return back()->with('success', 'Sub Category Deactivate Successfully');
  }   
    
 }

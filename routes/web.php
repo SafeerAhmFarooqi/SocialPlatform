@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GroupAdminController;
 use App\Http\Controllers\Admin\VoucherAdminController;
 use App\Http\Controllers\Admin\PostAdminController;
 use App\Http\Controllers\Admin\CommentAdminController;
+use App\Http\Controllers\Admin\AdminCountryController;
 use App\Http\Controllers\Shop\VoucherShopController;
 use App\Http\Controllers\Shop\ShopProfileController;
 use App\Http\Controllers\User\UserProfileController;
@@ -40,52 +41,53 @@ Route::name('app.')->group(function () {
     Route::get('/agb',[DashboardController::class,'agb'])->name('agb');
 });
 
-Route::group(['middleware' => ['role:Admin','auth']], function () {
+Route::name('admin.')->prefix('admin')->middleware(['role:Admin','auth'])->group(function () {
     // Admin User Management Routes
-    Route::get('/Admin-Users-list', [UserAdminController::class,'allUsersList'])->name('admin.all.users.list');
-    Route::get('/Admin-Users-list-Show-Active', [UserAdminController::class,'allUsersListShowActive'])->name('admin.all.users.list.show.active');
-    Route::get('/Admin-Users-list-Show-Deactive', [UserAdminController::class,'allUsersListShowDeactive'])->name('admin.all.users.list.show.deactive');
-    Route::post('/Admin-Users-list-Delete', [UserAdminController::class,'allUsersListDelete'])->name('admin.all.users.list.delete');
-    Route::post('/Admin-Users-list-Active', [UserAdminController::class,'allUsersListActive'])->name('admin.all.users.list.active');
-    Route::post('/Admin-Users-list-Deactive', [UserAdminController::class,'allUsersListDeactive'])->name('admin.all.users.list.deactive');
+    Route::get('/Users-list', [UserAdminController::class,'allUsersList'])->name('all.users.list');
+    Route::get('/Users-list-Show-Active', [UserAdminController::class,'allUsersListShowActive'])->name('all.users.list.show.active');
+    Route::get('/Users-list-Show-Deactive', [UserAdminController::class,'allUsersListShowDeactive'])->name('all.users.list.show.deactive');
+    Route::post('/Users-list-Delete', [UserAdminController::class,'allUsersListDelete'])->name('all.users.list.delete');
+    Route::post('/Users-list-Active', [UserAdminController::class,'allUsersListActive'])->name('all.users.list.active');
+    Route::post('/Users-list-Deactive', [UserAdminController::class,'allUsersListDeactive'])->name('all.users.list.deactive');
     // Admin Shop Management Routes
-    Route::get('/Admin-Shops-list', [ShopAdminController::class,'allShopsList'])->name('admin.all.shops.list');
-    Route::get('/Admin-Shops-list-Show-Active', [ShopAdminController::class,'allShopsListShowActive'])->name('admin.all.shops.list.show.active');
-    Route::get('/Admin-Shops-list-Show-Deactive', [ShopAdminController::class,'allShopsListShowDeactive'])->name('admin.all.shops.list.show.deactive');
-    Route::post('/Admin-Shops-list-Delete', [ShopAdminController::class,'allShopsListDelete'])->name('admin.all.shops.list.delete');
-    Route::post('/Admin-Shops-list-Active', [ShopAdminController::class,'allShopsListActive'])->name('admin.all.shops.list.active');
-    Route::post('/Admin-Shops-list-Deactive', [ShopAdminController::class,'allShopsListDeactive'])->name('admin.all.shops.list.deactive');
-    Route::get('/Admin-Shops-Categories', [ShopAdminController::class,'allShopsCategories'])->name('admin.all.shops.categories');
-    Route::get('/Admin-Shops-Categories-Edit-Page/{id?}', [ShopAdminController::class,'allShopsCategoriesEditShow'])->name('admin.all.shops.categories.edit.page');
-    Route::get('/Admin-Shops-Sub-Categories-Edit-Page/{id?}', [ShopAdminController::class,'allShopsSubCategoriesEditShow'])->name('admin.all.shops.subcategories.edit.page');
-    Route::post('/Admin-Shops-Categories-Edit', [ShopAdminController::class,'allShopsCategoriesEdit'])->name('admin.all.shops.categories.edit');
-    Route::post('/Admin-Shops-Sub-Categories-Edit', [ShopAdminController::class,'allShopsSubCategoriesEdit'])->name('admin.all.shops.subcategories.edit');
-    Route::post('/Admin-Shops-Categories-Create', [ShopAdminController::class,'allShopsCategoriesCreate'])->name('admin.all.shops.categories.create');
-    Route::post('/Admin-Shops-Subcategories-Create', [ShopAdminController::class,'allShopsSubCategoriesCreate'])->name('admin.all.shops.subcategories.create');
-    Route::post('/Admin-Shops-Categories-Delete', [ShopAdminController::class,'allShopsCategoriesDelete'])->name('admin.all.shops.categories.delete');
-    Route::post('/Admin-Shops-Sub-Categories-Delete', [ShopAdminController::class,'allShopsSubCategoriesDelete'])->name('admin.all.shops.subcategories.delete');
+    Route::get('/Shops-list', [ShopAdminController::class,'allShopsList'])->name('all.shops.list');
+    Route::get('/Shops-list-Show-Active', [ShopAdminController::class,'allShopsListShowActive'])->name('all.shops.list.show.active');
+    Route::get('/Shops-list-Show-Deactive', [ShopAdminController::class,'allShopsListShowDeactive'])->name('all.shops.list.show.deactive');
+    Route::post('/Shops-list-Delete', [ShopAdminController::class,'allShopsListDelete'])->name('all.shops.list.delete');
+    Route::post('/Shops-list-Active', [ShopAdminController::class,'allShopsListActive'])->name('all.shops.list.active');
+    Route::post('/Shops-list-Deactive', [ShopAdminController::class,'allShopsListDeactive'])->name('all.shops.list.deactive');
+    Route::get('/Shops-Categories', [ShopAdminController::class,'allShopsCategories'])->name('all.shops.categories');
+    Route::get('/Shops-Categories-Edit-Page/{id?}', [ShopAdminController::class,'allShopsCategoriesEditShow'])->name('all.shops.categories.edit.page');
+    Route::get('/Shops-Sub-Categories-Edit-Page/{id?}', [ShopAdminController::class,'allShopsSubCategoriesEditShow'])->name('all.shops.subcategories.edit.page');
+    Route::post('/Shops-Categories-Edit', [ShopAdminController::class,'allShopsCategoriesEdit'])->name('all.shops.categories.edit');
+    Route::post('/Shops-Sub-Categories-Edit', [ShopAdminController::class,'allShopsSubCategoriesEdit'])->name('all.shops.subcategories.edit');
+    Route::post('/Shops-Categories-Create', [ShopAdminController::class,'allShopsCategoriesCreate'])->name('all.shops.categories.create');
+    Route::post('/Shops-Subcategories-Create', [ShopAdminController::class,'allShopsSubCategoriesCreate'])->name('all.shops.subcategories.create');
+    Route::post('/Shops-Categories-Delete', [ShopAdminController::class,'allShopsCategoriesDelete'])->name('all.shops.categories.delete');
+    Route::post('/Shops-Sub-Categories-Delete', [ShopAdminController::class,'allShopsSubCategoriesDelete'])->name('all.shops.subcategories.delete');
     // Admin Group Management Routes
-    Route::get('/Admin-Groups-list', [GroupAdminController::class,'allGroupsList'])->name('admin.all.groups.list');
-    Route::get('/Admin-Groups-list-Show-Active', [GroupAdminController::class,'allGroupsListShowActive'])->name('admin.all.groups.list.show.active');
-    Route::get('/Admin-Groups-list-Show-Deactive', [GroupAdminController::class,'allGroupsListShowDeactive'])->name('admin.all.groups.list.show.deactive');
-    Route::post('/Admin-Groups-list-Delete', [GroupAdminController::class,'allGroupsListDelete'])->name('admin.all.groups.list.delete');
-    Route::post('/Admin-Groups-list-Active', [GroupAdminController::class,'allGroupsListActive'])->name('admin.all.groups.list.active');
-    Route::post('/Admin-Groups-list-Deactive', [GroupAdminController::class,'allGroupsListDeactive'])->name('admin.all.groups.list.deactive');
+    Route::get('/Groups-list', [GroupAdminController::class,'allGroupsList'])->name('all.groups.list');
+    Route::get('/Groups-list-Show-Active', [GroupAdminController::class,'allGroupsListShowActive'])->name('all.groups.list.show.active');
+    Route::get('/Groups-list-Show-Deactive', [GroupAdminController::class,'allGroupsListShowDeactive'])->name('all.groups.list.show.deactive');
+    Route::post('/Groups-list-Delete', [GroupAdminController::class,'allGroupsListDelete'])->name('all.groups.list.delete');
+    Route::post('/Groups-list-Active', [GroupAdminController::class,'allGroupsListActive'])->name('all.groups.list.active');
+    Route::post('/Groups-list-Deactive', [GroupAdminController::class,'allGroupsListDeactive'])->name('all.groups.list.deactive');
     // Admin Voucher Management Routes
-    Route::get('/Admin-Vouchers-list', [VoucherAdminController::class,'allVouchersList'])->name('admin.all.vouchers.list');
-    Route::get('/Admin-Vouchers-list-Show-Active', [VoucherAdminController::class,'allVouchersListShowActive'])->name('admin.all.vouchers.list.show.active');
-    Route::get('/Admin-Vouchers-list-Show-Deactive', [VoucherAdminController::class,'allVouchersListShowDeactive'])->name('admin.all.vouchers.list.show.deactive');
-    Route::post('/Admin-Vouchers-list-Delete', [VoucherAdminController::class,'allVouchersListDelete'])->name('admin.all.vouchers.list.delete');
-    Route::post('/Admin-Vouchers-list-Active', [VoucherAdminController::class,'allVouchersListActive'])->name('admin.all.vouchers.list.active');
-    Route::post('/Admin-Vouchers-list-Deactive', [VoucherAdminController::class,'allVouchersListDeactive'])->name('admin.all.vouchers.list.deactive');
+    Route::get('/Vouchers-list', [VoucherAdminController::class,'allVouchersList'])->name('all.vouchers.list');
+    Route::get('/Vouchers-list-Show-Active', [VoucherAdminController::class,'allVouchersListShowActive'])->name('all.vouchers.list.show.active');
+    Route::get('/Vouchers-list-Show-Deactive', [VoucherAdminController::class,'allVouchersListShowDeactive'])->name('all.vouchers.list.show.deactive');
+    Route::post('/Vouchers-list-Delete', [VoucherAdminController::class,'allVouchersListDelete'])->name('all.vouchers.list.delete');
+    Route::post('/Vouchers-list-Active', [VoucherAdminController::class,'allVouchersListActive'])->name('all.vouchers.list.active');
+    Route::post('/Vouchers-list-Deactive', [VoucherAdminController::class,'allVouchersListDeactive'])->name('all.vouchers.list.deactive');
     // Admin Posts Management Routes
-    Route::get('/Admin-User-Post-list', [PostAdminController::class,'allUserPostShow'])->name('admin.all.user.posts.show');
-    Route::post('/Admin-User-Post-list-Delete', [PostAdminController::class,'allUserPostDelete'])->name('admin.all.users.post.delete');
-    Route::get('/Admin-Group-Post-list', [PostAdminController::class,'allGroupPostShow'])->name('admin.all.group.posts.show');
-    Route::post('/Admin-Group-Post-list-Delete', [PostAdminController::class,'allGroupPostDelete'])->name('admin.all.groups.post.delete');
+    Route::get('/User-Post-list', [PostAdminController::class,'allUserPostShow'])->name('all.user.posts.show');
+    Route::post('/User-Post-list-Delete', [PostAdminController::class,'allUserPostDelete'])->name('all.users.post.delete');
+    Route::get('/Group-Post-list', [PostAdminController::class,'allGroupPostShow'])->name('all.group.posts.show');
+    Route::post('/Group-Post-list-Delete', [PostAdminController::class,'allGroupPostDelete'])->name('all.groups.post.delete');
     // Admin Comments Management Routes
-    Route::get('/Admin-Post-Comment-list', [CommentAdminController::class,'allPostsCommentsShow'])->name('admin.all.post.comments.show');
-    Route::post('/Admin-Post-Comment-list-Delete', [CommentAdminController::class,'allPostsCommentsDelete'])->name('admin.all.post.comments.delete');
+    Route::get('/Post-Comment-list', [CommentAdminController::class,'allPostsCommentsShow'])->name('all.post.comments.show');
+    Route::post('/Post-Comment-list-Delete', [CommentAdminController::class,'allPostsCommentsDelete'])->name('all.post.comments.delete');
+    Route::resource('country', AdminCountryController::class);
 });
 
 Route::name('shop.')->prefix('shop')->middleware(['role:Shop','auth'])->group(function () {
