@@ -12,7 +12,8 @@ class ShopSubCategories extends Model
     protected $table="shop_sub_categories";
 
     protected $fillable = [
-        'shop_category_id',
-        'sub_category',
+        'category_id',
+        'name',
+        'status',
     ];
 }

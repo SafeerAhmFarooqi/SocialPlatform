@@ -12,12 +12,13 @@ class ShopCategories extends Model
     protected $table="shop_categories";
 
     protected $fillable = [
-        'category',
+        'name',
+        'status',
     ];
 
     public function subCategory()
     {
-        return $this->hasMany(ShopSubCategories::class, 'shop_category_id');
+        return $this->hasMany(ShopSubCategories::class, 'category_id');
     }
 
 }

@@ -59,7 +59,7 @@
                          <!--end::Label-->
                          <!--begin::Col-->
                          <div class="col-lg-8 fv-row">
-                             <input type="text" name="sub_category" class="form-control form-control-lg form-control-solid" placeholder="Category" value="{{old('sub_category')?old('sub_category') : $subCategory->sub_category}}" />
+                             <input type="text" name="sub_category" class="form-control form-control-lg form-control-solid" placeholder="Category" value="{{old('sub_category')?old('sub_category') : $subCategory->name}}" />
                              @error('sub_category')
                              <div class="alert alert-danger">
                                      {{$message}}

@@ -102,12 +102,51 @@
                         <!--end::Input group=-->
                         <!--begin::Input group-->
                         
-    
+                        <div class="fv-row mb-10">
+                            <!--begin::Label-->
+                            <label class="form-label required">Countries</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <select  class="form-select form-select-lg form-select-solid"  wire:model="selectedCountry">
+                                <option value="">Select Country</option>
+                                @foreach ($countries as $country)
+                                <option value="{{$country->id}}">{{$country->country}}</option>    
+                                @endforeach
+                                
+                            </select>
+                            @error('selectedCountry')
+                            <div class="alert alert-danger" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <!--end::Input-->
+                        </div>
+
+                        <div class="fv-row mb-10">
+                            <!--begin::Label-->
+                            <label class="form-label required">City</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <select name="business_type" class="form-select form-select-lg form-select-solid"  wire:model="selectedCity">
+                                <option value="">Select City</option>
+                                @foreach ($cities as $city)
+                                <option value="{{$city->id}}">{{$city->name}}</option>    
+                                @endforeach
+                                
+                                
+                            </select>
+                            @error('selectedCity')
+                            <div class="alert alert-danger" role="alert">
+                                {{$message}}
+                            </div>
+                            @enderror
+                            <!--end::Input-->
+                        </div>
                         <div class="row fv-row mb-7">
                             <!--begin::Col-->
                             <div class="fv-row mb-7">
                                 <label class="form-label fw-bolder text-dark fs-6">Address</label>
-                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder="Shop Address" wire:model="address" />
+                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder="Shop Address" wire:model="address" id="address"/>
                                 @error('address')
                                 <div class="alert alert-danger" role="alert">
                                     {{$message}}
@@ -128,7 +167,7 @@
                             <select  class="form-select form-select-lg form-select-solid"  wire:model="selectedCategory">
                                 <option value="">Select Category</option>
                                 @foreach ($shopCategories as $shopCategory)
-                                <option value="{{$shopCategory->id}}">{{$shopCategory->category}}</option>    
+                                <option value="{{$shopCategory->id}}">{{$shopCategory->name}}</option>    
                                 @endforeach
                                 
                             </select>
@@ -148,7 +187,7 @@
                             <select name="business_type" class="form-select form-select-lg form-select-solid"  wire:model="selectedSubCategory">
                                 <option value="">Select Sub Category</option>
                                 @foreach ($shopSubCategories as $shopSubCategory)
-                                <option value="{{$shopSubCategory->id}}">{{$shopSubCategory->sub_category}}</option>    
+                                <option value="{{$shopSubCategory->id}}">{{$shopSubCategory->name}}</option>    
                                 @endforeach
                                 
                                 
@@ -220,3 +259,22 @@
         <!--end::Authentication - Sign-up-->
     </div>
 </div>
+
+@section('pageScripts')
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'address';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
+@endsection

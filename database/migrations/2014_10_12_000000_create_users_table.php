@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('lastname')->nullable();
             $table->string('email')->unique();
             $table->string('shopname')->nullable();
-            $table->unsignedBigInteger('shop_sub_category')->nullable();
-            $table->unsignedBigInteger('shop_category')->nullable();
+            $table->unsignedBigInteger('shop_sub_category_id')->nullable();
+            $table->unsignedBigInteger('shop_category_id')->nullable();
             $table->string('password');
             $table->string('pdf_password')->nullable();
             $table->timestamp('dob')->nullable();

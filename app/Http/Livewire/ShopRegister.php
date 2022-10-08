@@ -9,6 +9,8 @@ use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\ShopCategories;
 use App\Models\ShopSubCategories;
+use App\Models\Countries;
+use App\Models\City;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +20,8 @@ class ShopRegister extends Component
 {
     public $selectedCategory;
     public $selectedSubCategory;
+    public $selectedCountry;
+    public $selectedCity;
     public $shopName;
     public $email;
     public $password;
@@ -29,6 +33,8 @@ class ShopRegister extends Component
         'email' => 'Email',
         'selectedCategory' => 'Category',
             'selectedSubCategory' => 'Sub Category',
+            'selectedCountry' => 'Country',
+            'selectedCity' => 'City',
             'shopName' => 'Shop Name',
             'password' => 'Password',
             'address' => 'Address',
@@ -46,6 +52,8 @@ class ShopRegister extends Component
         return [
             'selectedCategory' => 'required',
             'selectedSubCategory' => 'required',
+            'selectedCountry' => 'required',
+            'selectedCity' => 'required',
             'shopName' => 'required|min:6',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Password::min(8),Password::defaults()],
@@ -66,7 +74,8 @@ class ShopRegister extends Component
             'address' => $this->address,
             'shop_category' => $this->selectedCategory,
             'shop_sub_category' => $this->selectedSubCategory,
-            'city' => $this->city,
+            'city_id' => $this->selectedCity,
+            'country_id' => $this->selectedCountry,
             'phone' => $this->phone,
         ]);
 
@@ -88,7 +97,9 @@ class ShopRegister extends Component
     {
         return view('livewire.shop-register',[
             'shopCategories'=>ShopCategories::all(),
-            'shopSubCategories'=>ShopSubCategories::where('shop_category_id',$this->selectedCategory)->get(),
+            'shopSubCategories'=>ShopSubCategories::where('category_id',$this->selectedCategory)->get(),
+            'countries'=>Countries::where('status',true)->get(),
+            'cities'=>City::where('country_id',$this->selectedCountry)->get(),
         ]);
     }
 }
