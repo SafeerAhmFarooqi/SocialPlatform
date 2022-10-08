@@ -88,14 +88,14 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/Admin-Post-Comment-list-Delete', [CommentAdminController::class,'allPostsCommentsDelete'])->name('admin.all.post.comments.delete');
 });
 
-Route::name('shop.')->middleware(['role:Shop','auth'])->group(function () {
+Route::name('shop.')->prefix('shop')->middleware(['role:Shop','auth'])->group(function () {
 // Shop Voucher Management Routes
-Route::get('/Shop-Vouchers-Show', [VoucherShopController::class,'myVouchersShow'])->name('myvouchers.show');
-Route::post('/Shop-Voucher-Create', [VoucherShopController::class,'shopVoucherStore'])->name('voucher.create');
-Route::post('/Shop-Voucher-Delete', [VoucherShopController::class,'shopVoucherDelete'])->name('voucher.delete');
-Route::get('/Shop-Use-Voucher-Show', [VoucherShopController::class,'useVoucherShow'])->name('usevoucher.show');
-Route::post('/Shop-Use-Voucher-Submit', [VoucherShopController::class,'useVoucherSubmit'])->name('usevoucher.submit');
-Route::get('/Shop-Use-Voucher-List-Show', [VoucherShopController::class,'useVoucherListShow'])->name('usevoucher.list.show');
+Route::get('/Vouchers-Show', [VoucherShopController::class,'myVouchersShow'])->name('myvouchers.show');
+Route::post('/Voucher-Create', [VoucherShopController::class,'shopVoucherStore'])->name('voucher.create');
+Route::post('/Voucher-Delete', [VoucherShopController::class,'shopVoucherDelete'])->name('voucher.delete');
+Route::get('/Use-Voucher-Show', [VoucherShopController::class,'useVoucherShow'])->name('usevoucher.show');
+Route::post('/Use-Voucher-Submit', [VoucherShopController::class,'useVoucherSubmit'])->name('usevoucher.submit');
+Route::get('/Use-Voucher-List-Show', [VoucherShopController::class,'useVoucherListShow'])->name('usevoucher.list.show');
 Route::resource('profile', ShopProfileController::class);
 });
 
