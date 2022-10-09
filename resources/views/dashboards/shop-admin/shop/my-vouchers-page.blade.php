@@ -1,27 +1,6 @@
 @extends('dashboards.shop-admin.dashboard-layout')
 @section('page-content')
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <b>
-            
-            @role('Shop')
-                    Shop Dashboard
-            @endrole
-            @role('Admin')
-            Admin All Users Page
-    @endrole
-            </b>
-            <!--end::Title-->
-        </div>
-        <!--end::Page title-->
-
-    </div>
-    <!--end::Container-->
-</div>
+ 
 
 <div class="post d-flex flex-column-fluid mt-10" id="kt_post">
     <!--begin::Container-->
@@ -111,9 +90,8 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-70px">Sr No.</th>
-                            <th class="text-start min-w-100px">Title</th>
-                            <th class="text-start min-w-100px">Id</th>
+                            <th class="text-start min-w-70px">#</th>
+                            <th class="text-start min-w-100px">Title</th> 
                             <th class="text-start min-w-100px">Code</th>
                             <th class="text-start min-w-100px">Discount</th>
                             <th class="text-start min-w-100px">Actions</th>
@@ -141,16 +119,12 @@
                                     </div>
                                 </div>
                             </td>
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->id}}</span>
-                            </td>
+                            <!--end::Product=--> 
                             <td class="text-start pe-0">
                                 <span class="fw-bolder">{{$voucher->code}}</span>
                             </td>
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->discount}}</span>
+                                <span class="fw-bolder">$ {{$voucher->discount}}</span>
                             </td>
                             <!--end::SKU=-->
                             <!--begin::Rating-->
@@ -161,7 +135,7 @@
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
                                 <form action="{{route('shop.voucher.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="voucher_id" value="{{$voucher->id}}">Delete</button>
+                                  <button type="submit" class="badge badge-light-danger" name="voucher_id" value="{{$voucher->id}}" style="border:none">Delete</button> 
                                 </form>
                                 </div>
                                 

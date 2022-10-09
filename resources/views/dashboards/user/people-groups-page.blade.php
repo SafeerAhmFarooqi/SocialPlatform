@@ -55,8 +55,8 @@
             <div class="card-body">
               <ul class="nav nav-tabs nav-bottom-line justify-content-center justify-content-md-start">
   
-                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-2"> Joined Groups </a> </li>
-                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-3"> My Groups </a> </li> 
+                <li class="nav-item"> <a class="nav-link " data-bs-toggle="tab" href="#tab-2"> Joined Groups </a> </li>
+                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-3"> My Groups </a> </li> 
               </ul>
               <div class="tab-content mb-0 pb-0">
 

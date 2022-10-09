@@ -129,12 +129,10 @@
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
-                        <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Category Name</th>
-                            <th class="text-start min-w-100px">Id</th>
-                            <th class="text-start min-w-100px">Status</th>
-                            <th class="text-end min-w-100px">Actions</th>
+                      <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                            <th class="min-w-150px">#</th>
+                            <th class="min-w-150px"> Category</th>                             
+                            <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -159,33 +157,23 @@
                                     </div>
                                 </div>
                             </td>
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$category->id}}</span>
-                            </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$category->status?'Active' : 'Deactive'}}</span>
-                            </td>
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                           
+                       
                         
                             <td class="text-start pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.all.shops.categories.delete')}}" method="post">
+                                <form action="{{route('admin.all.shops.categories.delete')}}" method="post" style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="category_id" value="{{$category->id}}">Deactivate</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="category_id" value="{{$category->id}}"><span class="fa fa-trash"> </span></button>
                                   <input type="hidden" name="status" value="deactive">
                                 </form>
-                                <form action="{{route('admin.all.shops.categories.delete')}}" method="post">
+                                <form action="{{route('admin.all.shops.categories.delete')}}" method="post" style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-success" name="category_id" value="{{$category->id}}">Activate</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-success" type="submit" class="btn btn-success" name="category_id" value="{{$category->id}}"><span class="fa fa-check"> </span></button>
                                   <input type="hidden" name="status" value="active">
                                 </form>
-                                <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="btn btn-primary">Edit</a>
-                                {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}
+                                <a href="{{route('admin.all.shops.categories.edit.page',$category->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-warning" ><span class="fa fa-pencil"> </span></a>
+                                {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}"><span class="fa fa-pencil"> </span></button> --}}
                                 </div>
                                 
                             </td>

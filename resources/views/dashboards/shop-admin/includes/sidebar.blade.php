@@ -3,8 +3,9 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
-        <a href="#">
-            <img alt="Logo" src={{asset("uploads/home/logo.webp")}} class="h-25px logo" />
+     <a href="#" class="col-sm-12" style="margin-top:40%;text-align: center;">
+            <img alt="Logo" src={{asset('assets/ressoli-theme/assets/resolilogoshoplogo.png')}}
+ class="h-25px logo" style="width:100%;height:100% !important" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -27,7 +28,7 @@
         <div class="hover-scroll-overlay-y my-5 my-lg-5" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="0">
             <!--begin::Menu-->
 
-            <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
+            <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false" style="padding-top: 30%;">
                 <div class="menu-item">
                     <a class="menu-link" href="{{route('dashboard')}}">
                         <span class="menu-icon">
@@ -446,7 +447,7 @@
     <!--begin::Footer-->
     <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
         <a href="/" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="">
-            <span class="btn-label">Friend Finder</span>
+            <span class="btn-label btn btn-primary">Landing Page </span>
             <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
             <span class="svg-icon btn-icon svg-icon-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

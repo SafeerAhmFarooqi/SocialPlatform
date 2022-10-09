@@ -1,28 +1,6 @@
 @extends('dashboards.shop-admin.dashboard-layout')
 @section('page-content')
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <b>
-            
-            @role('Shop')
-                    Shop Dashboard
-            @endrole
-            @role('Admin')
-            Admin All Users Page
-    @endrole
-            </b>
-            <!--end::Title-->
-        </div>
-        <!--end::Page title-->
-
-    </div>
-    <!--end::Container-->
-</div>
-
+ 
 <div class="post d-flex flex-column-fluid mt-10" id="kt_post">
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
@@ -63,8 +41,7 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                   
-                    <a href="#" class="btn btn-primary er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#kt_modal_new_address">Add New Voucher</a>
-                    <button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                     <button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr078.svg-->
                     <span class="svg-icon svg-icon-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -111,10 +88,9 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-70px">Sr No.</th>
-                            <th class="text-start min-w-100px">Title</th>
-                            <th class="text-start min-w-100px">Id</th>
-                            <th class="text-start min-w-100px">Code</th>
+                            <th class="text-start min-w-70px">#</th>
+                            <th class="text-start min-w-100px">User  </th>
+                            <th class="text-start min-w-100px">Voucher</th> 
                             <th class="text-start min-w-100px">Discount</th>
                             {{-- <th class="text-start min-w-100px">Actions</th> --}}
                         </tr>
@@ -136,7 +112,22 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('admin.all.shops.categories.edit.page',$voucher->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$voucher->title}}</a>
+                                        <a href="{{route('admin.all.shops.categories.edit.page',$voucher->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">Asad Asad</a> <br> 
+                                       asad6351@gmail.com <br>
+                                        
+                                        <!--end::Title-->
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-start">
+                                    <!--begin::Thumbnail-->
+                                    <!--end::Thumbnail-->
+                                    <div class="ms-5">
+                                        <!--begin::Title-->
+                                        <a href="{{route('admin.all.shops.categories.edit.page',$voucher->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$voucher->title}}</a> <br> 
+                                        <span class="badge badge-light-warning">  Code : 1233255 </span> <br>
+                                         
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -144,14 +135,8 @@
                             <!--end::Product=-->
                             <!--begin::SKU=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->id}}</span>
-                            </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->code}}</span>
-                            </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->discount}}</span>
-                            </td>
+                                <span class="badge badge-light-primary">$ 10</span>
+                            </td>  
                             <!--end::SKU=-->
                             <!--begin::Rating-->
                            

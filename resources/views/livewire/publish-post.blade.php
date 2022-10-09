@@ -72,10 +72,17 @@
           <!-- Post input -->
           <form class="w-100" wire:submit.prevent="submit">
             <textarea class="form-control pe-4 border-0" rows="2" data-autoresize placeholder="Share your thoughts..." wire:model="postText"></textarea>
-            <ul class="nav nav-pills nav-stack small fw-normal">
+            <ul class="nav nav-pills nav-stack small fw-normal" style="float:right">
+
+                <li>
+                    <div wire:loading wire:target="postImage">
+                        <img src="{{ asset('assets/loading.gif') }}">
+                    </div>
+                </li>
+
                 <li class="nav-item">
                 
-                  <a href="#" class="nav-link bg-light py-1 px-2 mb-0" style="margin-top: 30px;">
+                  <a href="#" class="nav-link bg-light py-1 px-2 mb-0" style="margin-top: 30px;padding: 10px !important; ">
                     <label for="image-upload" style="cursor: pointer;">
                         <i class="bi bi-image-fill text-success pe-2"></i>Upload
                     </label>
@@ -83,17 +90,27 @@
                 </a>
                 </li>
                 <li>
-                    <div wire:loading wire:target="postImage">
-                        <img src="{{ asset('assets/loading.gif') }}">
-                    </div>
+                    <div class="col-sm-12">
+                        <select class="form-control" id="country" name="country" style="margin-top:30px">
+                                     <option value="1">Fire</option>    
+                                    <option value="2">Police</option>    
+                                    <option value="2">Armed Forces</option>    
+                                    <option value="2">THW</option>    
+                                    <option value="3" selected>Paramedic</option>       
+                                  </select>
+                     </div>
                 </li>
+
+                
                  
-              </ul>
               
-                <div wire:loading.remove wire:target="postImage" style="display: inline;float: right;margin-right: 20px;margin-top: 0px;">
+              <li>
+                <div wire:loading.remove wire:target="postImage" style="display: inline;float: right;margin-right: 20px;margin-top: 26px;">
                     <button class="btn btn-primary pull-right" type="submit">Publish</button>
                 </div>
-             
+             </li>
+
+         </ul>
         </form>
         </div>
         <!-- Share feed toolbar START -->

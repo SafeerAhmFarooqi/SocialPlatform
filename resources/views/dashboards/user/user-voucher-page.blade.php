@@ -38,49 +38,100 @@
             <!-- Card header START -->
             <div class="card-header border-0 pb-0">
               <h1 class="h4 card-title">Vouchers</h1>
-            </div>
-            <!-- Card header START -->
-            <!-- Card body START -->
-            <div class="card-body">
-              <!-- Birthdays START -->
-              <div class="d-flex mb-3">
-                <!-- Avatar --> 
-                <div class="avatar avatar-lg status-online me-2">
-                  <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}
-" alt=""></a>
-                </div>
-                <!-- Info -->
-                <div class="ms-2 w-100">
-                  <div class="d-sm-flex justify-content-between">
-                    <h6><a href="#!">Mega Mobile Offer </a></h6>
-                     <!-- Dropdown START -->
-                    <div class="dropdown ms-auto">
-                      <a href="#" class="text-secondary" id="bdayActionEdit" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-gift"></i>
-                      </a>
-                      <!-- Dropdown menu -->
-                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bdayActionEdit">
-                        <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i> Xucas551</a></li>
-                         
-                      </ul>
+           
+
+
+            <ul class="nav nav-tabs nav-bottom-line justify-content-center justify-content-md-start">  
+                <li class="nav-item"> <a class="nav-link active " data-bs-toggle="tab" href="#tab-1"> All Vouchers </a> </li>
+                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-2"> Used </a> </li> 
+            </ul>
+ </div>
+
+
+              <div class="tab-content mb-0 pb-0">                
+                 <!-- Friends groups tab START -->
+                <div class="tab-pane fade show" id="tab-1">
+                    
+ <!--end start -->                    
+                      <div class="card-body">
+                            <div class="d-flex mb-3">
+                              <div class="avatar avatar-lg status-online me-2">
+                                <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}" alt=""></a>
+                              </div>
+
+                              <div class="ms-2 w-100">
+                                <div class="d-sm-flex justify-content-between">
+                                  <h6><a href="#!">Mega Mobile Offer </a></h6>
+                                   <!-- Dropdown START -->
+                                  <div class="dropdown ms-auto">
+                                    <a href="#" class="text-secondary" id="bdayActionEdit" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <i class="fa fa-gift"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bdayActionEdit">
+                                      <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i> Xucas551</a></li>
+                                       
+                                    </ul>
+                                  </div>
+
+                              </div>
+                              <div class="position-relative w-100">
+                               <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important"> 10% Off on all mobile assessories</span>
+                               
+                              </div>
+                            </div>
+                          </div>
+                          <hr class="my-4">
                     </div>
-                    <!-- Dropdown END -->
-                </div>
-                <div class="position-relative w-100">
-                 <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important"> 10% Off on all mobile assessories</span>
-                 
-                </div>
-              </div>
-            </div>
-            <!-- Birthdays END -->
 
-            <!-- Divider -->
-            <hr class="my-4">
 
-      
-            <!-- Birthdays END -->
-          </div>
-          <!-- Card body END -->
+<!--end voucher -->
+            
+             </div> <!-- tab 2 end -->
+
+
+
+                 <div class="tab-pane fade show" id="tab-2">
+                    
+ <!--end start -->                    
+                      <div class="card-body">
+                            <div class="d-flex mb-3">
+                              <div class="avatar avatar-lg status-online me-2">
+                                <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}" alt=""></a>
+                              </div>
+
+                              <div class="ms-2 w-100">
+                                <div class="d-sm-flex justify-content-between">
+                                  <h6><a href="#!">Mega Mobile Offer </a></h6>
+                                   <!-- Dropdown START -->
+                                  <div class="dropdown ms-auto">
+                                    <a href="#" class="text-secondary" id="bdayActionEdit" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <i class="fa fa-gift"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bdayActionEdit">
+                                      <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i> Xucas551</a></li>
+                                       
+                                    </ul>
+                                  </div>
+
+                              </div>
+                              <div class="position-relative w-100">
+                               <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important"> 10% Off on all mobile assessories</span>
+                               
+                              </div>
+                            </div>
+                          </div>
+                          <hr class="my-4">
+                    </div>
+
+
+<!--end voucher -->
+            
+             </div> <!-- tab 2 end -->
+            
+             </div>
+             <!-- Card body END -->
           </div>
           <!-- Card END -->
 

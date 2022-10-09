@@ -12,6 +12,10 @@
           </div>
           <!-- Info -->
           <h5 class="mb-0"> <a href="#!">{{Auth::user()->firstname.' '.Auth::user()->lastname}} </a> </h5>
+          <small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px">Fire</small>
+          <small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px">Fire</small>
+          <small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px">Fire</small>
+          <small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px">Fire</small>
           <small>{{Auth::user()->printOptions()??''}}</small>
           <p class="mt-3">{{old('about_me')??Auth::user()->about_me}}</p>
 
@@ -45,6 +49,9 @@
 
         <!-- Side Nav START -->
         <ul class="nav nav-link-secondary flex-column fw-bold gap-2">
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('dashboard')}}"> <span class="fa fa-dashboard me-2 h-20px fa-fw"></span> <span>Dashboard </span></a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('user.dashboard.people-nearby')}}"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon001.png')}}" alt=""><span>People Nearby </span></a>
           </li>

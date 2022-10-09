@@ -1,27 +1,6 @@
 @extends('dashboards.shop-admin.dashboard-layout')
 @section('page-content')
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <b>
-            
-            @role('Shop')
-                    Shop Dashboard
-            @endrole
-            @role('Admin')
-            Admin All Users Page
-    @endrole
-            </b>
-            <!--end::Title-->
-        </div>
-        <!--end::Page title-->
-
-    </div>
-    <!--end::Container-->
-</div>
+ 
 
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
@@ -129,14 +108,11 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-100px">Record Id</th>
-                            <th class="min-w-150px">Name</th>
-                            <th class="text-start min-w-100px">Email</th>
-                            <th class="text-start min-w-70px">Address</th>
-                            <th class="text-start min-w-100px">Phone</th>
-                            <th class="text-start min-w-100px">Status</th>
-                            <th class="text-start min-w-100px">Date</th>
-                            <th class="text-start min-w-100px">Actions</th>
+                                                            <th class="min-w-150px">#</th>
+                                                            <th class="min-w-140px">Details</th>
+                                                            <th class="min-w-120px">Phone</th>
+                                                            <th class="min-w-120px">Status</th> 
+                                                            <th class="min-w-100px text-end">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -145,73 +121,49 @@
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
                         @foreach ($users as $user)
-                        <tr>
-                            <!--begin::Product=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$user->id}}</span>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Thumbnail-->
-                                    <a href="#" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url();"></span>
-                                    </a>
-                                    <!--end::Thumbnail-->
-                                    <div class="ms-5">
-                                        <!--begin::Title-->
-                                        <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$user->firstname.' '.$user->lastname}}</a>
-                                        <!--end::Title-->
-                                    </div>
-                                </div>
-                            </td>
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                           
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{$user->email}}</span>
-                                    
-                                </div>
-                            </td>
-                            <!--end::Rating-->
-                            <!--begin::Price=-->
-                            
-                            <!--end::Price=-->
-                            <!--begin::Viewed=-->
-                            <td class="text-start pe-0">
-                                <span>{{$user->address}}</span>
-                            </td>
-                            <!--end::Viewed=-->
-                            <!--begin::Percent=-->
-                            <td class="text-start pe-0">{{$user->phone}}</td>
-                            <td class="text-start pe-0">{{$user->user_status?'Active' : 'Non Active'}}</td>
-                            
-                            <td class="text-start pe-0">
-                                <span>{{$user->created_at->format('F d, Y')}}</span>
-                            </td>
-                            <td class="text-end pe-0">
-                                <div class="rating justify-content-end">
-                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$user->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.all.users.list.delete')}}" method="post">
+                         <tr>
+                                                            <td>
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$user->id}}   </a>
+                                                                    <br> 
+                                                                    
+                                                                </div>
+                                                                <p> {{$user->created_at->format('F d, Y')}} </p>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$user->firstname.' '.$user->lastname}}   </a>
+                                                                <span class="text-muted fw-semibold text-muted d-block fs-7">{{$user->email}}</span>
+                                                                <span class="text-muted fw-semibold text-muted d-block fs-7">{{$user->address}}</span>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{$user->phone}}</a>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" class="badge badge-light-success">{{$user->user_status?'Active' : 'Non Active'}}</a>
+                                                            </td>
+                                                          
+                                                            <td class="text-end">
+
+                                                                <form action="{{route('admin.all.users.list.delete')}}" method="post" style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}">Delete</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}"><span class="fa fa-trash"> </span></button>
                                 </form>
-                                <form action="{{route('admin.all.users.list.active')}}" method="post">
+                                <form action="{{route('admin.all.users.list.active')}}" method="post" style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}">Active</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-success" type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}">  <span class="fa fa-check"> </span></button>
                                 </form>
-                                <form action="{{route('admin.all.users.list.deactive')}}" method="post">
+                                <form action="{{route('admin.all.users.list.deactive')}}" method="post" style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}">De Active</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-warning" type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}"> <span class="fa fa-ban"> </span></button>
                                 </form>
-                                </div>
-                                
-                            </td>
-                            <!--end::Percent=-->
-                        </tr>
+
+
+
+                                                           
+                                                             
+                                                            </td>
+                                                        </tr>
                         @endforeach
                         
                         <!--end::Table row-->

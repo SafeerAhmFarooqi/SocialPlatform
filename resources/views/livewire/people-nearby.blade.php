@@ -1,17 +1,17 @@
 <div wire:poll>
    
-    <div class="people-nearby">
+    <div class="people-nearby ">
         <div class="google-maps" style="padding:0">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247476.01472843773!2d75.3083647569978!3d35.4154376421254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e46392bac10283%3A0xc2f7a786f9833d7!2sSkardu!5e0!3m2!1sen!2s!4v1665025745590!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="container">
+        <div class="container" style="padding:0">
         @foreach ($users as $user)
 
         <div class="card">
             <!-- Card header START -->
-            <div class="card-header border-0 pb-0">
+           <!--  <div class="card-header border-0 pb-0">
               <h5 class="card-title"> Connections</h5> 
-            </div>
+            </div> -->
             <!-- Card header END -->
             <!-- Card body START -->
             <div class="card-body">

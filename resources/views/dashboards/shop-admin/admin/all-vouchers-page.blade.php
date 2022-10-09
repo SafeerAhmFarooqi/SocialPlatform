@@ -1,27 +1,6 @@
 @extends('dashboards.shop-admin.dashboard-layout')
 @section('page-content')
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <b>
-            
-            @role('Shop')
-                    Shop Dashboard
-            @endrole
-            @role('Admin')
-            Admin All Users Page
-    @endrole
-            </b>
-            <!--end::Title-->
-        </div>
-        <!--end::Page title-->
-
-    </div>
-    <!--end::Container-->
-</div>
+ 
 
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
@@ -129,18 +108,12 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-100px">Record Id</th>
+                            <th class="text-start min-w-100px">#</th>
+                            <th class="min-w-150px">Shop Name</th>  
                             <th class="min-w-150px">Title</th>
                             <th class="min-w-150px">Code</th>
-                            <th class="min-w-150px">Discount</th>
-                            <th class="min-w-150px">Shop Name</th>
-                            <th class="min-w-150px">Shop Email</th>
-                            <th class="text-start min-w-100px">Location</th>
-                            <th class="text-start min-w-70px">Category</th>
-                            <th class="text-start min-w-100px">Sub Category</th>
-                            <th class="text-start min-w-100px">Status</th>
-                            <th class="text-start min-w-100px">Date</th>
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="min-w-50px">Discount</th> 
+                            <th class="text-start min-w-50px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -152,69 +125,37 @@
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->id}}</span>
+                                <span class="fw-bolder">{{$voucher->id}}</span><Br>
+                                <span class="text-muted fw-semibold text-muted d-block fs-7"> {{$voucher->created_at->format('F d, Y')}}</span>
                             </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->title}}</span>
+
+                            <td>
+                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">Shop 1   </a>
+                                  <span class="text-muted fw-semibold text-muted d-block fs-7">shop@gmail.com</span>
+                                   <span class="text-muted fw-semibold text-muted d-block fs-7"> +92 308 4069635</span>
+                                   <span class="text-muted fw-semibold text-muted d-block fs-7"> New Ireleand CIty New York</span>
                             </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->code}}</span>
+                            <td>
+                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->title}}  </a>
+                                  <span class="text-muted fw-semibold text-muted d-block fs-7">asad@asadsohail.com</span>
+                                   <span class="text-muted fw-semibold text-muted d-block fs-7"> Mobile > Iphone </span>
                             </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->discount}}</span>
+                            <td>
+                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->code}}  </a>
+                                  <span class="text-muted fw-semibold text-muted d-block fs-7">a{{$voucher->voucher_status?'Active' : 'Non Active'}}</span> 
                             </td>
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                           
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">my shop</span>
-                                    
-                                </div>
-                            </td>
-                            <!--end::Rating-->
-                            <!--begin::Price=-->
-                            
-                            <!--end::Price=-->
-                            <!--begin::Viewed=-->
-                            <td class="text-start pe-0">
-                                <span>shop@hotmail.com</span>
-                            </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->location}}</span>
-                            </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">category 1</span>
-                            </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">sub category 2</span>
-                            </td>
-                            <!--end::Viewed=-->
-                            <!--begin::Percent=-->
-                            
-                            <td class="text-start pe-0">{{$voucher->voucher_status?'Active' : 'Non Active'}}</td>
-                            
-                            <td class="text-start pe-0">
-                                <span>{{$voucher->created_at->format('F d, Y')}}</span>
-                            </td>
+                            <td>
+                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->discount}}   </a> 
+                            </td> 
+ 
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$voucher->id)}}">Edit</a> --}}
                                 <form action="{{route('admin.all.vouchers.list.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="voucher_id" value="{{$voucher->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" name="voucher_id" value="{{$voucher->id}}"><span class="fa fa-trash"></span></button>
                                 </form>
-                                <form action="{{route('admin.all.vouchers.list.active')}}" method="post">
-                                    @csrf
-                                  <button type="submit" class="btn btn-primary" name="voucher_id" value="{{$voucher->id}}">Active</button>
-                                </form>
-                                <form action="{{route('admin.all.vouchers.list.deactive')}}" method="post">
-                                    @csrf
-                                  <button type="submit" class="btn btn-primary" name="voucher_id" value="{{$voucher->id}}">De Active</button>
-                                </form>
+                           
                                 </div>
                                 
                             </td>
