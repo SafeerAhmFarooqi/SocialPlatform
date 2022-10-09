@@ -1,27 +1,6 @@
 @extends('dashboards.shop-admin.dashboard-layout')
 @section('page-content')
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <b>
-            
-            @role('Shop')
-                    Shop Dashboard
-            @endrole
-            @role('Admin')
-            Admin All Users Page
-    @endrole
-            </b>
-            <!--end::Title-->
-        </div>
-        <!--end::Page title-->
-
-    </div>
-    <!--end::Container-->
-</div>
+ 
 
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
@@ -124,18 +103,17 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_views_table">
+               
+
+
+                    <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="kt_ecommerce_report_views_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-100px">Record Id</th>
-                            <th class="min-w-150px">Title</th>
-                            <th class="text-start min-w-100px">Location</th>
-                            <th class="text-start min-w-70px">Owner</th>
-                            <th class="text-start min-w-100px">Creater</th>
-                            <th class="text-start min-w-100px">Status</th>
-                            <th class="text-start min-w-100px">Date</th>
+                            <th class="text-start min-w-100px">#</th>
+                            <th class="min-w-150px">Group</th> 
+                            <th class="text-start min-w-70px">Owner</th>  
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -144,60 +122,51 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($groups as $group)
-                        <tr>
+                                                
+                                                
+                        <!--end::Table row-->
+                        <!--begin::Table row-->
+                    @foreach ($groups as $group)     
+                        <!--end::Table row-->
+                    <tr class="odd">
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$group->id}}</span>
+                                <span class="fw-bolder">{{$group->id}}</span><br>
+                                 <span class="text-muted fw-semibold text-muted d-block fs-7">October 08, 2022</span>
                             </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$group->title}}</span>
-                            </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$group->location}}</span>
-                            </td>
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                           
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">john</span>
-                                    
-                                </div>
-                            </td>
-                            <!--end::Rating-->
-                            <!--begin::Price=-->
+                        
+
+                            <td>
+                            <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$group->title}}  </a>
+                            <span class="text-muted fw-semibold text-muted d-block fs-7">{{$group->location}}</span>
+                         </td>
+
+
+                          <td>
+                            <a href="#" class="text-dark fw-bold text-hover-primary fs-6">John  </a>
+                            <span class="text-muted fw-semibold text-muted d-block fs-7">john@gmail.com</span>
+                         </td>
+
+
+                          
+                       
                             
-                            <!--end::Price=-->
-                            <!--begin::Viewed=-->
-                            <td class="text-start pe-0">
-                                <span>john</span>
-                            </td>
-                            <!--end::Viewed=-->
-                            <!--begin::Percent=-->
+                            <td class="text-start pe-0"><span class="badge badge-light-success"> {{$group->group_status?'Active' : 'Non Active'}} </span></td>
                             
-                            <td class="text-start pe-0">{{$group->group_status?'Active' : 'Non Active'}}</td>
-                            
-                            <td class="text-start pe-0">
-                                <span>{{$group->created_at->format('F d, Y')}}</span>
-                            </td>
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$group->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.all.groups.list.delete')}}" method="post">
+                                <form action="{{route('admin.all.groups.list.delete')}}" method="post"  style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="group_id" value="{{$group->id}}">Delete</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="group_id" value="{{$group->id}}"><span class="fa fa-trash"> </span></button>
                                 </form>
-                                <form action="{{route('admin.all.groups.list.active')}}" method="post">
+                                <form action="{{route('admin.all.groups.list.active')}}" method="post"  style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="group_id" value="{{$group->id}}">Active</button>
+                                  <button  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-success" type="submit" class="btn btn-primary" name="group_id" value="{{$group->id}}"><span class="fa fa-check"> </span></button>
                                 </form>
-                                <form action="{{route('admin.all.groups.list.deactive')}}" method="post">
+                                <form action="{{route('admin.all.groups.list.deactive')}}" method="post"  style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="group_id" value="{{$group->id}}">De Active</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-warning" type="submit" class="btn btn-primary" name="group_id" value="{{$group->id}}"><span class="fa fa-ban"> </span></button>
                                 </form>
                                 </div>
                                 
@@ -205,13 +174,14 @@
                             <!--end::Percent=-->
                         </tr>
                         @endforeach
-                        
-                        <!--end::Table row-->
-                        <!--begin::Table row-->
-                        
-                        <!--end::Table row-->
+
                     </tbody>
                     <!--end::Table body-->
+                </table>
+
+
+
+ 
                 </table>
                 <!--end::Table-->
             </div>

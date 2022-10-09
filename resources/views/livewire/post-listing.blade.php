@@ -30,11 +30,18 @@
           <form wire:submit.prevent="submit">
             <div class="post-comment">
               <img src="{{Auth::user()->profile_pic_path?asset('storage/'.Auth::user()->profile_pic_path) : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="" class="profile-photo-sm" />
-              <input type="text" class="form-control" placeholder="Post a comment" wire:model.lazy="commentText" >  
+              <input type="text" class="form-control" placeholder="Post a comment" wire:model.lazy="commentText" > 
+            
+            <div class="custom-search">
+              <input type="text" class="custom-search-input pe-4 bg-light form-control " placeholder="Write Something Here.." wire:model.lazy="commentText"  >
+              <button class="custom-search-botton" type="submit" ire:click="$set('selectedPostId', {{$post->id}})"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>  
             </div>
-            <div class="tools" style="margin-bottom: 5%;">
+
+
+            </div>
+         <!--    <div class="tools" style="margin-bottom: 5%;">
               <button class="btn btn-primary pull-right" type="submit" wire:click="$set('selectedPostId', {{$post->id}})">Comment</button>
-            </div>
+            </div> -->
           </form>
         </div>
       </div>
@@ -79,9 +86,9 @@
                 <i class="bi bi-three-dots"></i>
               </a>
               <!-- Card feed action dropdown menu -->
-              {{-- <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction"> 
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction"> 
                 <li><a class="dropdown-item" href="#"> <i class="bi bi-x-circle fa-fw pe-2"></i>Delete </a></li> 
-              </ul> --}}
+              </ul>  
             </div>
             <!-- Card feed action dropdown END -->
           </div>
@@ -115,10 +122,15 @@
             </div>
             <!-- Comment box  -->
             <form class="w-100" wire:submit.prevent="submit">
-              <textarea data-autoresize class="form-control pe-4 bg-light" rows="1" placeholder="Add a comment..." wire:model.lazy="commentText"></textarea>
-              <div class="tools" style="margin-bottom: 5%;">
-                <button class="btn btn-primary pull-right" style="margin-top: 10px;" type="submit" wire:click="$set('selectedPostId', {{$post->id}})">Comment</button>
-              </div>
+           
+
+                   <div class="custom-search">
+              <input type="text" class="custom-search-input pe-4 bg-light form-control " placeholder="Write Something Here.." wire:model.lazy="commentText">
+              <button class="custom-search-botton" type="submit" wire:click="$set('selectedPostId', {{$post->id}})"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>  
+            </div>
+
+
+
             </form>
           </div>
           <!-- Comment wrap START -->

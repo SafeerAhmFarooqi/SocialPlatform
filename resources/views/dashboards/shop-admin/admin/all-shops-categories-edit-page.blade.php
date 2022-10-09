@@ -1,27 +1,6 @@
 @extends('dashboards.shop-admin.dashboard-layout')
 @section('page-content')
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <b>
-            
-            @role('Shop')
-                    Shop Dashboard
-            @endrole
-            @role('Admin')
-            Admin All Users Page
-    @endrole
-            </b>
-            <!--end::Title-->
-        </div>
-        <!--end::Page title-->
-
-    </div>
-    <!--end::Container-->
-</div>
+ 
 
 <div class="container">
     @if (session()->has('success'))
@@ -181,10 +160,8 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Sub Category Name</th>
-                            <th class="text-start min-w-100px">Id</th>
-                            <th class="text-start min-w-100px">Status</th>
+                            <th class="min-w-150px">#</th>
+                            <th class="min-w-150px">  Name</th>  
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -211,31 +188,24 @@
                                 </div>
                             </td>
                             <!--end::Product=-->
-                            <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$subCategory->id}}</span>
-                            </td>
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$subCategory->status?'Active' : 'Deactive'}}</span>
-                            </td>
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
+                            
+                      
                            
                         
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.all.shops.subcategories.delete')}}" method="post">
+                                <form action="{{route('admin.all.shops.subcategories.delete')}}" method="post" style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="sub_category_id" value="{{$subCategory->id}}">Deactive</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="sub_category_id" value="{{$subCategory->id}}"><span class="fa fa-trash"> </span></button>
                                   <input type="hidden" name="status" value="deactive">
                                 </form>
-                                <form action="{{route('admin.all.shops.subcategories.delete')}}" method="post">
+                                <form action="{{route('admin.all.shops.subcategories.delete')}}" method="post" style="float:right">
                                     @csrf
-                                  <button type="submit" class="btn btn-success" name="sub_category_id" value="{{$subCategory->id}}">Activate</button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-success" type="submit" class="btn btn-success" name="sub_category_id" value="{{$subCategory->id}}"><span class="fa fa-check"> </span></button>
                                   <input type="hidden" name="status" value="active">
                                 </form>
-                                <a href="{{route('admin.all.shops.subcategories.edit.page',$subCategory->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('admin.all.shops.subcategories.edit.page',$subCategory->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-warning" ><span class="fa fa-pencil"> </span></a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}
                                 </div>
                                 
