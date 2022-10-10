@@ -84,7 +84,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function printOptions()
     {
         foreach (json_decode($this->options) as $key => $value) {
-            echo $value.',';
+            
+            echo '<small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px";">'.$value.'</small>'.' ';
         }
     }
 

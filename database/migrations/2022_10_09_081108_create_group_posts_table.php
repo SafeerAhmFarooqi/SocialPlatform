@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('group_posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('type_id')->nullable();
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->text('post_text')->nullable();
             $table->string('image_path')->nullable();
             $table->boolean('status')->nullable();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('group_posts');
     }
 };

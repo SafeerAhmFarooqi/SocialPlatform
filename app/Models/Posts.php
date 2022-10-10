@@ -14,9 +14,10 @@ class Posts extends Model
 
     protected $fillable = [
         'user_id',
-        'group_id',
+        'type_id',
         'post_text',
         'image_path',
+        'status',
     ];
 
     protected static function booted()
@@ -34,6 +35,29 @@ class Posts extends Model
     public function comments()
     {
         return $this->hasMany(Comments::class, 'post_id');
+    }
+
+    public function groupName($id)
+    {
+        switch ($id) {
+            case "1":
+              return 'Armed Forces';
+              break;
+            case "2":
+              return 'Police';
+              break;
+            case "3":
+              return 'Fire';
+              break;
+            case "4":
+                return 'THW';
+                break;
+            case "5":
+                    return 'Paramedic';
+                    break;
+            default:
+              return back();
+          }
     }
 
 }

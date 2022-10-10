@@ -89,29 +89,14 @@
                     <input type="file"  id="image-upload" style="display:none;" wire:model="postImage">  
                 </a>
                 </li>
-                <li>
-                    <div class="col-sm-12">
-                        <select class="form-control" id="country" wire:model="selectedType" style="margin-top:30px">            
-                                  <option value="1">Armed Forces</option>    
-                                  <option value="2">Police</option>           
-                                  <option value="3">Fire</option>      
-                                    <option value="4">THW</option>    
-                                    <option value="5" selected>Paramedic</option>       
-                                  </select>
-                                  @error('selectedType')
-                                  <div class="alert alert-danger" role="alert">
-                                      {{$message}}
-                                  </div>
-                                  @enderror
-                     </div>
-                </li>
+               
 
                 
                  
               
               <li>
                 <div wire:loading.remove wire:target="postImage" style="display: inline;float: right;margin-right: 20px;margin-top: 26px;">
-                    <button class="btn btn-primary pull-right" type="submit">Publish</button>
+                    <button class="btn btn-primary pull-right" type="submit">Publish-{{$groupId}}</button>
                 </div>
              </li>
 

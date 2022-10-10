@@ -12,11 +12,7 @@
           </div>
           <!-- Info -->
           <h5 class="mb-0"> <a href="#!">{{Auth::user()->firstname.' '.Auth::user()->lastname}} </a> </h5>
-          <small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px">Fire</small>
-          <small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px">Fire</small>
-          <small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px">Fire</small>
-          <small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px">Fire</small>
-          <small>{{Auth::user()->printOptions()??''}}</small>
+          {{Auth::user()->printOptions()??''}}
           <p class="mt-3">{{old('about_me')??Auth::user()->about_me}}</p>
 
           <!-- User stat START -->

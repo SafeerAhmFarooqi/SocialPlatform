@@ -55,8 +55,8 @@
             <div class="card-body">
               <ul class="nav nav-tabs nav-bottom-line justify-content-center justify-content-md-start">
   
-                <li class="nav-item"> <a class="nav-link " data-bs-toggle="tab" href="#tab-2"> Joined Groups </a> </li>
-                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-3"> My Groups </a> </li> 
+                <li class="nav-item"> <a class="nav-link {{$active==1?'active' : ''}}" data-bs-toggle="tab" href="#tab-2"> Joined Groups </a> </li>
+                <li class="nav-item"> <a class="nav-link {{$active==2?'active' : ''}}" data-bs-toggle="tab" href="#tab-3"> My Groups </a> </li> 
               </ul>
               <div class="tab-content mb-0 pb-0">
 
@@ -67,7 +67,7 @@
 
 
                  <!-- Friends groups tab START -->
-                <div class="tab-pane fade show active" id="tab-2">
+                <div class="tab-pane fade show {{$active==1?'active' : ''}}" id="tab-2">
                   <div class="row g-4">
                     @foreach ($joinedGroups as $joinedGroup)
                     <div class="col-sm-6 col-lg-4">
@@ -127,7 +127,7 @@
 
 
                  <!-- Friends groups tab START -->
-                <div class="tab-pane fade show" id="tab-3">
+                <div class="tab-pane fade show {{$active==2?'active' : ''}}" id="tab-3">
                   <div class="row g-4">
                     @foreach ($myGroups as $myGroup)
                     <div class="col-sm-6 col-lg-4">

@@ -59,98 +59,10 @@
 
 
 
-<div wire:poll.5000ms>
+<div wire:poll>
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
-    <div class="tiny-slider arrow-hover overflow-hidden" wire:ignore style="margin-bottom: 10px;">
-      <div class="tiny-slider-inner ms-n4" data-arrow="true" data-dots="true" data-loop="false" data-autoplay="false" data-items-xl="4" data-items-lg="3" data-items-md="3" data-items-sm="3" data-items-xs="2" data-gutter="12" data-edge="30">
-
-        
-
-        <!-- Slider items -->
-        <div >
-          <!-- Card START -->
-          <div class="card card-overlay-bottom border-0 position-relative h-150px div-border" id="1" style="background-image:url({{asset('assets/ressoli-theme/assets/images/social8.jpg')}}); background-position: center left; background-size: cover;">
-            <div class="card-img-overlay d-flex align-items-center p-2">
-              <div class="w-100 mt-auto">
-                <!-- Name -->
-                <a href="javascript:;" onclick="select(1)" class="stretched-link text-white small">Armed Forces</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-
-
-
-        <!-- Slider items -->
-        <div>
-          <!-- Card START -->
-          <div class="card card-overlay-bottom border-0 position-relative h-150px" id="2" style="background-image:url({{asset('assets/ressoli-theme/assets/images/social9.jpg')}}); background-position: center left; background-size: cover;">
-            <div class="card-img-overlay d-flex align-items-center p-2">
-              <div class="w-100 mt-auto">
-                <!-- Name -->
-                <a href="javascript:;" onclick="select(2)" class="stretched-link text-white small">Police</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-
-
-
-
-        <!-- Slider items -->
-        <div>
-          <!-- Card START -->
-          <div class="card card-overlay-bottom border-0 position-relative h-150px" id="3" style="background-image:url({{asset('assets/ressoli-theme/assets/images/social10.jpg')}}); background-position: center left; background-size: cover;">
-            <div class="card-img-overlay d-flex align-items-center p-2">
-              <div class="w-100 mt-auto">
-                <!-- Name -->
-                <a href="javascript:;" onclick="select(3)" class="stretched-link text-white small">Fire</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-
-
-
-
-        <!-- Slider items -->
-        <div>
-          <!-- Card START -->
-          <div class="card card-overlay-bottom border-0 position-relative h-150px" id="4" style="background-image:url({{asset('assets/ressoli-theme/assets/images/social11.jpg')}}); background-position: center left; background-size: cover;">
-            <div class="card-img-overlay d-flex align-items-center p-2">
-              <div class="w-100 mt-auto">
-                <!-- Name -->
-                <a href="javascript:;" onclick="select(4)" class="stretched-link text-white small">THW</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-
-
-
-        <!-- Slider items -->
-        <div>
-          <!-- Card START -->
-          <div class="card card-overlay-bottom border-0 position-relative h-150px" id="5" style="background-image:url({{asset('assets/ressoli-theme/assets/images/social12.jpg')}}); background-position: center left; background-size: cover;">
-            <div class="card-img-overlay d-flex align-items-center p-2">
-              <div class="w-100 mt-auto">
-                <!-- Name -->
-                <a href="javascript:;" onclick="select(5)" class="stretched-link text-white small">Paramedics</a>
-              </div>
-            </div>
-          </div>
-          <!-- Card END -->
-        </div>
-
-
-        
-      </div>
-    </div>
-    <livewire:publish-post/>
+   
+    <livewire:group-publish-post :groupId="$groupId"/>
     @foreach ($posts as $post)
     <div class="card" style="margin-bottom: 10px;">
         <!-- Card header START -->
@@ -164,30 +76,22 @@
               <!-- Info -->
               <div>
                 <div class="nav nav-divider">
-                  <h6 class="nav-item card-title mb-0"> <a href="#!"> {{$post->user->firstname.' '.$post->user->lastname}}</a>
-                    
-                  </h6>
-                  
+                  <h6 class="nav-item card-title mb-0"> <a href="#!"> {{$post->user->firstname.' '.$post->user->lastname}}</a></h6>
                   <span class="nav-item small"> {{$post->created_at->diffForHumans()??''}}</span>
-                  
                 </div>
-                <p>{{$post->groupName($post->type_id)}}</p>
                 {{-- <p class="mb-0 small">Police</p> --}}
               </div>
             </div>
             <!-- Card feed action dropdown START -->
-            @if ($post->user_id==Auth::user()->id)
             <div class="dropdown">
               <a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2" id="cardFeedAction" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-three-dots"></i>
               </a>
               <!-- Card feed action dropdown menu -->
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction"> 
-                <li><a class="dropdown-item" href="javascript:;" wire:click="deletePost({{$post->id}})"> <i class="bi bi-x-circle fa-fw pe-2"></i>Delete </a></li> 
+                <li><a class="dropdown-item" href="#"> <i class="bi bi-x-circle fa-fw pe-2"></i>Delete </a></li> 
               </ul>  
             </div>
-            @endif
-            
             <!-- Card feed action dropdown END -->
           </div>
         </div>
@@ -204,7 +108,7 @@
           <ul class="nav nav-stack py-3 small">
              
             <li class="nav-item">
-              <a class="nav-link" href="#!"> <i class="bi bi-chat-fill pe-1"></i>Comments ({{$post->comments->count()}})</a>
+              <a class="nav-link" href="#!"> <i class="bi bi-chat-fill pe-1"></i>Comments ({{$post->groupComments->count()}})</a>
             </li>
             <!-- Card share action START -->
              
@@ -234,7 +138,7 @@
           <!-- Comment wrap START -->
           <ul class="comment-wrap list-unstyled">
             <!-- Comment item START -->
-            @foreach ($post->comments as $comment)
+            @foreach ($post->groupComments as $comment)
             <li class="comment-item">
                 <div class="d-flex position-relative">
                   <!-- Avatar -->
@@ -278,18 +182,4 @@
     
 </div>
 
-@section('pageScripts')
-    <script>
-      function select(typeId)
-      {
-        document.getElementById('1').style.setProperty("border", "none", "important");
-        document.getElementById('2').style.setProperty("border", "none", "important");
-        document.getElementById('3').style.setProperty("border", "none", "important");
-        document.getElementById('4').style.setProperty("border", "none", "important");
-        document.getElementById('5').style.setProperty("border", "none", "important");
-        document.getElementById(typeId).style.setProperty("border", "5px solid red", "important");
-        @this.set('selectedType',typeId );
-       
-      }
-    </script>
-@endsection
+
