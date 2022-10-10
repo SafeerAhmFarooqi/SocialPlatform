@@ -112,13 +112,8 @@ class PeopleNearby extends Component
         ->orderBy('created_at','desc')
         ->get();
         $this->updateCurrentUserLocation();
-        $this->coordinates=[];
-        foreach ($users as $user) {
-            array_push($this->coordinates,$this->geoLocate($user->location??' ',$user->id)); 
-        }
         return view('livewire.people-nearby',[
             'users'=>$users,
-            'coordinates'=>json_encode($this->coordinates),
         ]);
     }
 }

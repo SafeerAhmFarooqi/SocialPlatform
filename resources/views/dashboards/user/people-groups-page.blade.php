@@ -142,7 +142,7 @@
                             </div>
                             <!-- Info -->
                             <h5 class="mb-0"> <a href="group-details.html">{{$myGroup->title??''}}</a> </h5>
-                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{$myGroup->group_status?'success' : 'danger'}}">{{$myGroup->group_status?'Active' : 'Deactive'}}</span> </small>
+                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{$myGroup->group_status?'success' : 'warning'}}">{{$myGroup->group_status?'Active' : 'Pending Approval'}}</span> </small>
                             <!-- Group stat START -->
                             <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
                               <!-- Group stat item -->
