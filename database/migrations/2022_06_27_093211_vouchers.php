@@ -15,15 +15,11 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('shop_id')->nullable();
             $table->string('title')->nullable();
             $table->string('code')->unique();
             $table->string('image_path')->nullable();
             $table->string('discount')->nullable();
-            $table->unsignedBigInteger('shop_id')->nullable();
-            $table->string('location')->nullable();
-            $table->unsignedBigInteger('shop_category')->nullable();
-            $table->unsignedBigInteger('sub_category')->nullable();
-            $table->boolean('voucher_status')->default(1);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

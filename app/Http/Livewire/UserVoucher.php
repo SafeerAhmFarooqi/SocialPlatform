@@ -9,36 +9,43 @@ use App\Models\Location;
 use App\Models\ShopCategories;
 use App\Models\ShopSubCategories;
 use App\Models\Voucher;
+use App\Models\City;
+use App\Models\Countries;
+use Illuminate\Support\Facades\Auth;
 
 class UserVoucher extends Component
 {
-    public $selectCity;
-    public $selectCategory;
-    public $selectSubCategory;
+    public $selectedCity;
+    public $selectedCountry;
+    public $selectedCategory;
+    public $selectedSubCategory;
 
     public function render()
     {
-        $category=ShopCategories::all();
-        $location=Location::all();
-        $sub_category=ShopSubCategories::where('shop_category_id',$this->selectCategory)->get();
-
-        $vouchers=Voucher::with('shop')
-        ->when($this->selectCity, function($query) {
-            return $query->where('location', $this->selectCity);
+        $unusedVouchers=Voucher::
+        when($this->selectedCountry, function($query) {
+            return $query->whereRelation('shop', 'country_id', $this->selectedCountry);
         })
-        ->when($this->selectCategory, function($query) {
-            return $query->where('shop_category', $this->selectCategory);
+        ->when($this->selectedCity, function($query) {
+            return $query->whereRelation('shop', 'city_id', $this->selectedCity);
         })
-        ->when($this->selectSubCategory, function($query) {
-            return $query->where('sub_category', $this->selectSubCategory);
+        ->when($this->selectedCategory, function($query) {
+            return $query->whereRelation('shop', 'shop_category_id', $this->selectedCategory);
+        })
+        ->when($this->selectedSubCategory, function($query) {
+            return $query->whereRelation('shop', 'shop_sub_category_id', $this->selectedSubCategory);
         })
         ->get();
 
+        $usedVouchers=UseVoucher::where('user_id',Auth::user()->id)->get();
+
         return view('livewire.user-voucher',[
-            'vouchers'=>$vouchers,
-            'category'=>$category,
-            'location'=>$location,
-            'sub_category'=>$sub_category,
+            'unusedVouchers'=>$unusedVouchers,
+            'usedVouchers'=>$usedVouchers,
+            'categories' => ShopCategories::all(),
+            'subCategories' => ShopSubCategories::where('category_id',$this->selectedCategory)->get(),
+            'cities' => City::where('country_id',$this->selectedCountry)->get(),
+            'countries' => Countries::where('status',true)->get(), 
         ]);
     }
 }

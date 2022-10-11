@@ -14,16 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('use_vouchers', function (Blueprint $table) {
-            $table->id();
-            $table->string('title')->nullable();
-            $table->string('code')->unique();
-            $table->string('image_path')->nullable();
-            $table->string('discount')->nullable();
-            $table->unsignedBigInteger('shop_id')->nullable();
-            $table->string('location')->nullable();
-            $table->unsignedBigInteger('shop_category')->nullable();
-            $table->unsignedBigInteger('sub_category')->nullable();
-            $table->string('email')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('voucher_id')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

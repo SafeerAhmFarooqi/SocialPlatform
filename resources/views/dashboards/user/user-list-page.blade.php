@@ -46,16 +46,15 @@
                       
                       <div class="card-body p-2 pb-0">
                         <div class="avatar avatar-story avatar-xl">
-                          <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}
-" alt=""></a>
+                          <a href="{{route('user.dashboard.user.information',[$user->id])}}"><img class="avatar-img rounded-circle" src="{{$user->profile_pic_path?'storage/'.$user->profile_pic_path : asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}" alt=""></a>
                         </div>
-                        <h6 class="card-title mb-1 mt-3"> <a href="{{route('user.dashboard.user.information',$user->id)}}"> {{substr($user->firstname.' '.$user->lastname,0,25)}}</a></h6>
+                        <h6 class="card-title mb-1 mt-3"> <a href="{{route('user.dashboard.user.information',[$user->id])}}"> {{substr($user->firstname.' '.$user->lastname,0,25)}}</a></h6>
                         <p class="mb-0 small lh-sm">16 Followers</p>
                       </div>
                       <!-- Card footer -->
                       <div class="card-footer p-2 border-0">
-                        <button class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send message"> <i class="bi bi-chat-left-text"></i> </button>
-                        <button class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Remove friend"> <i class="bi bi-person-x"></i> </button>
+                        <a href="{{route('user',[$user->id])}}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send message"> <i class="bi bi-chat-left-text"></i> </a>
+                        <a href="{{route('user.dashboard.user.information',[$user->id])}}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Public Profile"> <i class="bi bi-person"></i> </a>
                       </div>
                     </div>
                     

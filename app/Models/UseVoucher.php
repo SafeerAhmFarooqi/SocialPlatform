@@ -16,20 +16,18 @@ class UseVoucher extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'title',
-        'code',
-        'image_path',
-        'discount',
-        'shop_id',
-        'location',
-        'shop_category',
-        'sub_category',
-        'email',
+        'user_id',
+        'voucher_id',
     ];
 
     public function shop()
     {
         return $this->hasOne(User::class, 'id');
+    }
+
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class, 'voucher_id');
     }
     
 }
