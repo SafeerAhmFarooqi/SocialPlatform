@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->boolean('status')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
 
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('name')->nullable();
             $table->boolean('status')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('post_text')->nullable();
             $table->string('image_path')->nullable();
             $table->boolean('status')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

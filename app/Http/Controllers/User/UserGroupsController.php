@@ -92,7 +92,22 @@ class UserGroupsController extends BaseUserController
     return back();
   }
  }
- 
+
+ public function deleteGroup(Request $request)
+ {
+    $group=Group::findOrFail($request->groupId)->delete();
+
+    if($group)
+    {
+        return back()->with('success', 'Group Deleted Successfully' );
+    }
+    else
+    {
+        return back()->with('error', 'Unable to Delete Group' );
+    }
+    
+
+ }
   
 }
 

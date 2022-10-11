@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('country_id');
             $table->string('name')->nullable();
             $table->boolean('status')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

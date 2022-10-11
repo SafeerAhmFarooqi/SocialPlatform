@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('code');
             $table->boolean('status')->default(0);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

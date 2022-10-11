@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('shop_category')->nullable();
             $table->unsignedBigInteger('sub_category')->nullable();
             $table->boolean('voucher_status')->default(1);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
