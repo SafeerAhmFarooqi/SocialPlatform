@@ -18,8 +18,8 @@
             <div class="messenger-listView-tabs">
                 <a href="#" @if($type == 'user') class="active-tab" @endif data-view="users">
                     <span class="far fa-user"></span> People</a>
-                <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
-                    <span class="fas fa-users"></span> Groups</a>
+                {{-- <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
+                    <span class="fas fa-users"></span> Groups</a> --}}
             </div>
         </div>
         {{-- tabs and lists --}}
@@ -35,7 +35,7 @@
                </div>
 
                {{-- Saved Messages --}}
-               {!! view('Chatify::layouts.listItem', ['get' => 'saved']) !!}
+               {{-- {!! view('Chatify::layouts.listItem', ['get' => 'saved']) !!} --}}
 
                {{-- Contact --}}
                <div class="listOfContacts" style="width: 100%;height: calc(100% - 200px);position: relative;"></div>
@@ -71,13 +71,13 @@
                     <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>
                     <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
                     </div>
-                    <a href="#" class="user-name">{{ config('chatify.name') }}</a>
+                    <a href="#" class="user-name"><span id="name-of-user"></span></a>
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
-                    <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a>
+                    {{-- <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a> --}}
                     <a href="{{route('dashboard')}}"><i class="fas fa-home"></i></a>
-                    <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a>
+                    {{-- <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a> --}}
                 </nav>
             </nav>
         </div>
@@ -109,14 +109,53 @@
         </div>
     </div>
     {{-- ---------------------- Info side ---------------------- --}}
-    <div class="messenger-infoView app-scroll">
-        {{-- nav actions --}}
+    {{-- <div class="messenger-infoView app-scroll">
+      
         <nav>
             <a href="#"><i class="fas fa-times"></i></a>
         </nav>
         {!! view('Chatify::layouts.info')->render() !!}
-    </div>
+    </div> --}}
 </div>
 
 @include('Chatify::layouts.modals')
 @include('Chatify::layouts.footerLinks')
+
+<script>
+    //alert(window.location.href);
+    var url1 = window.location.href;
+    var id = url1.substring(url1.lastIndexOf('/') + 1);
+    //alert( isNaN(id));
+    if(!isNaN(id))
+    {
+        document.getElementById('name-of-user').innerHTML = result;
+    //alert('perform ajax');
+    }else{
+        document.getElementById('name-of-user').innerHTML = '';
+    //alert('dont perform ajax');
+    }
+$( document.body ).click(function() {
+   // alert('Hi I am bound to the body!');
+  // alert(window.location.href);
+    var url2 = window.location.href;
+    var id = url2.substring(url2.lastIndexOf('/') + 1);
+    //alert( isNaN(id));
+    if(!isNaN(id))
+    {
+   // alert('perform ajax');
+    jQuery.ajax({
+    url: "{{route('get.name')}}",
+    method: 'get',
+    data: {
+      'id': id
+    },
+    success: function(result){
+        document.getElementById('name-of-user').innerHTML = result;
+    //alert(result);
+    }
+   });
+    }else{
+        document.getElementById('name-of-user').innerHTML = '';
+    }
+});
+</script>

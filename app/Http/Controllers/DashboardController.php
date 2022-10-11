@@ -90,6 +90,13 @@ class DashboardController extends BaseController
    {
     return view('dashboards.app.agb');
    }
+
+   public function getName(Request $request)
+   {
+    $user=User::find($request->get('id'));
+
+    return $user->firstname.' '.$user->lastname;
+   }
 }
 
 
