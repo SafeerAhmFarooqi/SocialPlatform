@@ -17,6 +17,7 @@ use App\Http\Controllers\User\UserGroupsController;
 use App\Http\Controllers\User\UserListController;
 use App\Http\Controllers\User\UserVoucherController;
 use App\Http\Controllers\User\UserSavingController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ use App\Http\Controllers\User\UserSavingController;
 Route::get('/', function () {
     return view('dashboards.app.landing');
 })->name('landing');
+
+Route::get('/get-name', [DashboardController::class,'getName'])->name('get.name');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified','admin.dashboard.approved'])->name('dashboard');
 
