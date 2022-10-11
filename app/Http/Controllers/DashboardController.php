@@ -29,10 +29,10 @@ class DashboardController extends BaseController
       $allActiveGroupsCount= Group::where('group_status',true)->count();
       $allDeactiveGroupsCount= Group::where('group_status',false)->count();
       $allVouchersCount= Voucher::count();
-      $allActiveVouchersCount= Voucher::where('voucher_status',true)->count();
-      $allDeactiveVouchersCount= Voucher::where('voucher_status',false)->count();
+      $allActiveVouchersCount= Voucher::all()->count();
+      $allDeactiveVouchersCount= 0;
       $shopMyVouchersCount= Voucher::where('shop_id',Auth::user()->id)->count();
-      $shopMyUseVouchers= UseVoucher::where('shop_id',Auth::user()->id)->get();
+      $shopMyUseVouchers= UseVoucher::whereRelation('voucher', 'shop_id', Auth::user()->id)->get();
       $shopMyUseVoucherSpend=0;
       foreach ($shopMyUseVouchers as $shopMyUseVoucher) {
         $shopMyUseVoucherSpend+=$shopMyUseVoucher->discount;
