@@ -19,12 +19,14 @@ class UserSavingController extends BaseUserController
 {
  public function userSavingPageShow()
  {
-   // return "saving";
-   $savings=UseVoucher::where('email',Auth::user()->email)->sum('discount');
-   $vouchers=UseVoucher::where('email',Auth::user()->email)->get();
+   $saving=0;
+   $usedVouchers=UseVoucher::where('user_id',Auth::user()->id)->get();
+   foreach ($usedVouchers as $usedVoucher) {
+    $saving+=$usedVoucher->voucher->discount;
+   }
     return view('dashboards.user.user-saving-page',[
-        'savings'=>$savings,
-        'vouchers'=>$vouchers,
+        'saving'=>$saving,
+        'usedVouchers'=>$usedVouchers,
     ]);
  }   
 }

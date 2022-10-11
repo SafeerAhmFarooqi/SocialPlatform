@@ -41,45 +41,39 @@
             </div>
             <!-- Card header START -->
             <!-- Card body START -->
+            @foreach ($usedVouchers as $usedVoucher)
             <div class="card-body">
-              <!-- Birthdays START -->
               <div class="d-flex mb-3">
-                <!-- Avatar --> 
                 <div class="avatar avatar-lg status-online me-2">
-                  <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}
-" alt=""></a>
+                  <a href="#!"><img class="avatar-img rounded-circle" src="{{$usedVoucher->voucher->image_path?'storage/'.$usedVoucher->voucher->image_path : asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}" alt=""></a>
                 </div>
-                <!-- Info -->
+
                 <div class="ms-2 w-100">
                   <div class="d-sm-flex justify-content-between">
-                    <h6><a href="#!">Mega Mobile Offer   <span class="badge bg-danger bg-opacity-10" style="color:#333 !important"> Expire</span> </a></h6>
+                    <h6><a href="#!">{{$usedVoucher->voucher->title??''}} </a></h6>
                      <!-- Dropdown START -->
                     <div class="dropdown ms-auto">
                       <a href="#" class="text-secondary" id="bdayActionEdit" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-gift"></i>
                       </a>
-                      <!-- Dropdown menu -->
+
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bdayActionEdit">
-                        <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i> Xucas551</a></li>
+                        <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i>{{$usedVoucher->voucher->code??''}}</a></li>
                          
                       </ul>
                     </div>
-                    <!-- Dropdown END -->
+
                 </div>
                 <div class="position-relative w-100">
-                 <span  style="color:#333 !important"> 10% Off on all mobile assessories</span>
+                 <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">{{$usedVoucher->voucher->discount??''}}</span>
                  
                 </div>
               </div>
             </div>
-            <!-- Birthdays END -->
-
-            <!-- Divider -->
             <hr class="my-4">
-
-      
-            <!-- Birthdays END -->
-          </div>
+      </div>
+            @endforeach
+           
           <!-- Card body END -->
           </div>
           <!-- Card END -->
@@ -98,7 +92,7 @@
               <!-- Card header END -->
               <!-- Card body START -->
               <div class="card-body">
-              <h3 style="text-align: center;"><span style="font-size:16px"> Savings</span> <br><b style="font-size: 60px;padding-top:30px">  0 € </b></h3>
+              <h3 style="text-align: center;"><span style="font-size:16px"> Savings</span> <br><b style="font-size: 60px;padding-top:30px">  {{$saving}} € </b></h3>
 
               </div>
               <!-- Card body END -->
