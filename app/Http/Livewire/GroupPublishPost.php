@@ -6,21 +6,21 @@ use Livewire\Component;
 
 use Livewire\WithFileUploads;
 use App\Models\Posts;
+use App\Models\GroupPost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class PublishPost extends Component
+class GroupPublishPost extends Component
 {
     use WithFileUploads;
 
     public $postText='';
     public $postImage='';
-    public $selectedType=1;
+    public $groupId=0;
 
     protected $validationAttributes = [
         'postText' => 'Post Text',
         'postImage' => 'Image',
-        'selectedType' => 'Type',
     ];
 
     protected $messages = [
@@ -32,7 +32,6 @@ class PublishPost extends Component
         return [
             'postText' => ['required', 'string', 'max:10000'],
             'postImage' => [ 'image', 'mimes:png,jpeg,jpg,gif,bmp','max:5024'],
-            'selectedType' => [ 'required'],
         ];
     }
 
@@ -51,10 +50,10 @@ class PublishPost extends Component
             $filePath=null;
         }
 
-        $post = Posts::create([
+        $post = GroupPost::create([
             'post_text' => $this->postText,
             'image_path' => $filePath,
-            'type_id' => $this->selectedType,
+            'group_id' => $this->groupId??0,
             'status' => true,
         ]);
 
@@ -69,9 +68,8 @@ class PublishPost extends Component
             Session::flash('error', __('Unable to Submit Post'));
         }
     }
-
     public function render()
     {
-        return view('livewire.publish-post');
+        return view('livewire.group-publish-post');
     }
 }

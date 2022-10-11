@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('about_me')->nullable();
             $table->string('profession')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('group_id')->default(0);
+            $table->unsignedBigInteger('type_id')->nullable();
             $table->text('post_text')->nullable();
             $table->string('image_path')->nullable();
+            $table->boolean('status')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

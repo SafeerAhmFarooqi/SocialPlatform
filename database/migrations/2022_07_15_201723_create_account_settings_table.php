@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('user_address')->default(0);
             $table->integer('user_phone')->default(0);
             $table->integer('user_about')->default(0);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

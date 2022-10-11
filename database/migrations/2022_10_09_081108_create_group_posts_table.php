@@ -13,17 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+        Schema::create('group_posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('code')->unique();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('group_id')->nullable();
+            $table->text('post_text')->nullable();
             $table->string('image_path')->nullable();
-            $table->string('discount')->nullable();
-            $table->unsignedBigInteger('shop_id')->nullable();
-            $table->string('location')->nullable();
-            $table->unsignedBigInteger('shop_category')->nullable();
-            $table->unsignedBigInteger('sub_category')->nullable();
-            $table->boolean('voucher_status')->default(1);
+            $table->boolean('status')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('group_posts');
     }
 };

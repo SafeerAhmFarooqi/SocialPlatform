@@ -18,12 +18,20 @@ class UserGroupsController extends BaseUserController
 {
  public function userGroupsPageShow()
  {
-    $users= User::where('id', '!=',Auth::user()->id)->get();
+    $users= User::where('id', '!=',Auth::user()->id)->role('User')->get();
+    $myGroups=Group::where('owner_id',Auth::user()->id)->get();
+    $joinedGroups=Group::whereRelation('members', 'member_id', Auth::user()->id)->where('owner_id','!=',Auth::user()->id)->get();
+    $active=0;
+    $active=$myGroups->count()>0&&$joinedGroups->count()==0?$active='1' : $active='1';
+    $active=$myGroups->count()==0&&$joinedGroups->count()>0?$active='2' : $active='2';
+    $active=$myGroups->count()>0&&$joinedGroups->count()>0?$active='2' : $active='2';
+    $active=$myGroups->count()==0&&$joinedGroups->count()==0?$active='2' : $active='2';
     return view('dashboards.user.people-groups-page',[
         'countries'=>Countries::all(),
-        'myGroups'=>Group::where('owner_id',Auth::user()->id)->get(),
-        'joinedGroups'=>Group::whereRelation('members', 'member_id', Auth::user()->id)->where('owner_id','!=',Auth::user()->id)->get(),
+        'myGroups'=> $myGroups,
+        'joinedGroups'=> $joinedGroups,
         'users'=> $users,
+        'active' => $active,
     ]);
  }
 
@@ -84,7 +92,22 @@ class UserGroupsController extends BaseUserController
     return back();
   }
  }
- 
+
+ public function deleteGroup(Request $request)
+ {
+    $group=Group::findOrFail($request->groupId)->delete();
+
+    if($group)
+    {
+        return back()->with('success', 'Group Deleted Successfully' );
+    }
+    else
+    {
+        return back()->with('error', 'Unable to Delete Group' );
+    }
+    
+
+ }
   
 }
 

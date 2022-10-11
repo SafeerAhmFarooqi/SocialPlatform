@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comments extends Model
+class GroupComment extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
-    protected $table="comments";
 
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'user_id',
+        'group_id',
         'post_id',
         'comment',
+        'status',
     ];
 
     protected static function booted()
@@ -36,8 +36,6 @@ class Comments extends Model
 
     public function post()
     {
-        return $this->belongsTo(Posts::class, 'post_id');
+        return $this->belongsTo(GroupPost::class, 'post_id');
     }
-
-
 }

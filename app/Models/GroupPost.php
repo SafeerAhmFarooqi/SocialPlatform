@@ -7,25 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comments extends Model
+class GroupPost extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
-    protected $table="comments";
 
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'user_id',
-        'post_id',
-        'comment',
+        'group_id',
+        'post_text',
+        'image_path',
+        'status',
     ];
 
     protected static function booted()
     {
-        static::creating(function ($comment) {
-            $comment->user_id = Auth::user()->id;
+        static::creating(function ($post) {
+            $post->user_id = Auth::user()->id;
         });
     }
 
@@ -34,10 +34,8 @@ class Comments extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function post()
+    public function groupComments()
     {
-        return $this->belongsTo(Posts::class, 'post_id');
+        return $this->hasMany(GroupComment::class, 'post_id');
     }
-
-
 }

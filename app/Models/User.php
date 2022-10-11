@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Traits\AdminMustApprove;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, AdminMustApprove;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, AdminMustApprove,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'shoplogo_id',
     ];
 
-    protected $dates = ['dob'];
+    protected $dates = ['dob','deleted_at'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -84,7 +85,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function printOptions()
     {
         foreach (json_decode($this->options) as $key => $value) {
-            echo $value.',';
+            
+            echo '<small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px";">'.$value.'</small>'.' ';
         }
     }
 

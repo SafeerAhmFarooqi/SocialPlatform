@@ -3,17 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+
 use App\Models\Posts;
 use App\Models\GroupPost;
 use App\Models\Comments;
 use App\Models\GroupComment;
 use Illuminate\Support\Facades\Session;
 
-class PostListing extends Component
+class GroupPostListing extends Component
 {
     public $commentText='';
     public $selectedPostId='';
-    public $selectedType=0;
+    public $groupId=0;
 
     protected $validationAttributes = [
         'commentText' => 'Comment',
@@ -34,11 +35,13 @@ class PostListing extends Component
     {
         $this->validate();
       
-            $comment = Comments::create([
+            $comment = GroupComment::create([
                 'comment' => $this->commentText,
                 'post_id' => $this->selectedPostId,
+                'group_id' => $this->groupId,
+                'status' => true,
             ]);
-      
+       
         
      
 
@@ -53,28 +56,10 @@ class PostListing extends Component
             Session::flash('error', __('Unable to Submit Comment'));
         }
     }
-
-    public function deletePost($id)
-    {
-        $post=Posts::find($id);
-
-        if ($post) {
-            $post->update([
-                'status' => false,
-            ]);
-        }
-    }
-
     public function render()
     {
-     
-        $posts=Posts::
-        when($this->selectedType, function($query) {
-            return $query->where('type_id', $this->selectedType);
-        })
-        ->orderBy('created_at','DESC')->where('status',true)->get();
-       
-        return view('livewire.post-listing',[
+        $posts=GroupPost::orderBy('created_at','DESC')->where('group_id',$this->groupId)->where('status',true)->get();
+        return view('livewire.group-post-listing',[
             'posts'=>$posts,
         ]);
     }

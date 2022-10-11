@@ -43,7 +43,7 @@
         <div class="card card-body text-center p-4 p-sm-5">
           <!-- Title -->
           <h1 class="mb-2"><img src="{{asset('assets/ressoli-theme/assets/password.png')}}" style="width:50%"></h1>
-          <p class="mb-0"><h2>Reset New Password </h2>
+          <p class="mb-0"><h2>Reset New Password</h2>
 
 </a></p>
            

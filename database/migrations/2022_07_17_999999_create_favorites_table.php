@@ -20,6 +20,7 @@ class CreateFavoritesTable extends Migration
             $table->timestamps();
 
             $table->primary('id');
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

@@ -55,8 +55,8 @@
             <div class="card-body">
               <ul class="nav nav-tabs nav-bottom-line justify-content-center justify-content-md-start">
   
-                <li class="nav-item"> <a class="nav-link " data-bs-toggle="tab" href="#tab-2"> Joined Groups </a> </li>
-                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-3"> My Groups </a> </li> 
+                <li class="nav-item"> <a class="nav-link {{$active==1?'active' : ''}}" data-bs-toggle="tab" href="#tab-2"> Joined Groups </a> </li>
+                <li class="nav-item"> <a class="nav-link {{$active==2?'active' : ''}}" data-bs-toggle="tab" href="#tab-3"> My Groups </a> </li> 
               </ul>
               <div class="tab-content mb-0 pb-0">
 
@@ -67,7 +67,7 @@
 
 
                  <!-- Friends groups tab START -->
-                <div class="tab-pane fade show active" id="tab-2">
+                <div class="tab-pane fade show {{$active==1?'active' : ''}}" id="tab-2">
                   <div class="row g-4">
                     @foreach ($joinedGroups as $joinedGroup)
                     <div class="col-sm-6 col-lg-4">
@@ -127,7 +127,7 @@
 
 
                  <!-- Friends groups tab START -->
-                <div class="tab-pane fade show" id="tab-3">
+                <div class="tab-pane fade show {{$active==2?'active' : ''}}" id="tab-3">
                   <div class="row g-4">
                     @foreach ($myGroups as $myGroup)
                     <div class="col-sm-6 col-lg-4">
@@ -142,7 +142,7 @@
                             </div>
                             <!-- Info -->
                             <h5 class="mb-0"> <a href="group-details.html">{{$myGroup->title??''}}</a> </h5>
-                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{$myGroup->group_status?'success' : 'danger'}}">{{$myGroup->group_status?'Active' : 'Deactive'}}</span> </small>
+                            <small> <a href="#" data-bs-toggle="modal" data-bs-target="#delete-group-{{$myGroup->id}}"><i class="bi bi-trash pe-1"></i></a> <span class="badge bg-danger bg-opacity-10 text-{{$myGroup->group_status?'success' : 'warning'}}">{{$myGroup->group_status?'Active' : 'Pending Approval'}}</span> </small>
                             <!-- Group stat START -->
                             <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
                               <!-- Group stat item -->
@@ -203,6 +203,29 @@
                       </form>
                     </div>
                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="delete-group-{{$myGroup->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{$myGroup->title??''}}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete this group?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <form action="{{route('user.dashboard.groups.delete')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="groupId" value="{{$myGroup->id}}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+                      
+                    </div>
                   </div>
                 </div>
               </div>
@@ -270,6 +293,8 @@
               </div>
             </div>
           </div>
+
+        
 
          
      

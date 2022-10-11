@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->boolean('group_status')->default(0);
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
