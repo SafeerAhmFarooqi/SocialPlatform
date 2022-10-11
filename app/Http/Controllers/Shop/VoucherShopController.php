@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Group;
 use App\Models\Voucher;
 use App\Models\UseVoucher;
+use Illuminate\Support\Carbon;
 
 class VoucherShopController extends BaseShopController
 {
@@ -33,14 +34,20 @@ class VoucherShopController extends BaseShopController
     $code = date('YmdHis', time()). mt_rand(1000000000, 9999999999);
     }
 
+    while(true)
+    {
+     $code=Carbon::now()->format('ym').mt_rand('1000000','9999999');
+     if (Voucher::where('code',$code)->first()) {
+        continue;
+     } else {
+        break;
+     }    
+    }
+
     $voucher = Voucher::create([
         'title' => $request->title,
         'code' => $code,
         'discount' => $request->discount,
-        'shop_id' => Auth::user()->id,
-        'location' => Auth::user()->location,
-        'shop_category' => Auth::user()->shop_category,
-        'sub_category' => Auth::user()->shop_sub_category,
     ]);
 
     if ($voucher) {

@@ -122,13 +122,24 @@
 @include('Chatify::layouts.footerLinks')
 
 <script>
+    
     //alert(window.location.href);
     var url1 = window.location.href;
     var id = url1.substring(url1.lastIndexOf('/') + 1);
     //alert( isNaN(id));
     if(!isNaN(id))
     {
+        jQuery.ajax({
+    url: "{{route('get.name')}}",
+    method: 'get',
+    data: {
+      'id': id
+    },
+    success: function(result){
         document.getElementById('name-of-user').innerHTML = result;
+    //alert(result);
+    }
+   });
     //alert('perform ajax');
     }else{
         document.getElementById('name-of-user').innerHTML = '';
