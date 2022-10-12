@@ -98,6 +98,7 @@ class VoucherShopController extends BaseShopController
             $useVoucher=UseVoucher::create([
                 'user_id' => $user->id,
                 'voucher_id' => $voucher->id,
+                'shop_id' => $voucher->shop->id,
             ]);
             return back()->with('success', 'Voucher is added to use vouchers Successfully' );
         }

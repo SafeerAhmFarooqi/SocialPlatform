@@ -18,6 +18,7 @@ class UseVoucher extends Model
     protected $fillable = [
         'user_id',
         'voucher_id',
+        'shop_id',
     ];
 
     public function shop()
