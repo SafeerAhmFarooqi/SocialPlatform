@@ -30,7 +30,7 @@ class PublishPost extends Component
     protected function rules()
     {
         return [
-            'postText' => ['required', 'string', 'max:10000'],
+            'postText' => [ 'string', 'max:10000'],
             'postImage' => [ 'image', 'mimes:png,jpeg,jpg,gif,bmp','max:5024'],
             'selectedType' => [ 'required'],
         ];
@@ -39,6 +39,11 @@ class PublishPost extends Component
     public function submit()
     {
         $this->validate();
+
+        if (!$this->postImage&&!$this->postText) {
+            Session::flash('error', __('Post is empty'));
+            return;
+        }
 
         if($this->postImage)
         {

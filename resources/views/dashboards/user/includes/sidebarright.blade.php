@@ -9,70 +9,8 @@
           </div>
           <!-- Card header END -->
           <!-- Card body START -->
-          <div class="card-body">
-            <!-- Connection item START -->
-
-
-             <div class="d-grid mt-3" style="margin:0 !important">
-              <a class="btn btn-sm btn-warning-soft" href="#!">No Groups Found Please Create New  Group</a>
-            </div>
-
-
-
-            <div class="hstack gap-2 mb-3">
-              <!-- Avatar -->
-              <div class="avatar">
-                <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/bg/04.jpg')}}" alt=""></a>
-              </div>
-              <!-- Title -->
-              <div class="overflow-hidden">
-                <a class="h6 mb-0" href="#!">Office Guys </a>
-                <p class="mb-0 small text-truncate">102 Members</p>
-              </div>
-              <!-- Button -->
-              <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
-            </div>
-
-
-            <!-- Connection item START -->
-            <div class="hstack gap-2 mb-3">
-              <!-- Avatar -->
-              <div class="avatar">
-                <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/bg/04.jpg')}}" alt=""></a>
-              </div>
-              <!-- Title -->
-              <div class="overflow-hidden">
-                <a class="h6 mb-0" href="#!">Office Guys </a>
-                <p class="mb-0 small text-truncate">102 Members</p>
-              </div>
-              <!-- Button -->
-              <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
-            </div>
-
-
-
-            <!-- Connection item START -->
-            <div class="hstack gap-2 mb-3">
-              <!-- Avatar -->
-              <div class="avatar">
-                <a href="#!"><img class="avatar-img rounded-circle" src="{{asset('assets/ressoli-theme/assets/images/bg/04.jpg')}}" alt=""></a>
-              </div>
-              <!-- Title -->
-              <div class="overflow-hidden">
-                <a class="h6 mb-0" href="#!">Office Guys </a>
-                <p class="mb-0 small text-truncate">102 Members</p>
-              </div>
-              <!-- Button -->
-              <a class="btn btn-primary-soft rounded-circle icon-md ms-auto" href="#"><i class="fa-solid fa-plus"> </i></a>
-            </div>
- 
-
-
-            <!-- View more button -->
-            <div class="d-grid mt-3">
-              <a class="btn btn-sm btn-primary-soft" href="#!">View All Groups</a>
-            </div>
-          </div>
+          <livewire:groups-list/> 
+         
           <!-- Card body END -->
         </div>
       </div>
