@@ -89,7 +89,7 @@
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="text-start min-w-70px">#</th>
-                            <th class="text-start min-w-100px">User  </th>
+                            <th class="text-start min-w-100px">Users  </th>
                             <th class="text-start min-w-100px">Voucher</th> 
                             <th class="text-start min-w-100px">Discount</th>
                             {{-- <th class="text-start min-w-100px">Actions</th> --}}
@@ -112,8 +112,8 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('admin.all.shops.categories.edit.page',$voucher->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">Asad Asad</a> <br> 
-                                       asad6351@gmail.com <br>
+                                        <a href="{{route('admin.all.shops.categories.edit.page',$voucher->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$voucher->user->firstname??''.' '.$voucher->user->lastname??''}}</a> <br> 
+                                       {{$voucher->user->email??''}} <br>
                                         
                                         <!--end::Title-->
                                     </div>
@@ -125,8 +125,8 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('admin.all.shops.categories.edit.page',$voucher->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$voucher->title}}</a> <br> 
-                                        <span class="badge badge-light-warning">  Code : 1233255 </span> <br>
+                                        <a href="{{route('admin.all.shops.categories.edit.page',$voucher->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$voucher->voucher->title??''}}</a> <br> 
+                                        <span class="badge badge-light-warning"> {{$voucher->voucher->code??''}} </span> <br>
                                          
                                         <!--end::Title-->
                                     </div>
@@ -135,7 +135,7 @@
                             <!--end::Product=-->
                             <!--begin::SKU=-->
                             <td class="text-start pe-0">
-                                <span class="badge badge-light-primary">$ 10</span>
+                                <span class="badge badge-light-primary">$ {{$voucher->voucher->discount??''}}</span>
                             </td>  
                             <!--end::SKU=-->
                             <!--begin::Rating-->
