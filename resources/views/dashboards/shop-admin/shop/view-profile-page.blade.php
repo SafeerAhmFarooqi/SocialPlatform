@@ -184,7 +184,7 @@
                     </div><!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                         <a class="btn btn-primary" id="kt_account_profile_details_submit" type="submit" href="{{route('shop.profile.show',[2])}}">Update Profile</a>
+                         <a class="btn btn-primary" id="kt_account_profile_details_submit"  href="{{route('shop.profile.show',[2])}}">Update Profile</a>
                     </div>
                      
                                  <div></div>

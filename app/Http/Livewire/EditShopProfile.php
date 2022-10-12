@@ -30,8 +30,8 @@ class EditShopProfile extends Component
         return view('livewire.edit-shop-profile',[
             'countries' => Countries::where('status',true)->get(),
             'cities' => City::where('status',true)->where('country_id',$this->selectedCountry)->get(),
-            'categories' => ShopCategories::where('status',true)->get(),
-            'subCategories' => ShopSubCategories::where('status',true)->where('shop_category_id',$this->selectedCategory)->get(),
+            'categories' => ShopCategories::all(),
+            'subCategories' => ShopSubCategories::where('category_id',$this->selectedCategory)->get(),
         ]);
     }
 }
