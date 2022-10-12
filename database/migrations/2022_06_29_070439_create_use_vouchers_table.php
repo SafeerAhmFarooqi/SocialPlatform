@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('use_vouchers', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('voucher_id')->nullable();
+            $table->unsignedBigInteger('shop_id')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
