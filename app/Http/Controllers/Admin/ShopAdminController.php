@@ -96,7 +96,6 @@ class ShopAdminController extends BaseAdminController
 
     $category = ShopCategories::create([
         'name' => $request->category,
-        'status' => true,
     ]);
 
     if($category)
@@ -180,7 +179,6 @@ class ShopAdminController extends BaseAdminController
     $subCategory = ShopSubCategories::create([
         'name' => $request->name,
         'category_id' => $request->category_id,
-        'status' => true,
     ]);
 
     if($subCategory)

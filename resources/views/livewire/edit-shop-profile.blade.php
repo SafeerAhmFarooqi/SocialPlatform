@@ -121,11 +121,11 @@
                 </div>
                 <div class="row mb-6">
                     <!--begin::Label-->
-                     <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Country</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
+                     <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Country</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                        <select aria-hidden="true" aria-label="Select a Country" class="form-select form-select-solid form-select-lg fw-semibold select2-hidden-accessible" wire:model="selectedCountry" data-kt-initialized="1" data-placeholder="Select a country..." data-select2-id="select2-data-10-ewc6" name="country" tabindex="-1">
-                            <option data-select2-id="select2-data-12-u8ev" value="">
+                    <div class="col-lg-3 fv-row fv-plugins-icon-container">
+                        <select aria-hidden="true" aria-label="Select a Country" class="form-select form-select-solid form-select-lg fw-semibold" wire:model="selectedCountry">
+                            <option  value="">
                                 Select a Country...
                             </option>
                           @foreach ($countries as $country)
@@ -146,12 +146,12 @@
                     <!--begin::Label-->
                      <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">City</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                        <select aria-hidden="true" aria-label="Select a City" class="form-select form-select-solid form-select-lg fw-semibold select2-hidden-accessible" wire:model="selectedCity" data-kt-initialized="1" data-placeholder="Select a City..." data-select2-id="select2-data-10-ewc6" name="city" tabindex="-1">
-                            <option data-select2-id="select2-data-12-u8ev" value="">
+                    <div class="col-lg-3 fv-row fv-plugins-icon-container">
+                        <select aria-hidden="true" aria-label="Select a City" class="form-select form-select-solid form-select-lg fw-semibold" wire:model="selectedCity" data-kt-initialized="1" data-placeholder="Select a City..." data-select2-id="select2-data-10-ewc6" name="city" tabindex="-1">
+                            <option  value="">
                                 Select a City...
                             </option>
-                          @foreach ($cities=[] as $city)
+                          @foreach ($cities as $city)
                           <option  value="{{$city->id}}" {{Auth::user()->city_id==$city->id? 'selected' : ''}}>
                             {{$city->name}}
                         </option>
@@ -170,11 +170,11 @@
                      <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Category</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
                      <!--begin::Col-->
                     <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                        <select aria-hidden="true" aria-label="Select a Category" class="form-select form-select-solid form-select-lg fw-semibold select2-hidden-accessible" wire:model="selectedCategory" data-kt-initialized="1" data-placeholder="Select a Category..." data-select2-id="select2-data-10-ewc6" name="city" tabindex="-1">
-                            <option data-select2-id="select2-data-12-u8ev" value="">
+                        <select aria-hidden="true" aria-label="Select a Category" class="form-select form-select-solid form-select-lg fw-semibold" wire:model="selectedCategory" data-kt-initialized="1" data-placeholder="Select a Category..." data-select2-id="select2-data-10-ewc6" name="city" tabindex="-1">
+                            <option  value="">
                                 Select a Category...
                             </option>
-                          @foreach ($categories=[] as $category)
+                          @foreach ($categories as $category)
                           <option  value="{{$category->id}}" {{Auth::user()->category_id==$category->id? 'selected' : ''}}>
                             {{$category->name}}
                         </option>
