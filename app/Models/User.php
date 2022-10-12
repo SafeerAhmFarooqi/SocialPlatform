@@ -111,4 +111,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(ShopLogo::class, 'shoplogo_id');
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(ShopCategories::class, 'shop_category_id');
+    }
+
+    public function subCategory()
+    {
+        return $this->belongsTo(ShopSubCategories::class, 'shop_sub_category_id');
+    }
 }

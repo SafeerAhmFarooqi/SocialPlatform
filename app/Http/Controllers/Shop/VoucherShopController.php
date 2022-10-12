@@ -87,37 +87,25 @@ class VoucherShopController extends BaseShopController
         'code' => ['required', 'string', 'max:255'],
     ]);
 
+    $user=User::where('email',$request->email)->first();
     $voucher=Voucher::where('code',$request->code)->first();
-    if ($voucher) {
-        if ($voucher->voucher_status==true) {
-            $useVoucher = UseVoucher::create([
-                'title' => $voucher->title,
-                'code' => $voucher->code,
-                'image_path' => $voucher->image_path,
-                'discount' => $voucher->discount,
-                'shop_id' => $voucher->shop_id,
-                'location' => $voucher->location,
-                'shop_category' => $voucher->shop_category,
-                'sub_category' => $voucher->sub_category,
-                'email' => $request->email,
-            ]);
-            $voucher->voucher_status=false;
-            $voucher->save();
-            if ($useVoucher) {
-                return back()->with('success', 'Voucher is Used Successfully' );
-            } else {
-                return back()->with('error', 'Unable to use Voucher' );
-            }
+
+    if ($voucher&&$user) {
+        $useVoucher=UseVoucher::where('user_id',$user->id)->where('voucher_id',$voucher->id)->first();
+        if ($useVoucher) {
+            return back()->with('error', 'Voucher is already Used' );    
         } else {
-            if (UseVoucher::where('code', $voucher->code)->exists()) {
-                return back()->with('error', 'Voucher is already Used' );
-            } else {
-                return back()->with('error', 'Voucher is not Activated' );
-            }        
+            $useVoucher=UseVoucher::create([
+                'user_id' => $user->id,
+                'voucher_id' => $voucher->id,
+            ]);
+            return back()->with('success', 'Voucher is added to use vouchers Successfully' );
         }
+        
     } else {
-        return back()->with('error', 'Unable to Find Voucher' );
+        return back()->with('error', 'Unknown Voucher Code or User Email' );
     }
+    
  }
 
  public function useVoucherListShow()

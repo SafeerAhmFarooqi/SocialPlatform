@@ -79,7 +79,7 @@
                         <div class="row">
                             <!--begin::Col-->
                             <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                <input class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="selectedFirstName" placeholder="First name" type="text" value="{{old('firstname')??Auth::user()->firstname}}">
+                                <input class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="selectedFirstName" placeholder="First name" type="text">
                                 @error('selectedFirstName')
                                 <div class="alert alert-danger" role="alert">
                                     {{$message}}
@@ -89,7 +89,7 @@
                             </div><!--end::Col-->
                             <!--begin::Col-->
                             <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                <input class="form-control form-control-lg form-control-solid" wire:model="selectedLastName" placeholder="Last name" type="text" value="{{old('lastname')??Auth::user()->lastname}}">
+                                <input class="form-control form-control-lg form-control-solid" wire:model="selectedLastName" placeholder="Last name" type="text">
                                 @error('selectedLastName')
                                 <div class="alert alert-danger" role="alert">
                                     {{$message}}
@@ -121,9 +121,9 @@
                 </div>
                 <div class="row mb-6">
                     <!--begin::Label-->
-                     <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Country</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7"></i></label> <!--end::Label-->
+                     <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Country-{{$selectedCountry}}</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-3 fv-row fv-plugins-icon-container">
+                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
                         <select aria-hidden="true" aria-label="Select a Country" class="form-select form-select-solid form-select-lg fw-semibold" wire:model="selectedCountry">
                             <option  value="">
                                 Select a Country...
@@ -146,7 +146,7 @@
                     <!--begin::Label-->
                      <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">City</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-3 fv-row fv-plugins-icon-container">
+                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
                         <select aria-hidden="true" aria-label="Select a City" class="form-select form-select-solid form-select-lg fw-semibold" wire:model="selectedCity" data-kt-initialized="1" data-placeholder="Select a City..." data-select2-id="select2-data-10-ewc6" name="city" tabindex="-1">
                             <option  value="">
                                 Select a City...
@@ -169,7 +169,7 @@
                     <!--begin::Label-->
                      <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Category</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
                         <select aria-hidden="true" aria-label="Select a Category" class="form-select form-select-solid form-select-lg fw-semibold" wire:model="selectedCategory" data-kt-initialized="1" data-placeholder="Select a Category..." data-select2-id="select2-data-10-ewc6" name="city" tabindex="-1">
                             <option  value="">
                                 Select a Category...
@@ -192,12 +192,12 @@
                     <!--begin::Label-->
                      <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Sub Category</span> <i aria-label="Country of origination" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                        <select aria-hidden="true" aria-label="Select a Country" class="form-select form-select-solid form-select-lg fw-semibold select2-hidden-accessible" wire:model="selectedSubCategory" data-kt-initialized="1" data-placeholder="Select a Sub Category..." data-select2-id="select2-data-10-ewc6" name="city" tabindex="-1">
-                            <option data-select2-id="select2-data-12-u8ev" value="">
+                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                        <select aria-hidden="true" aria-label="Select a Country" class="form-select form-select-solid form-select-lg fw-semibold" wire:model="selectedSubCategory" data-kt-initialized="1" data-placeholder="Select a Sub Category..." data-select2-id="select2-data-10-ewc6" name="city" tabindex="-1">
+                            <option value="">
                                 Select a Sub Category...
                             </option>
-                          @foreach ($subCategories=[] as $subCategory)
+                          @foreach ($subCategories as $subCategory)
                           <option  value="{{$subCategory->id}}" {{Auth::user()->subcategory_id==$subCategory->id? 'selected' : ''}}>
                             {{$subCategory->name}}
                         </option>
@@ -215,7 +215,7 @@
                     <!--begin::Label-->
                      <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Address</span> <i aria-label="Phone number must be active" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
                         <input class="form-control form-control-lg form-control-solid" wire:model="selectedAddress" id="address" placeholder="Shop Address" type="text" value="{{old('address')??Auth::user()->address}}">
                         @error('selectedAddress')
                         <div class="alert alert-danger" role="alert">
@@ -231,7 +231,7 @@
                     <!--begin::Label-->
                      <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Contact Phone 1</span> <i aria-label="Phone number must be active" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
                         <input class="form-control form-control-lg form-control-solid" wire:model="selectedPhone1" placeholder="Contact Number" type="tel" value="{{old('phone')??Auth::user()->phone}}">
                         @error('selectedPhone1')
                         <div class="alert alert-danger" role="alert">
@@ -246,7 +246,7 @@
                     <!--begin::Label-->
                      <label class="col-lg-4 col-form-label fw-semibold fs-6"><span class="required">Contact Phone 2</span> <i aria-label="Phone number must be active" class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" data-kt-initialized="1"></i></label> <!--end::Label-->
                      <!--begin::Col-->
-                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
                         <input class="form-control form-control-lg form-control-solid" wire:model="selectedPhone2" placeholder="Contact Number" type="tel" value="{{old('phone')??Auth::user()->phone}}">
                         @error('selectedPhone2')
                         <div class="alert alert-danger" role="alert">
