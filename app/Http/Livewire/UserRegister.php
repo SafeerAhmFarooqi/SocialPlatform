@@ -113,10 +113,6 @@ class UserRegister extends Component
             'pdf_password' => $pdfPassword,
         ]);
 
-        if(Auth::check())
-        {
-            Auth::logout();
-        }
 
         event(new Registered($user)); 
 
