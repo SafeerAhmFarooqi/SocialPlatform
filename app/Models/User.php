@@ -72,22 +72,22 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function setOptionsAttribute($value)
-    {
-        $this->attributes['options'] = json_encode($value);
-    }
+    // public function setOptionsAttribute($value)
+    // {
+    //     $this->attributes['options'] = json_encode($value);
+    // }
 
-    public function getOptionsAttribute($value)
-    {
-        return $this->attributes['options'] = json_decode(json_encode($value));
-    }
+    // public function getOptionsAttribute($value)
+    // {
+    //     return $this->attributes['options'] = json_decode(json_encode($value));
+    // }
 
     public function printOptions()
     {
-        foreach (json_decode($this->options) as $key => $value) {
+       
             
-            echo '<small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px";">'.$value.'</small>'.' ';
-        }
+            echo '<small style="background:#e8fff3;color: #50cd89; font-size: 12px;padding:2px 10px 2px 10px";">'.$this->options.'</small>'.' ';
+        
     }
 
     public function accountSetting()

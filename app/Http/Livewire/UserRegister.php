@@ -31,7 +31,7 @@ class UserRegister extends Component
     public $selectedCity='';
     public $selectedAddress='';
     public $selectedDocument='';
-    public $selectedCategory=[];
+    public $selectedCategory='';
 
     protected $validationAttributes = [
          'selectedFirstName' => 'First Name',
@@ -82,21 +82,10 @@ class UserRegister extends Component
             'country_id' => $this->selectedCountry,
             'city_id' => $this->selectedCity,
             'user_address' => $this->selectedAddress,
+            'options' => $this->selectedCategory,
         ]);
 
         $user->assignRole('User');
-
-        foreach ($this->selectedCategory as $key => $value) {
-            $key==1? $this->selectedCategory[$key]='Armed Forces' : '';
-            $key==2? $this->selectedCategory[$key]='Police' : '';
-            $key==3? $this->selectedCategory[$key]='Fire' : '';
-            $key==4? $this->selectedCategory[$key]='Paramedic' : '';
-            $key==5? $this->selectedCategory[$key]='THW' : '';
-        }
-
-        $user->update([
-            'options' => $this->selectedCategory,
-        ]);
 
         $image=$this->selectedDocument;
         $image->store('temporary','public');
