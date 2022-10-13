@@ -29,14 +29,11 @@ class VoucherShopController extends BaseShopController
         'image' => ['required','max:2048','image','mimes:jpeg,png,jpg,gif,svg,bmp'],
     ]);
 
-    $code =  date('YmdHis', time()). mt_rand(1000000000, 9999999999);
-    while(Voucher::where('code', $code)->exists()){
-    $code = date('YmdHis', time()). mt_rand(1000000000, 9999999999);
-    }
+   
 
     while(true)
     {
-     $code=Carbon::now()->format('ym').mt_rand('1000000','9999999');
+     $code=Carbon::now()->format('ym').mt_rand('10000','99999');
      if (Voucher::where('code',$code)->first()) {
         continue;
      } else {
