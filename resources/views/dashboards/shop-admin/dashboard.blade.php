@@ -179,12 +179,9 @@
                                                 <!--begin::Card footer-->
                                                 <div class="card-footer" style="border-top: 1px solid rgba(255, 255, 255, 0.3);background: rgba(0, 0, 0, 0.15);">
                                                     <!--begin::Progress-->
-                                                     <div class="fw-bold text-white py-2 col-sm-6" style="float:left">
-                                                        <span class="fs-1 d-block">{{$allActiveVouchersCount}}</span>
-                                                        <span class="opacity-50">Active </span>
-                                                    </div>
+                                                    
                                                     <div class="fw-bold text-white py-2 col-sm-6" style="float:left;text-align: right;">
-                                                        <span class="fs-1 d-block">{{$allDeactiveVouchersCount}}</span>
+                                                        <span class="fs-1 d-block">{{$allUsedVouchersCount}}</span>
                                                         <span class="opacity-50">Used </span>
                                                     </div>
                                                     <!--end::Progress-->
@@ -234,7 +231,7 @@
                                                                 <div class="rounded min-w-125px py-3 px-4 my-1 me-6" style="border: 1px dashed rgba(255, 255, 255, 0.15)">
                                                                     <!--begin::Number-->
                                                                     <div class="d-flex align-items-center">
-                                                                        <div class="text-white fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4368" data-kt-countup-prefix="$" data-kt-initialized="1">4,368</div>
+                                                                        <div class="text-white fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{$allPostsCount}}" data-kt-countup-prefix="$" data-kt-initialized="1">{{$allPostsCount}}</div>
                                                                     </div>
                                                                     <!--end::Number-->
                                                                     <!--begin::Label-->
@@ -246,7 +243,7 @@
                                                                 <div class="rounded min-w-125px py-3 px-4 my-1" style="border: 1px dashed rgba(255, 255, 255, 0.15)">
                                                                     <!--begin::Number-->
                                                                     <div class="d-flex align-items-center">
-                                                                        <div class="text-white fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="120,000" data-kt-initialized="1">120,000</div>
+                                                                        <div class="text-white fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="{{$allCommentsCount}}" data-kt-initialized="1">{{$allCommentsCount}}</div>
                                                                     </div>
                                                                     <!--end::Number-->
                                                                     <!--begin::Label-->
@@ -301,11 +298,11 @@
                                                                 <div class="d-flex align-items-center w-100 mw-125px">
                                                                     <!--begin::Progress-->
                                                                     <div class="progress h-6px w-100 me-2 bg-light-success">
-                                                                        <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{$allUsersPostsCount==0||$allPostsCount==0?0 : (($allUsersPostsCount/$allPostsCount)*100)}}%" aria-valuenow="{{$allUsersPostsCount}}" aria-valuemin="0" aria-valuemax="{{$allPostsCount}}"></div>
                                                                     </div>
                                                                     <!--end::Progress-->
                                                                     <!--begin::Value-->
-                                                                    <span class="text-gray-400 fw-semibold">65</span>
+                                                                    <span class="text-gray-400 fw-semibold">{{$allUsersPostsCount}}</span>
                                                                     <!--end::Value-->
                                                                 </div>
                                                                 <!--end::Statistics-->
@@ -324,6 +321,7 @@
                                                                     <!--begin::Section-->
                                                                     <div class="flex-grow-1">
                                                                         <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold lh-0">Groups</a>
+                                                                        <span class="text-gray-400 fw-semibold d-block fs-6">All Groups Posts </span>
                                                                         <!-- <span class="text-gray-400 fw-semibold d-block fs-6">Social Media</span> -->
                                                                     </div>
                                                                     <!--end::Section-->
@@ -333,11 +331,11 @@
                                                                 <div class="d-flex align-items-center w-100 mw-125px">
                                                                     <!--begin::Progress-->
                                                                     <div class="progress h-6px w-100 me-2 bg-light-warning">
-                                                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{$allGroupPostsCount==0||$allPostsCount==0?0 : (($allGroupPostsCount/$allPostsCount)*100)}}%" aria-valuenow="{{$allGroupPostsCount}}" aria-valuemin="0" aria-valuemax="{{$allPostsCount}}"></div>
                                                                     </div>
                                                                     <!--end::Progress-->
                                                                     <!--begin::Value-->
-                                                                    <span class="text-gray-400 fw-semibold">87</span>
+                                                                    <span class="text-gray-400 fw-semibold">{{$allGroupPostsCount}}</span>
                                                                     <!--end::Value-->
                                                                 </div>
                                                                 <!--end::Statistics-->
@@ -356,6 +354,7 @@
                                                                     <!--begin::Section-->
                                                                     <div class="flex-grow-1">
                                                                         <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold lh-0">Comments</a>
+                                                                        <span class="text-gray-400 fw-semibold d-block fs-6">All users Comments </span>
                                                                      </div>
                                                                     <!--end::Section-->
                                                                 </div>
@@ -364,11 +363,11 @@
                                                                 <div class="d-flex align-items-center w-100 mw-125px">
                                                                     <!--begin::Progress-->
                                                                     <div class="progress h-6px w-100 me-2 bg-light-primary">
-                                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 44%" aria-valuenow="44" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{$allUsersCommentsCount==0||$allCommentsCount==0?0 : (($allUsersCommentsCount/$allCommentsCount)*100)}}%" aria-valuenow="{{$allUsersCommentsCount}}" aria-valuemin="0" aria-valuemax="{{$allCommentsCount}}"></div>
                                                                     </div>
                                                                     <!--end::Progress-->
                                                                     <!--begin::Value-->
-                                                                    <span class="text-gray-400 fw-semibold">44</span>
+                                                                    <span class="text-gray-400 fw-semibold">{{$allUsersCommentsCount}}</span>
                                                                     <!--end::Value-->
                                                                 </div>
                                                                 <!--end::Statistics-->
@@ -377,6 +376,36 @@
                                                             <!--begin::Separator-->
                                                             <div class="separator separator-dashed my-4"></div>
                                                             <!--end::Separator-->
+                                                            <div class="d-flex flex-stack">
+                                                                <!--begin::Wrapper-->
+                                                                <div class="d-flex align-items-center me-3">
+                                                                    <!--begin::Icon-->
+                                                                    <img src="../assets/media/svg/brand-logos/slack-icon.svg" class="me-3 w-30px" alt="">
+                                                                    <!--end::Icon-->
+                                                                    <!--begin::Section-->
+                                                                    <div class="flex-grow-1">
+                                                                        <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold lh-0">Comments</a>
+                                                                        <span class="text-gray-400 fw-semibold d-block fs-6">All Groups Comments </span>
+                                                                     </div>
+                                                                    <!--end::Section-->
+                                                                </div>
+                                                                <!--end::Wrapper-->
+                                                                <!--begin::Statistics-->
+                                                                <div class="d-flex align-items-center w-100 mw-125px">
+                                                                    <!--begin::Progress-->
+                                                                    <div class="progress h-6px w-100 me-2 bg-light-primary">
+                                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{$allGroupCommentsCount==0||$allCommentsCount==0?0 : (($allGroupCommentsCount/$allCommentsCount)*100)}}%" aria-valuenow="{{$allGroupCommentsCount}}" aria-valuemin="0" aria-valuemax="{{$allCommentsCount}}"></div>
+                                                                    </div>
+                                                                    <!--end::Progress-->
+                                                                    <!--begin::Value-->
+                                                                    <span class="text-gray-400 fw-semibold">{{$allGroupCommentsCount}}</span>
+                                                                    <!--end::Value-->
+                                                                </div>
+                                                                <!--end::Statistics-->
+                                                            </div>
+                                                            <!--end::Item-->
+                                                            <!--begin::Separator-->
+                                                            <div class="separator separator-dashed my-4"></div>
                                                             <!--begin::Item-->
                                                             <div class="d-flex flex-stack">
                                                                 <!--begin::Wrapper-->
@@ -399,7 +428,7 @@
                                                                     </div>
                                                                     <!--end::Progress-->
                                                                     <!--begin::Value-->
-                                                                    <span class="text-gray-400 fw-semibold">70</span>
+                                                                    <span class="text-gray-400 fw-semibold">{{$allShopsCategoriesCount}}</span>
                                                                     <!--end::Value-->
                                                                 </div>
                                                                 <!--end::Statistics-->

@@ -114,6 +114,7 @@
                                                             <th class="min-w-120px">Phone</th>
                                                             <th class="min-w-120px">Status</th> 
                                                             <th class="min-w-120px">Social</th> 
+                                                            <th class="min-w-120px">Joined Date</th> 
                                                             <th class="min-w-100px text-end">Actions</th>
                                                         </tr>
                                                     </thead>
@@ -128,7 +129,7 @@
                                                                     <br> 
                                                                     
                                                                 </div>
-                                                                <p> {{$user->created_at->format('F d, Y')}} </p>
+                                                            
                                                             </td>
                                                             <td>
                                                                 <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$user->firstname.' '.$user->lastname}}   </a>
@@ -146,6 +147,9 @@
                                                                 <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-primary" ><span class="fa fa-globe"> </span></a>
 
                                                                 <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-primary" ><span class="fa fa-users"> </span></a>
+                                                            </td>
+                                                            <td>
+                                                                {{$user->created_at->format('F d, Y')}}
                                                             </td>
                                                           
                                                             <td class="text-end">
