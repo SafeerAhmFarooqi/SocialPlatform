@@ -68,7 +68,7 @@
                 <div class="me-7 mb-4">
                     <h1>Banner</h1>
                     <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                        <img alt="image" src="{{Auth::user()->logo?asset('storage/'.Auth::user()->logo) : asset('assets/Metronic-Theme/media/svg/avatars/blank.svg')}}">
+                        <img alt="image" src="{{Auth::user()->banner?asset('storage/'.Auth::user()->banner) : asset('assets/Metronic-Theme/media/svg/avatars/blank.svg')}}">
                         <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
                     </div>
                 </div>

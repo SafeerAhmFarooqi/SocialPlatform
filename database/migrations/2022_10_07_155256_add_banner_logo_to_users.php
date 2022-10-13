@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('shopbanner_id');
             $table->unsignedBigInteger('shoplogo_id');
+            $table->string('logo')->nullable();
+            $table->string('banner')->nullable();
         });
     }
 
@@ -27,8 +29,10 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('shopbanner_id');
-            $table->unsignedBigInteger('shoplogo_id');
+            $table->dropColumn('shopbanner_id');
+            $table->dropColumn('shoplogo_id');
+            $table->dropColumn('logo');
+            $table->dropColumn('banner');
         });
     }
 };
