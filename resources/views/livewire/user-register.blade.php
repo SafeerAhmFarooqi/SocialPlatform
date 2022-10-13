@@ -155,23 +155,23 @@
   
               <!-- Keep me signed in -->
               <div class="mb-3 text-start">
-                <input type="checkbox" class="form-check-input" wire:model="selectedCategory.1"  >
+                <input type="radio" class="form-check-input" wire:model="selectedCategory" value="Armed Forces"  >
                 <label class="form-check-label" for="keepsingnedCheck"> Armed Forces</label>
               </div>
               <div class="mb-3 text-start">
-                <input type="checkbox" class="form-check-input" wire:model="selectedCategory.2">
+                <input type="radio" class="form-check-input" wire:model="selectedCategory" value="Police">
                 <label class="form-check-label" for="keepsingnedCheck"> Police </label>
               </div>
               <div class="mb-3 text-start">
-                <input type="checkbox" class="form-check-input" wire:model="selectedCategory.3">
+                <input type="radio" class="form-check-input" wire:model="selectedCategory" value="Fire">
                 <label class="form-check-label" for="keepsingnedCheck"> Fire </label>
               </div>
               <div class="mb-3 text-start">
-                <input type="checkbox" class="form-check-input" wire:model="selectedCategory.4">
-                <label class="form-check-label" for="keepsingnedCheck"> Paramadic </label>
+                <input type="radio" class="form-check-input" wire:model="selectedCategory" value="Paramedic">
+                <label class="form-check-label" for="keepsingnedCheck"> Paramedic </label>
               </div>
               <div class="mb-3 text-start">
-                <input type="checkbox" class="form-check-input" wire:model="selectedCategory.5">
+                <input type="radio" class="form-check-input" wire:model="selectedCategory" value="THW">
                 <label class="form-check-label" for="keepsingnedCheck"> THW </label>
               </div>
   
