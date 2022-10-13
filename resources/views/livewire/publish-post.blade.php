@@ -89,7 +89,7 @@
                     <input type="file"  id="image-upload" style="display:none;" wire:model="postImage">  
                 </a>
                 </li>
-                <li>
+                {{-- <li>
                     <div class="col-sm-12">
                         <select class="form-control" id="country" wire:model="selectedType" style="margin-top:30px">            
                                   <option value="1">Armed Forces</option>    
@@ -104,7 +104,7 @@
                                   </div>
                                   @enderror
                      </div>
-                </li>
+                </li> --}}
 
                 
                  

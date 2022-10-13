@@ -15,7 +15,7 @@ class PublishPost extends Component
 
     public $postText='';
     public $postImage='';
-    public $selectedType=1;
+    public $selectedType;
 
     protected $validationAttributes = [
         'postText' => 'Post Text',
@@ -26,6 +26,15 @@ class PublishPost extends Component
     protected $messages = [
         'required' => ':attribute is Required',        
     ];
+
+    public function mount()
+    {
+        Auth::user()->options=='Armed Forces'? $this->selectedType=1 : '';
+        Auth::user()->options=='Police'? $this->selectedType=2 : '';
+        Auth::user()->options=='Fire'? $this->selectedType=3 : '';
+        Auth::user()->options=='TWH'? $this->selectedType=4 : '';
+        Auth::user()->options=='Paramedic'? $this->selectedType=5 : '';
+    }
 
     protected function rules()
     {
