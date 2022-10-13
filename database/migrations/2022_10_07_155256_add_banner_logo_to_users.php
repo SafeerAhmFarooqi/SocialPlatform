@@ -28,11 +28,33 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('shopbanner_id');
-            $table->dropColumn('shoplogo_id');
-            $table->dropColumn('logo');
-            $table->dropColumn('banner');
-        });
+        if (Schema::hasColumn('users', 'shopbanner_id'))
+        {
+            Schema::table('users', function (Blueprint $table)
+            {
+                $table->dropColumn('shopbanner_id');
+            });
+        }
+        if (Schema::hasColumn('users', 'shoplogo_id'))
+        {
+            Schema::table('users', function (Blueprint $table)
+            {
+                $table->dropColumn('shoplogo_id');
+            });
+        }
+        if (Schema::hasColumn('users', 'logo'))
+        {
+            Schema::table('users', function (Blueprint $table)
+            {
+                $table->dropColumn('logo');
+            });
+        }
+        if (Schema::hasColumn('users', 'banner'))
+        {
+            Schema::table('users', function (Blueprint $table)
+            {
+                $table->dropColumn('banner');
+            });
+        }
     }
 };
