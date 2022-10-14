@@ -1,9 +1,8 @@
 @include('Chatify::layouts.headLinks')
+
 <div class="messenger">
     {{-- ----------------------Users/Groups lists side---------------------- --}}
-    @if ($popUp)
-        
-    @else
+   
     <div class="messenger-listView">
         {{-- Header and search bar --}}
         <div class="m-header">
@@ -63,7 +62,7 @@
              </div>
         </div>
     </div>
-    @endif
+
     
 
     {{-- ----------------------Messaging side---------------------- --}}
@@ -185,3 +184,5 @@ $( document.body ).click(function() {
     }
 });
 </script>
+
+

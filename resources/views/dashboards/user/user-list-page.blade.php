@@ -63,7 +63,7 @@
                     bottom: 100px;
                     right: 15px;
                     border: 3px solid #f1f1f1;
-                    z-index: 9;" onload="this.style.visibility = 'visible';" src="{{route('user2',[$user->id])}}"></iframe>
+                    z-index: 9;" onload="this.style.visibility = 'visible';" src="{{route('user',[$user->id])}}"></iframe>
                  
  @endforeach
 
