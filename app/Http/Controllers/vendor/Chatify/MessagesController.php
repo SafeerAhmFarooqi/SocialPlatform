@@ -65,27 +65,13 @@ class MessagesController extends Controller
         return view('Chatify::pages.app', [
             'id' => $id ?? 0,
             'type' => $type ?? 'user',
-            'popUp' => false,
+            'popUp' => $id ? true : false,
             'messengerColor' => Auth::user()->messenger_color ?? $this->messengerFallbackColor,
             'dark_mode' => Auth::user()->dark_mode < 1 ? 'light' : 'dark',
         ]);
     }
 
-    public function index2( $id = null)
-    {
-        $routeName= FacadesRequest::route()->getName();
-        $type = in_array($routeName, ['user','group'])
-            ? $routeName
-            : 'user';
 
-        return view('Chatify::pages.app', [
-            'id' => $id ?? 0,
-            'type' => $type ?? 'user',
-            'popUp' => true,
-            'messengerColor' => Auth::user()->messenger_color ?? $this->messengerFallbackColor,
-            'dark_mode' => Auth::user()->dark_mode < 1 ? 'light' : 'dark',
-        ]);
-    }
 
 
     /**
