@@ -53,15 +53,20 @@
                       </div>
                       <!-- Card footer -->
                       <div class="card-footer p-2 border-0">
-                        <a href="{{route('user',[$user->id])}}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send message"> <i class="bi bi-chat-left-text"></i> </a>
+                        <a href="javascript:;" onclick="myFunction({{$user->id}})" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send message"> <i class="bi bi-chat-left-text"></i> </a>
                         <a href="{{route('user.dashboard.user.information',[$user->id])}}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Public Profile"> <i class="bi bi-person"></i> </a>
                       </div>
                     </div>
                     
                   </div>
-
+                  <iframe id="{{$user->id}}" style="visibility:visible;width: 400px; height: 525px; border: 1px solid rgb(214, 214, 214); display: none;position: fixed;
+                    bottom: 100px;
+                    right: 15px;
+                    border: 3px solid #f1f1f1;
+                    z-index: 9;" onload="this.style.visibility = 'visible';" src="{{route('user2',[$user->id])}}"></iframe>
+                 
  @endforeach
-           
+
 
 
 
@@ -85,7 +90,7 @@
               </div> <!-- Row END -->
             </div>
             <!-- Container END -->
-          
+            <button class="open-button" id="close-chat" onclick="closeChat()">Close Chat</button>
           </main>
           <!-- **************** MAIN CONTENT END **************** -->
           
@@ -97,4 +102,44 @@
           {{-- @include('dashboards.user.includes.modals') --}}
 
      
+@endsection
+
+@section('pageStyles')
+    <style>
+      .open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+  display : none;
+}
+    </style>
+@endsection
+
+@section('pageScripts')
+    <script>
+      function myFunction(id)
+      {
+         // alert(id);
+          // document.querySelectorAll('iframe').forEach( iframe => {
+          //   alert(iframe..style.display);
+          // });
+          $('iframe').hide();
+          $('#close-chat').hide();
+          $('#close-chat').show();
+          document.getElementById(id).style.display = "inline";
+      }
+      function closeChat()
+      {
+        $('iframe').hide();
+          $('#close-chat').hide();
+      }
+    </script>
+
 @endsection
