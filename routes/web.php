@@ -18,6 +18,7 @@ use App\Http\Controllers\User\UserListController;
 use App\Http\Controllers\User\UserVoucherController;
 use App\Http\Controllers\User\UserSavingController;
 use App\Models\User;
+use App\Http\Controllers\vendor\Chatify\MessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,5 +124,6 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::get('/user-info-page/{id?}', [UserListController::class,'userInfoPageShow'])->name('user.dashboard.user.information');
     Route::get('/user-voucher-page', [UserVoucherController::class,'userVoucherPageShow'])->name('user.dashboard.voucher.page');
     Route::get('/user-saving-page', [UserSavingController::class,'userSavingPageShow'])->name('user.dashboard.saving.page');
+    Route::get('chat-with/{id}',[MessagesController::class,'index2'])->name('user2');
 });
 require __DIR__.'/auth.php';
