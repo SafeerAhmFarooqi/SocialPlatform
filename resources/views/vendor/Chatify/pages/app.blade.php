@@ -8,11 +8,11 @@
         {{-- Header and search bar --}}
         <div class="m-header">
             <nav>
-                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
+                <a href="javascript:;"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
-                    <a href="#"><i class="fas fa-cog settings-btn"></i></a>
-                    <a href="#" class="listView-x"><i class="fas fa-times"></i></a>
+                    <a href="javascript:;"><i class="fas fa-cog settings-btn"></i></a>
+                    <a href="javascript:;" class="listView-x"><i class="fas fa-times"></i></a>
                 </nav>
             </nav>
             {{-- Search input --}}
@@ -21,7 +21,7 @@
             <div class="messenger-listView-tabs">
                 <a href="javascript:;" @if($type == 'user') class="active-tab" @endif data-view="users">
                     <span class="far fa-user"></span> People</a>
-                {{-- <a href="#" @if($type == 'group') class="active-tab" @endif data-view="groups">
+                {{-- <a href="javascript:;" @if($type == 'group') class="active-tab" @endif data-view="groups">
                     <span class="fas fa-users"></span> Groups</a> --}}
             </div>
         </div>
@@ -76,7 +76,7 @@
                     @if ($popUp)
                         
                     @else
-                    <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>                        
+                    <a href="javascript:;" class="show-listView"><i class="fas fa-arrow-left"></i></a>                        
                     @endif
 
                     <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
@@ -85,14 +85,14 @@
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
-                    {{-- <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a> --}}
+                    {{-- <a href="javascript:;" class="add-to-favorite"><i class="fas fa-star"></i></a> --}}
                     @if ($popUp)
                         
                     @else
                     <a href="{{route('dashboard')}}"><i class="fas fa-home"></i></a>                        
                     @endif
 
-                    {{-- <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a> --}}
+                    {{-- <a href="javascript:;" class="show-infoSide"><i class="fas fa-info-circle"></i></a> --}}
                 </nav>
             </nav>
         </div>
@@ -127,7 +127,7 @@
     {{-- <div class="messenger-infoView app-scroll">
       
         <nav>
-            <a href="#"><i class="fas fa-times"></i></a>
+            <a href="javascript:;"><i class="fas fa-times"></i></a>
         </nav>
         {!! view('Chatify::layouts.info')->render() !!}
     </div> --}}
