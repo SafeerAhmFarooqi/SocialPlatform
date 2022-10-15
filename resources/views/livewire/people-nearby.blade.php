@@ -47,7 +47,6 @@
 </div>
 
 <div>
-  <h1>safeer</h1>
   <div id="radar">
     <div class="beacon" id="beacon"></div>
     <div class="beacon" id="beacon-75"></div>
@@ -181,10 +180,12 @@ var marker= mymap.addMarker({
 // }
 var dot, r, t, container=document.getElementById('radar');
 $.each( locations, function( index, value ){
-
+  let url = "{{ route('user.dashboard.user.information', ':value.id') }}";
+  url = url.replace(':value.id', value.id);
   dot = document.createElement('a');
   dot.className = "object";
-  dot.href="#";
+  dot.href=url;
+  dot.title=value.firstname+' '+value.lastname;
   r = Math.random()*190+5;
   t = Math.random()*Math.PI*2;
   dot.style.left = (200+Math.cos(t)*r)+"px";
