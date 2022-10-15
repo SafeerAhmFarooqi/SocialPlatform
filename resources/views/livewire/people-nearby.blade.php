@@ -74,7 +74,17 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
 <script>
- 
+ if (navigator.geolocation) {
+navigator.geolocation.getCurrentPosition(showPosition);
+} else { 
+x.innerHTML = "Geolocation is not supported by this browser.";
+}
+function showPosition(position) {
+@this.currentUserLongitude= position.coords.longitude;
+@this.currentUserLatiitude=position.coords.latitude;
+
+
+}
 </script>
 <script>
   window.onload = function(e){ 
@@ -105,19 +115,10 @@ var marker= mymap.addMarker({
 
 });
 
-if (navigator.geolocation) {
-navigator.geolocation.getCurrentPosition(showPosition);
-} else { 
-x.innerHTML = "Geolocation is not supported by this browser.";
-}
-}
-
-function showPosition(position) {
-@this.currentUserLongitude= position.coords.longitude;
-@this.currentUserLatiitude=position.coords.latitude;
-
 
 }
+
+
 
 </script>
 
