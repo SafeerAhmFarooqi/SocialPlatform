@@ -2,23 +2,18 @@
    
     <div class="people-nearby ">
         <div >
-          {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247476.01472843773!2d75.3083647569978!3d35.4154376421254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e46392bac10283%3A0xc2f7a786f9833d7!2sSkardu!5e0!3m2!1sen!2s!4v1665025745590!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
+
           <div id="mymap" style="width:100% ; height:500px ; margin-top:1% ;margin-bottom:4%;"></div>
         </div>
         <div class="container" style="padding:0">
         @foreach ($users as $user)
 
         <div class="card" style="margin-bottom: 10px;">
-            <!-- Card header START -->
-           <!--  <div class="card-header border-0 pb-0">
-              <h5 class="card-title"> Connections</h5> 
-            </div> -->
-            <!-- Card header END -->
-            <!-- Card body START -->
+       
             <div class="card-body">
-              <!-- Connections Item -->
+      
               <div class="d-md-flex align-items-center mb-4">
-                <!-- Avatar -->
+   
                 <div class="avatar me-3 mb-3 mb-md-0">
                   <a href="{{route('user.dashboard.user.information',[$user->id])}}"> <img class="avatar-img rounded-circle" src="{{$user->profile_pic_path?'storage/'.$user->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt=""> </a>
                 </div>
@@ -46,24 +41,20 @@
         </div>
   @endforeach
 
- {{-- <!--        <div class="nearby-user">
-            <div class="row">
-              <div class="col-md-2 col-sm-2">
-                <img src="{{$user->profile_pic_path?'storage/'.$user->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="user" class="profile-photo-lg" />
-              </div>
-              <div class="col-md-7 col-sm-7">
-                <h5><a href="#" class="profile-link">{{$user->firstname.' '.$user->lastname}}</a></h5>
-                <p>Software Engineer</p>
-                <p class="text-muted">{{$this->getKmAway($user->longitude,$user->latitude)}} Km away</p>
-              </div>
-              <div class="col-md-3 col-sm-3">
-                <button class="btn btn-primary pull-right">Add Friend</button>
-              </div>
-            </div>
-          </div> --> --}}
+
        
       </div>
 </div>
+
+<div>
+  <h1>safeer</h1>
+  <div id="radar">
+    <div class="beacon" id="beacon"></div>
+    <div class="beacon" id="beacon-75"></div>
+</div>
+</div>
+
+
 </div>
 
 @section('pageScripts')
@@ -74,16 +65,32 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
 <script>
- if (navigator.geolocation) {
+    document.addEventListener('livewire:load', function () {
+      if (navigator.geolocation) {
 navigator.geolocation.getCurrentPosition(showPosition);
 } else { 
 x.innerHTML = "Geolocation is not supported by this browser.";
 }
 function showPosition(position) {
+ 
 @this.currentUserLongitude= position.coords.longitude;
 @this.currentUserLatiitude=position.coords.latitude;
 
 
+}
+        });
+ 
+</script>
+<script>
+  for( var i=0, dot, r, t, container=document.getElementById('radar'); i<10; i++) {
+	dot = document.createElement('div');
+  dot.className = "object";
+  r = Math.random()*190+5;
+  t = Math.random()*Math.PI*2;
+  dot.style.left = (200+Math.cos(t)*r)+"px";
+  dot.style.top = (200+Math.sin(t)*r)+"px";
+  dot.style.animationDelay = t/Math.PI/2*5+"s";
+  container.appendChild(dot);
 }
 </script>
 <script>
@@ -186,6 +193,58 @@ var marker= mymap.addMarker({
               height: 500px;
             margin-top: 12%;
          }
+
+         #radar {
+    position:relative;
+    width:400px;
+    height:400px;
+    margin:20px auto;
+    background-color:#020;
+    background-image:
+      linear-gradient(to right, transparent 199px, #0c0 199px, #0c0 201px, transparent 201px),
+      linear-gradient(to bottom, transparent 199px, #0c0 199px, #0c0 201px, transparent 201px),
+      radial-gradient(circle at center,
+        #0c0 4px, transparent 4px,
+        transparent 49px, #0c0 49px, #0c0 50px, transparent 50px,
+        transparent 99px, #0c0 99px, #0c0 100px, transparent 100px,
+        transparent 149px, #0c0 149px, #0c0 150px, transparent 150px,
+        transparent 198px, #0c0 198px);
+    border-radius:50%;
+}
+#radar>* {position:absolute}
+.beacon {
+    left:50%;
+    top:50%;
+    border-style:solid;
+    border-width:8px 200px 8px 0;
+    border-color:transparent;
+    border-right-color:#0c0;
+    margin-top:-8px;
+    transform-origin:0 50%;
+    animation: spin 5s linear infinite;
+}
+#beacon-75 {opacity: 0.75; animation-delay:0.05s}
+
+
+.object {
+  width: 8px;
+  height: 8px;
+  margin: -4px;
+  background-color: #0c0;
+  border-radius: 4px;
+  animation: spotted 5s linear infinite both;
+}
+
+@keyframes spin {
+    from {transform:rotate(0)}
+    to {transform:rotate(360deg)}
+}
+@keyframes spotted {
+    from {opacity:0}
+    1% {opacity:1}
+    40% {opacity:0}
+    to {opacity:0}
+}
     </style>
 @endsection
  
