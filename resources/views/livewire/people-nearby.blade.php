@@ -81,18 +81,7 @@ function showPosition(position) {
         });
  
 </script>
-<script>
-  for( var i=0, dot, r, t, container=document.getElementById('radar'); i<10; i++) {
-	dot = document.createElement('div');
-  dot.className = "object";
-  r = Math.random()*190+5;
-  t = Math.random()*Math.PI*2;
-  dot.style.left = (200+Math.cos(t)*r)+"px";
-  dot.style.top = (200+Math.sin(t)*r)+"px";
-  dot.style.animationDelay = t/Math.PI/2*5+"s";
-  container.appendChild(dot);
-}
-</script>
+
 <script>
   window.onload = function(e){ 
     var locations = @json($users);
@@ -180,6 +169,31 @@ var marker= mymap.addMarker({
 
 
 
+//   for( var i=0, dot, r, t, container=document.getElementById('radar'); i<10; i++) {
+// 	dot = document.createElement('div');
+//   dot.className = "object";
+//   r = Math.random()*190+5;
+//   t = Math.random()*Math.PI*2;
+//   dot.style.left = (200+Math.cos(t)*r)+"px";
+//   dot.style.top = (200+Math.sin(t)*r)+"px";
+//   dot.style.animationDelay = t/Math.PI/2*5+"s";
+//   container.appendChild(dot);
+// }
+var dot, r, t, container=document.getElementById('radar');
+$.each( locations, function( index, value ){
+
+  dot = document.createElement('a');
+  dot.className = "object";
+  dot.href="#";
+  r = Math.random()*190+5;
+  t = Math.random()*Math.PI*2;
+  dot.style.left = (200+Math.cos(t)*r)+"px";
+  dot.style.top = (200+Math.sin(t)*r)+"px";
+  dot.style.animationDelay = t/Math.PI/2*5+"s";
+  container.appendChild(dot);
+
+});
+
 
 });
 </script>    
@@ -232,7 +246,7 @@ var marker= mymap.addMarker({
   margin: -4px;
   background-color: #0c0;
   border-radius: 4px;
-  animation: spotted 5s linear infinite both;
+  /* animation: spotted 50s linear infinite both; */
 }
 
 @keyframes spin {
