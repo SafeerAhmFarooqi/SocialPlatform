@@ -113,8 +113,15 @@
                           @if ($joinedGroup->isMember())
                           <a class="btn btn-success-soft btn-sm" href="{{route('user.dashboard.groups.post',[$joinedGroup->id])}}"> Enter   </a>    
                           <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#leave-group-{{$joinedGroup->id}}"> Leave   </a>  
+                          <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#block-group-{{$joinedGroup->id}}"> Block   </a>  
                           @else
-                          <span class="text-danger"> You Are No Longer Member of this Group   </span>                              
+                          <span class="text-danger"> You Are No Longer Member of this Group   </span> <br>
+                          @if (!$joinedGroup->isGroupBlocked())
+                          <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#block-group-{{$joinedGroup->id}}"> Block   </a>
+                          @endif   
+                          @if ($joinedGroup->isGroupBlocked())
+                          <span class="text-danger"> You have blocked this group   </span>
+                          @endif                             
                           @endif
                           
                         </div>    
@@ -144,6 +151,29 @@
                               @csrf
                               <input type="hidden" name="groupId" value="{{$joinedGroup->id}}">
                               <button type="submit" class="btn btn-danger">Leave</button>
+                            </form>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal fade" id="block-group-{{$joinedGroup->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{$joinedGroup->title??''}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to block this group?<br>
+                            You will no longer receive group join invitation untill unblock.
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="{{route('user.dashboard.groups.block')}}" method="post">
+                              @csrf
+                              <input type="hidden" name="groupId" value="{{$joinedGroup->id}}">
+                              <button type="submit" class="btn btn-danger">Block</button>
                             </form>
                             
                           </div>
@@ -229,7 +259,7 @@
                           <select class="form-control" name="members[]" multiple="">
                           <option value="">Select Members</option>
                             @foreach($users as $user)
-                            @if ($user->isGroupActiveMember($myGroup->id))
+                            @if ($user->isGroupActiveMember($myGroup->id)||$user->isMemberBlockedGroup($myGroup->id))
                                 @continue
                             @endif
                             <option value="{{$user->id}}">{{$user->firstname}}</option>

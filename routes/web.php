@@ -114,6 +114,7 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::post('/user-groups-store', [UserGroupsController::class,'userGroupsStore'])->name('user.dashboard.groups.store');
     Route::post('/user-groups-delete', [UserGroupsController::class,'deleteGroup'])->name('user.dashboard.groups.delete');
     Route::post('/user-groups-leave', [UserGroupsController::class,'leaveGroup'])->name('user.dashboard.groups.leave');
+    Route::post('/user-groups-block', [UserGroupsController::class,'blockGroup'])->name('user.dashboard.groups.block');
     Route::post('/user-groups-member-store', [UserGroupsController::class,'userGroupsMemberStore'])->name('user.dashboard.groups.member.store');
     Route::get('/user-groups-posts/{id?}', [UserGroupsController::class,'userGroupPostPageShow'])->name('user.dashboard.groups.post');
     Route::get('/user-profile-setting-page', [UserProfileController::class,'userProfileSettingPageShow'])->name('user.profile.setting.show');

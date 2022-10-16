@@ -49,4 +49,14 @@ class Group extends Model
         
     }
 
+    public function isGroupBlocked()
+    {
+        if (GroupBlockList::where('group_id',$this->id)->where('member_id',Auth::user()->id)->where('status',true)->first()) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
 }

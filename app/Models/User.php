@@ -136,4 +136,14 @@ class User extends Authenticatable implements MustVerifyEmail
             }
             
     }
+
+    public function isMemberBlockedGroup($groupId)
+    {
+            if (GroupBlockList::where('member_id',$this->id)->where('group_id',$groupId)->where('status',true)->first()) {
+                return true;
+            } else {
+                return false;
+            }
+            
+    }
 }

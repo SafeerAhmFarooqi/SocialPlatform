@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupMembers;
+use App\Models\GroupBlockList;
 use App\Models\Voucher;
 use App\Models\UseVoucher;
 use App\Models\Countries;
@@ -130,6 +131,38 @@ class UserGroupsController extends BaseUserController
     }
     
 
+ }
+
+ public function blockGroup(Request $request)
+ {
+    $groupBlockList=GroupBlockList::where('group_id',$request->groupId)->where('member_id',Auth::user()->id)->first();
+
+    if ($groupBlockList) {
+        $groupBlockList->update([
+            'status' => true,
+        ]);
+    } else {
+        $groupBlockList=GroupBlockList::create([
+            'group_id' => $request->groupId,
+            'member_id' => Auth::user()->id,
+            'status' => true,
+        ]);
+    }
+
+    $groupMember=GroupMembers::where('group_id',$request->groupId)->where('member_id',Auth::user()->id)->first();
+
+    $groupMember->update([
+        'status' => false,
+    ]);
+    
+    if($groupMember)
+    {
+        return back()->with('success', 'Group Blocked Successfully' );
+    }
+    else
+    {
+        return back()->with('error', 'Unable to Block Group' );
+    }
  }
   
 }
