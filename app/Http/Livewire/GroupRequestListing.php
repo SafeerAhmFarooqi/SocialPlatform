@@ -38,7 +38,7 @@ class GroupRequestListing extends Component
             }
             
         } else {
-            if (Group::where('id',$groupMemberRequest->group_id)->where('group_status',true)->first()) {
+            if (Group::where('id',$groupMemberRequest->group_id)->where('status',true)->first()) {
                 $groupMember=GroupMembers::create([
                     'member_id' => Auth::user()->id,
                     'group_id' => $groupMemberRequest->group_id,

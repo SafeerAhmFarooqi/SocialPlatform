@@ -111,6 +111,26 @@ class UserGroupsController extends BaseUserController
     
 
  }
+
+ public function leaveGroup(Request $request)
+ {
+    $groupMember=GroupMembers::where('group_id',$request->groupId)->where('member_id',Auth::user()->id)->first();
+
+    $groupMember->update([
+        'status' => false,
+    ]);
+    
+    if($groupMember)
+    {
+        return back()->with('success', 'Group Left Successfully' );
+    }
+    else
+    {
+        return back()->with('error', 'Unable to Leave Group' );
+    }
+    
+
+ }
   
 }
 

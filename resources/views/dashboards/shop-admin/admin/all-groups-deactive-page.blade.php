@@ -149,7 +149,7 @@
                           
                        
                             
-                            <td class="text-start pe-0"><span class="badge badge-light-success"> {{$group->group_status?'Active' : 'Non Active'}} </span></td>
+                            <td class="text-start pe-0"><span class="badge badge-light-success"> {{$group->status?'Active' : 'Non Active'}} </span></td>
                             
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">

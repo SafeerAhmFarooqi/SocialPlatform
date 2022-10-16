@@ -20,7 +20,7 @@ class Group extends Model
         'title',
         'location',
         'owner_id',
-        'group_status',
+        'status',
         'created_by',
     ];
 

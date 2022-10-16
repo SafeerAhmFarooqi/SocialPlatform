@@ -31,8 +31,8 @@ class DashboardController extends BaseController
       $allActiveShopsCount= User::role('Shop')->where('shop_status',true)->count();
       $allDeactiveShopsCount= User::role('Shop')->where('shop_status',false)->count();
       $allGroupsCount= Group::count();
-      $allActiveGroupsCount= Group::where('group_status',true)->count();
-      $allDeactiveGroupsCount= Group::where('group_status',false)->count();
+      $allActiveGroupsCount= Group::where('status',true)->count();
+      $allDeactiveGroupsCount= Group::where('status',false)->count();
       $allVouchersCount= Voucher::count();
       $allUsedVouchersCount= UseVoucher::count();
       $allActiveVouchersCount= Voucher::all()->count();
