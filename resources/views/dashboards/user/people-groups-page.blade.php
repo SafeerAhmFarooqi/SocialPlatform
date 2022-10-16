@@ -256,7 +256,16 @@
                       <input type="hidden" name="groupId" value="{{$myGroup->id}}">
                         <div class="mb-3">
                           <label for="sel1">Members</label>
-                          <select class="form-control" name="members[]" multiple="">
+                          <select class="form-select" name="members[]" data-control="select2" data-placeholder="Select a Member" data-dropdown-parent="#exampleModal2-{{$myGroup->id}}" multiple="multiple">
+                            <option value="">Select Members</option>
+                            @foreach($users as $user)
+                            @if ($user->isGroupActiveMember($myGroup->id)||$user->isMemberBlockedGroup($myGroup->id))
+                                @continue
+                            @endif
+                            <option value="{{$user->id}}">{{$user->firstname}}</option>
+                            @endforeach
+                        </select>
+                          {{-- <select class="form-control" name="members[]" multiple="">
                           <option value="">Select Members</option>
                             @foreach($users as $user)
                             @if ($user->isGroupActiveMember($myGroup->id)||$user->isMemberBlockedGroup($myGroup->id))
@@ -264,7 +273,7 @@
                             @endif
                             <option value="{{$user->id}}">{{$user->firstname}}</option>
                             @endforeach
-                            </select>
+                            </select> --}}
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -370,7 +379,11 @@
      
 @endsection
 
+@section('pageStyles')
 
+<link href="{{ asset('assets/Metronic-Theme/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+
+@endsection
 
 @section('pageScripts')
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
@@ -389,4 +402,7 @@
             });
         });
 </script>
+
+<script src="{{ asset('assets/Metronic-Theme/plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('assets/Metronic-Theme/js/scripts.bundle.js') }}"></script>
 @endsection
