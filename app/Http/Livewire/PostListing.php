@@ -39,9 +39,6 @@ class PostListing extends Component
                 'post_id' => $this->selectedPostId,
             ]);
       
-        
-     
-
         $this->commentText='';
         $this->selectedPostId='';
 
@@ -56,13 +53,12 @@ class PostListing extends Component
 
     public function deletePost($id)
     {
-        $post=Posts::find($id);
+        Posts::find($id)->delete();
+    }
 
-        if ($post) {
-            $post->update([
-                'status' => false,
-            ]);
-        }
+    public function deleteComment($id)
+    {
+        Comments::find($id)->delete();
     }
 
     public function render()

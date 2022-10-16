@@ -56,6 +56,17 @@ class GroupPostListing extends Component
             Session::flash('error', __('Unable to Submit Comment'));
         }
     }
+
+    public function deletePost($id)
+    {
+        GroupPost::find($id)->delete();
+    }
+
+    public function deleteComment($id)
+    {
+        GroupComment::find($id)->delete();
+    }
+    
     public function render()
     {
         $posts=GroupPost::orderBy('created_at','DESC')->where('group_id',$this->groupId)->where('status',true)->get();

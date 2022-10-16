@@ -83,15 +83,17 @@
               </div>
             </div>
             <!-- Card feed action dropdown START -->
+            @if ($post->user_id==Auth::user()->id)
             <div class="dropdown">
               <a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2" id="cardFeedAction" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-three-dots"></i>
               </a>
               <!-- Card feed action dropdown menu -->
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction"> 
-                <li><a class="dropdown-item" href="#"> <i class="bi bi-x-circle fa-fw pe-2"></i>Delete </a></li> 
+                <li><a class="dropdown-item" href="javascript:;" wire:click="deletePost({{$post->id}})"> <i class="bi bi-x-circle fa-fw pe-2"></i>Delete </a></li> 
               </ul>  
             </div>
+            @endif
             <!-- Card feed action dropdown END -->
           </div>
         </div>
@@ -140,12 +142,13 @@
             <!-- Comment item START -->
             @foreach ($post->groupComments as $comment)
             <li class="comment-item">
-                <div class="d-flex position-relative">
+                <div class="d-flex align-items-center justify-content-between">
                   <!-- Avatar -->
-                  <div class="avatar avatar-xs">
-                    <a href="#!"><img class="avatar-img rounded-circle" src="{{$comment->user->profile_pic_path? asset('storage/'.$comment->user->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""></a>
-                  </div>
-                  <div class="ms-2">
+                  
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-xs">
+                      <a href="#!"><img class="avatar-img rounded-circle" src="{{$comment->user->profile_pic_path? asset('storage/'.$comment->user->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""></a>
+                    </div>
                     <!-- Comment by -->
                     <div class="bg-light rounded-start-top-0 p-3 rounded">
                       <div class="d-flex justify-content-between">
@@ -157,6 +160,17 @@
                     <!-- Comment react -->
                    
                   </div>
+                  @if ($comment->user_id==Auth::user()->id)
+                  <div class="dropdown">
+                    <a href="#" class="text-secondary btn btn-secondary-soft-hover py-1 px-2" id="cardFeedAction" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots"></i>
+                    </a>
+                    <!-- Card feed action dropdown menu -->
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cardFeedAction"> 
+                      <li><a class="dropdown-item" href="javascript:;" wire:click="deleteComment({{$comment->id}})"> <i class="bi bi-x-circle fa-fw pe-2"></i>Delete </a></li> 
+                    </ul>  
+                  </div>
+                  @endif
                 </div>
                
                <br>
