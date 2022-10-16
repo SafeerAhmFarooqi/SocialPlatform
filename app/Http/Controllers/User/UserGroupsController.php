@@ -164,6 +164,29 @@ class UserGroupsController extends BaseUserController
         return back()->with('error', 'Unable to Block Group' );
     }
  }
+
+ public function unblockGroup(Request $request)
+ {
+    $groupBlockList=GroupBlockList::where('group_id',$request->groupId)->where('member_id',Auth::user()->id)->first();
+
+    if ($groupBlockList) {
+        $groupBlockList->update([
+            'status' => false,
+        ]);
+    } else {
+       
+    }
+
+    
+    if($groupBlockList)
+    {
+        return back()->with('success', 'Group unblocked Successfully' );
+    }
+    else
+    {
+        return back()->with('error', 'Unable to unblock Group' );
+    }
+ }
   
 }
 

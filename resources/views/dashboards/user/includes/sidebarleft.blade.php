@@ -74,6 +74,11 @@
               <i class="fa-fw bi bi-life-preserver me-2"></i>Support
             </a> 
           </li>
+          <li class="nav-item"> 
+            <a class="nav-link" href="{{route('user.activity.page')}}">
+              <i class="fa-fw bi bi-life-preserver me-2"></i>Activity Log
+            </a> 
+          </li>
         </ul>
         <!-- Side Nav END -->
       </div>

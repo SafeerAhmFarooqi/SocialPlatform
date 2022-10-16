@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminCountryController;
 use App\Http\Controllers\Shop\VoucherShopController;
 use App\Http\Controllers\Shop\ShopProfileController;
 use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\User\UserActivityController;
 use App\Http\Controllers\User\UserPeopleNearbyController;
 use App\Http\Controllers\User\UserGroupsController;
 use App\Http\Controllers\User\UserListController;
@@ -115,6 +116,7 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::post('/user-groups-delete', [UserGroupsController::class,'deleteGroup'])->name('user.dashboard.groups.delete');
     Route::post('/user-groups-leave', [UserGroupsController::class,'leaveGroup'])->name('user.dashboard.groups.leave');
     Route::post('/user-groups-block', [UserGroupsController::class,'blockGroup'])->name('user.dashboard.groups.block');
+    Route::post('/user-groups-unblock', [UserGroupsController::class,'unblockGroup'])->name('user.dashboard.groups.unblock');
     Route::post('/user-groups-member-store', [UserGroupsController::class,'userGroupsMemberStore'])->name('user.dashboard.groups.member.store');
     Route::get('/user-groups-posts/{id?}', [UserGroupsController::class,'userGroupPostPageShow'])->name('user.dashboard.groups.post');
     Route::get('/user-profile-setting-page', [UserProfileController::class,'userProfileSettingPageShow'])->name('user.profile.setting.show');
@@ -122,6 +124,7 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::get('/user-profile-password-page', [UserProfileController::class,'userProfilePasswordPageShow'])->name('user.profile.password.show');
     Route::get('/user-profile-password-change', [UserProfileController::class,'userProfilePasswordChange'])->name('user.profile.password.change');
     Route::get('/support-page', [UserProfileController::class,'supportPage'])->name('user.support.page');
+    Route::get('/activity-page', [UserActivityController::class,'activityPage'])->name('user.activity.page');
     Route::get('/user-list-page', [UserListController::class,'userListPageShow'])->name('user.dashboard.users.page');
     Route::get('/user-info-page/{id?}', [UserListController::class,'userInfoPageShow'])->name('user.dashboard.user.information');
     Route::get('/user-voucher-page', [UserVoucherController::class,'userVoucherPageShow'])->name('user.dashboard.voucher.page');
