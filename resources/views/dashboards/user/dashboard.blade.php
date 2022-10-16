@@ -1,6 +1,7 @@
 @extends('dashboards.user.dashboard-layout')
 @section('page-content')
 <div class="col-md-8 col-lg-6 vstack gap-4">
+  @include('common.validation')
   <livewire:post-listing/> 
  </div>
 @endsection

@@ -40,6 +40,8 @@
                 <div class="col-lg-2">
                   <!-- Card title -->
                   <h1 class="h4 card-title mb-lg-0">Groups</h1>
+                
+                
                 </div>
                 
                 <div class="col-sm-10">
@@ -47,7 +49,9 @@
                   <!-- Button modal -->
                   <a class="btn btn-primary-soft ms-auto w-100" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa-solid fa-plus pe-1"></i> Create group</a>
                 </div>
+
             </div>
+              @include('common.validation')
               </div>
             </div>
             <!-- Card header START -->
@@ -103,9 +107,19 @@
                         </div>
                         <!-- Card body END -->
                         <!-- Card Footer START -->
+
                         @if ($joinedGroup->group_status==1)
                         <div class="card-footer text-center">
-                          <a class="btn btn-success-soft btn-sm" href="{{route('user.dashboard.groups.post',[$joinedGroup->id])}}"> Enter   </a>
+                          @if ($joinedGroup->isMember())
+                          <a class="btn btn-success-soft btn-sm" href="{{route('user.dashboard.groups.post',[$joinedGroup->id])}}"> Enter   </a>    
+                          @else
+                          <span class="text-danger"> You Are No Longer Member of this Group   </span>                              
+                          @endif
+                          
+                        </div>    
+                        @else
+                        <div class="card-footer text-center">
+                          <span class="btn btn-danger-soft btn-sm"> This Group is Inactive   </span>
                         </div>
                         @endif
                        
@@ -147,14 +161,14 @@
                             <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
                               <!-- Group stat item -->
                               <div>
-                                <h6 class="mb-0">{{$myGroup->members->count()??''}}</h6>
+                                <h6 class="mb-0">{{$myGroup->members->count()??0}}</h6>
                                 <small>Members</small>
                               </div>
                               <!-- Divider -->
                               <div class="vr"></div>
                               <!-- Group stat item -->
                               <div>
-                                <h6 class="mb-0">20</h6>
+                                <h6 class="mb-0">{{$myGroup->posts->count()??0}}</h6>
                                 <small>Post  </small>
                               </div>
                             </div>
@@ -192,6 +206,9 @@
                           <select class="form-control" name="members[]" multiple="">
                           <option value="">Select Members</option>
                             @foreach($users as $user)
+                            @if ($user->isGroupActiveMember($myGroup->id))
+                                @continue
+                            @endif
                             <option value="{{$user->id}}">{{$user->firstname}}</option>
                             @endforeach
                             </select>
