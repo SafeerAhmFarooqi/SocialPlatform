@@ -11,7 +11,7 @@ class GroupsList extends Component
 {
     public function render()
     {
-        $joinedGroups=Group::whereRelation('members', 'member_id', Auth::user()->id)->where('group_status',true)->take(6)->get();
+        $joinedGroups=Group::whereRelation('members', 'member_id', Auth::user()->id)->where('status',true)->take(6)->get();
         return view('livewire.groups-list',[
             'joinedGroups' => $joinedGroups,
         ]);

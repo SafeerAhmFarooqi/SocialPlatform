@@ -21,14 +21,14 @@ class GroupAdminController extends BaseAdminController
  public function allGroupsListShowActive()
  {
     // return "safeer";
-    $groups = Group::where('group_status',true)->get();
+    $groups = Group::where('status',true)->get();
     return view('dashboards.shop-admin.admin.all-groups-active-page',['groups'=>$groups,'srNo'=>0]);
  }   
 
  public function allGroupsListShowDeactive()
  {
     // return "safeer";
-    $groups = Group::where('group_status',false)->get();
+    $groups = Group::where('status',false)->get();
     return view('dashboards.shop-admin.admin.all-groups-deactive-page',['groups'=>$groups,'srNo'=>0]);
  }   
 
@@ -43,7 +43,7 @@ class GroupAdminController extends BaseAdminController
  public function allGroupsListActive(Request $request)
  {
     $group=Group::find($request->group_id);
-    $group->group_status=true;
+    $group->status=true;
     $group->save();
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
@@ -53,7 +53,7 @@ class GroupAdminController extends BaseAdminController
  public function allGroupsListDeactive(Request $request)
  {
     $group=Group::find($request->group_id);
-    $group->group_status=false;
+    $group->status=false;
     $group->save();
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);

@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupMembers;
+use App\Models\GroupBlockList;
 use App\Models\Voucher;
 use App\Models\UseVoucher;
 use App\Models\Countries;
+use App\Models\GroupMemberRequest;
 use Illuminate\Support\Carbon;
 
 class UserGroupsController extends BaseUserController
@@ -56,20 +58,22 @@ class UserGroupsController extends BaseUserController
  public function userGroupsMemberStore(Request $request)
  {
     //return $request;
-    foreach ($request->members as $value) {
-        $check=false;
-        $check=GroupMembers::where('group_id',$request->groupId)->where('member_id',$value)->first();
-        if(!$check)
-        {
-            GroupMembers::create([
-                'group_id'=>$request->groupId,
-                'member_id'=>$value,
+    foreach ($request->members as $member) {
+        if ($groupMemberRequest=GroupMemberRequest::where('member_id',$member)->where('group_id',$request->groupId)->first()) {
+            if (GroupMembers::where('member_id',$member)->where('group_id',$request->groupId)->where('status',false)->first()) {
+                $groupMemberRequest->update([
+                    'status' => null,
+                ]);   
+            }
+        } else {
+            GroupMemberRequest::create([
+                'member_id' => $member,
+                'group_id' => $request->groupId,
             ]);
         }
-        
     }
 
-    return back();
+    return back()->with('success', 'Request Send to Members Successfully' );
  }
  
 
@@ -107,6 +111,58 @@ class UserGroupsController extends BaseUserController
     }
     
 
+ }
+
+ public function leaveGroup(Request $request)
+ {
+    $groupMember=GroupMembers::where('group_id',$request->groupId)->where('member_id',Auth::user()->id)->first();
+
+    $groupMember->update([
+        'status' => false,
+    ]);
+    
+    if($groupMember)
+    {
+        return back()->with('success', 'Group Left Successfully' );
+    }
+    else
+    {
+        return back()->with('error', 'Unable to Leave Group' );
+    }
+    
+
+ }
+
+ public function blockGroup(Request $request)
+ {
+    $groupBlockList=GroupBlockList::where('group_id',$request->groupId)->where('member_id',Auth::user()->id)->first();
+
+    if ($groupBlockList) {
+        $groupBlockList->update([
+            'status' => true,
+        ]);
+    } else {
+        $groupBlockList=GroupBlockList::create([
+            'group_id' => $request->groupId,
+            'member_id' => Auth::user()->id,
+            'status' => true,
+        ]);
+    }
+
+    $groupMember=GroupMembers::where('group_id',$request->groupId)->where('member_id',Auth::user()->id)->first();
+
+    $groupMember->update([
+        'status' => false,
+    ]);
+    
+    if($groupMember)
+    {
+        return back()->with('success', 'Group Blocked Successfully' );
+    }
+    else
+    {
+        return back()->with('error', 'Unable to Block Group' );
+    }
  }
   
 }

@@ -50,6 +50,9 @@
           <!-- Card body END -->
         </div>
       </div>
+
+      <livewire:group-request-listing/> 
+      
       <!-- Card News END -->
     </div>
   </div>

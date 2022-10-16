@@ -84,7 +84,7 @@
        ?>
        
                <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a??''}}  </small><Br>
-                <strong>Status :</strong> <span>{{$group->group_status?'Active' : 'Non-active'}}</span>
+                <strong>Status :</strong> <span>{{$group->status?'Active' : 'Non-active'}}</span>
                
              </div>
                <div class="col-sm-6 text-right">
@@ -97,7 +97,7 @@
              <div>
                <strong>Created on:</strong> <span>{{$group->created_at}}</span>
              </div>
-             @if ($group->group_status==1)
+             @if ($group->status==1)
              <div class="card-hover-show">
                 <a class="btn btn-xs fs-10 btn-bold btn-default"   href="#" data-toggle="modal" data-target="#groupMembers-{{$group->id}}">    Add Group Members</a> 
                 {{-- <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('show_group',[$group->id,$group->group_title])}}">   Enter Group</a>  --}}
@@ -183,7 +183,7 @@
                          
            
                    <small class="fs-16 fw-300 ls-1"><i class="fa fa-user pr-1"></i> {{$a??''}} </small><Br>
-                      <strong>Status :</strong> <span>{{$group->group_status?'Active' : 'Non-active'}}</span>
+                      <strong>Status :</strong> <span>{{$group->status?'Active' : 'Non-active'}}</span>
                    
                  </div>
                   
@@ -192,7 +192,7 @@
                  <div>
                    <strong>Created on:</strong> <span>{{$group->created_at}}</span>
                  </div>
-                 @if ($group->group_status==1)
+                 @if ($group->status==1)
                  <div class="card-hover-show"> 
                   {{-- <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('user.dashboard.groups.post',[$group->id])}}">   Enter Group</a>  --}}
                   <a class="btn btn-xs fs-10 btn-bold btn-warning"   href="{{route('user.dashboard.groups.post',[$group->id])}}">   Enter Group</a>

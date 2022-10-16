@@ -40,6 +40,8 @@
                 <div class="col-lg-2">
                   <!-- Card title -->
                   <h1 class="h4 card-title mb-lg-0">Groups</h1>
+                
+                
                 </div>
                 
                 <div class="col-sm-10">
@@ -47,7 +49,9 @@
                   <!-- Button modal -->
                   <a class="btn btn-primary-soft ms-auto w-100" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="fa-solid fa-plus pe-1"></i> Create group</a>
                 </div>
+
             </div>
+              @include('common.validation')
               </div>
             </div>
             <!-- Card header START -->
@@ -82,7 +86,7 @@
                             </div>
                             <!-- Info -->
                             <h5 class="mb-0"> <a href="group-details.html">{{$joinedGroup->title??''}}</a> </h5>
-                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{$joinedGroup->group_status?'success' : 'danger'}}">{{$joinedGroup->group_status?'Active' : 'Deactive'}}</span> </small>
+                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{$joinedGroup->status?'success' : 'danger'}}">{{$joinedGroup->status?'Active' : 'Deactive'}}</span> </small>
                             <!-- Group stat START -->
                             <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
                               <!-- Group stat item -->
@@ -103,15 +107,78 @@
                         </div>
                         <!-- Card body END -->
                         <!-- Card Footer START -->
-                        @if ($joinedGroup->group_status==1)
+
+                        @if ($joinedGroup->status==1)
                         <div class="card-footer text-center">
-                          <a class="btn btn-success-soft btn-sm" href="{{route('user.dashboard.groups.post',[$joinedGroup->id])}}"> Enter   </a>
+                          @if ($joinedGroup->isMember())
+                          <a class="btn btn-success-soft btn-sm" href="{{route('user.dashboard.groups.post',[$joinedGroup->id])}}"> Enter   </a>    
+                          <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#leave-group-{{$joinedGroup->id}}"> Leave   </a>  
+                          <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#block-group-{{$joinedGroup->id}}"> Block   </a>  
+                          @else
+                          <span class="text-danger"> You Are No Longer Member of this Group   </span> <br>
+                          @if (!$joinedGroup->isGroupBlocked())
+                          <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#block-group-{{$joinedGroup->id}}"> Block   </a>
+                          @endif   
+                          @if ($joinedGroup->isGroupBlocked())
+                          <span class="text-danger"> You have blocked this group   </span>
+                          @endif                             
+                          @endif
+                          
+                        </div>    
+                        @else
+                        <div class="card-footer text-center">
+                          <span class="btn btn-danger-soft btn-sm"> This Group is Inactive   </span>
                         </div>
                         @endif
                        
                         <!-- Card Footer END -->
                       </div>
                       <!-- Card END -->
+                    </div>
+                    <div class="modal fade" id="leave-group-{{$joinedGroup->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{$joinedGroup->title??''}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to leave this group?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="{{route('user.dashboard.groups.leave')}}" method="post">
+                              @csrf
+                              <input type="hidden" name="groupId" value="{{$joinedGroup->id}}">
+                              <button type="submit" class="btn btn-danger">Leave</button>
+                            </form>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal fade" id="block-group-{{$joinedGroup->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{$joinedGroup->title??''}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to block this group?<br>
+                            You will no longer receive group join invitation untill unblock.
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="{{route('user.dashboard.groups.block')}}" method="post">
+                              @csrf
+                              <input type="hidden" name="groupId" value="{{$joinedGroup->id}}">
+                              <button type="submit" class="btn btn-danger">Block</button>
+                            </form>
+                            
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     @endforeach
                   
@@ -142,19 +209,19 @@
                             </div>
                             <!-- Info -->
                             <h5 class="mb-0"> <a href="group-details.html">{{$myGroup->title??''}}</a> </h5>
-                            <small> <a href="#" data-bs-toggle="modal" data-bs-target="#delete-group-{{$myGroup->id}}"><i class="bi bi-trash pe-1"></i></a> <span class="badge bg-danger bg-opacity-10 text-{{$myGroup->group_status?'success' : 'warning'}}">{{$myGroup->group_status?'Active' : 'Pending Approval'}}</span> </small>
+                            <small> <a href="#" data-bs-toggle="modal" data-bs-target="#delete-group-{{$myGroup->id}}"><i class="bi bi-trash pe-1"></i></a> <span class="badge bg-danger bg-opacity-10 text-{{$myGroup->status?'success' : 'warning'}}">{{$myGroup->status?'Active' : 'Pending Approval'}}</span> </small>
                             <!-- Group stat START -->
                             <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
                               <!-- Group stat item -->
                               <div>
-                                <h6 class="mb-0">{{$myGroup->members->count()??''}}</h6>
+                                <h6 class="mb-0">{{$myGroup->members->count()??0}}</h6>
                                 <small>Members</small>
                               </div>
                               <!-- Divider -->
                               <div class="vr"></div>
                               <!-- Group stat item -->
                               <div>
-                                <h6 class="mb-0">20</h6>
+                                <h6 class="mb-0">{{$myGroup->posts->count()??0}}</h6>
                                 <small>Post  </small>
                               </div>
                             </div>
@@ -164,7 +231,7 @@
                         <!-- Card body END -->
                         <!-- Card Footer START -->
                        
-                        @if ($myGroup->group_status==1)
+                        @if ($myGroup->status==1)
                         <div class="card-footer text-center">
                           @if ($myGroup->owner_id==Auth::user()->id) 
                             <a class="btn btn-success-soft btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2-{{$myGroup->id}}"> Add Members   </a>
@@ -192,6 +259,9 @@
                           <select class="form-control" name="members[]" multiple="">
                           <option value="">Select Members</option>
                             @foreach($users as $user)
+                            @if ($user->isGroupActiveMember($myGroup->id)||$user->isMemberBlockedGroup($myGroup->id))
+                                @continue
+                            @endif
                             <option value="{{$user->id}}">{{$user->firstname}}</option>
                             @endforeach
                             </select>

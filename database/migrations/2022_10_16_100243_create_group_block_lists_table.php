@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('group_block_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('location')->nullable();
-            $table->unsignedBigInteger('owner_id');
-            $table->boolean('status')->default(0);
-            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('member_id');
+            $table->unsignedBigInteger('group_id');
+            $table->boolean('status')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('group_block_lists');
     }
 };

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Group extends Model
 {
@@ -19,13 +20,43 @@ class Group extends Model
         'title',
         'location',
         'owner_id',
-        'group_status',
+        'status',
         'created_by',
     ];
 
     public function members()
     {
         return $this->hasMany(GroupMembers::class, 'group_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(GroupPost::class, 'group_id');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function isMember()
+    {
+        if (GroupMembers::where('group_id',$this->id)->where('member_id',Auth::user()->id)->where('status',true)->first()) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
+    public function isGroupBlocked()
+    {
+        if (GroupBlockList::where('group_id',$this->id)->where('member_id',Auth::user()->id)->where('status',true)->first()) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
 }

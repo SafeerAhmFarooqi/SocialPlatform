@@ -126,4 +126,24 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(ShopSubCategories::class, 'shop_sub_category_id');
     }
+
+    public function isGroupActiveMember($groupId)
+    {
+            if (GroupMembers::where('member_id',$this->id)->where('group_id',$groupId)->where('status',true)->first()) {
+                return true;
+            } else {
+                return false;
+            }
+            
+    }
+
+    public function isMemberBlockedGroup($groupId)
+    {
+            if (GroupBlockList::where('member_id',$this->id)->where('group_id',$groupId)->where('status',true)->first()) {
+                return true;
+            } else {
+                return false;
+            }
+            
+    }
 }

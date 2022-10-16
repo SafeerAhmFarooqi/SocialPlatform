@@ -1,3 +1,4 @@
+@section('scripts')
 <script src="{{asset('assets/ressoli-theme/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Vendors -->
@@ -11,7 +12,8 @@
 
 <!-- Template Functions -->
 <script src="{{asset('assets/ressoli-theme/assets/js/functions.js')}}"></script>
-<script src="{{asset('assets/FriendFinder-Theme/js/jquery-3.1.1.min.js')}}"></script>
+<script src="{{asset('assets/FriendFinder-Theme/js/jquery-3.1.1.min.js')}}"></script>    
+@show
 @yield('pageScripts')
 @livewireScripts
 
