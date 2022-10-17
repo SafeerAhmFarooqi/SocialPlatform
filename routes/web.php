@@ -90,8 +90,10 @@ Route::name('admin.')->prefix('admin')->middleware(['role:Admin','auth'])->group
     Route::get('/Group-Post-list', [PostAdminController::class,'allGroupPostShow'])->name('all.group.posts.show');
     Route::post('/Group-Post-list-Delete', [PostAdminController::class,'allGroupPostDelete'])->name('all.groups.post.delete');
     // Admin Comments Management Routes
-    Route::get('/Post-Comment-list', [CommentAdminController::class,'allPostsCommentsShow'])->name('all.post.comments.show');
+    Route::get('/Post-Comment-list', [CommentAdminController::class,'allPostsCommentsShow'])->name('all.post.user.comments.show');
+    Route::get('/Group-Comment-list', [CommentAdminController::class,'allPostsGroupCommentsShow'])->name('all.post.group.comments.show');
     Route::post('/Post-Comment-list-Delete', [CommentAdminController::class,'allPostsCommentsDelete'])->name('all.post.comments.delete');
+    Route::post('/Group-Comment-list-Delete', [CommentAdminController::class,'allPostsGroupCommentsDelete'])->name('all.post.group.comments.delete');
     Route::resource('country', AdminCountryController::class);
 });
 
