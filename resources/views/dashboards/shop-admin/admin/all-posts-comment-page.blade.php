@@ -168,13 +168,13 @@
                            
                             <!--end::SKU=-->
                             <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
+                            <td class="text-start pe-0">
+                             
                                     
-                                    <span class="fw-bolder">{{$comment->user->email}}</span>
-                                    
-                                </div>
-                            </td>
+                                <span class="fw-bolder">{{$comment->user->email??''}}</span>
+                                <span class="text-danger fw-semibold text-danger d-block fs-7">{{$comment->user->deleted_at?'(Deleted User)' : ''}}</span>
+                         
+                        </td>
                             <!--end::Rating-->
                             <!--begin::Price=-->
                             
