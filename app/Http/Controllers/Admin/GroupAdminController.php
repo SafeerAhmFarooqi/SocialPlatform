@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Models\GroupMemberRequest;
 use App\Models\Group;
 
 class GroupAdminController extends BaseAdminController
@@ -34,7 +35,18 @@ class GroupAdminController extends BaseAdminController
 
  public function allGroupsListDelete(Request $request)
  {
-    Group::find($request->group_id)->delete();
+    $group=Group::find($request->group_id);
+    foreach (GroupMemberRequest::where('group_id',$request->group_id)->where('status',null)->get() as $groupMemberRequest) {
+      $groupMemberRequest->update([
+         'status' => false,
+      ]);
+    }
+
+    $group->update([
+      'status' => false,
+    ]);
+
+    $group->delete();
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'Group Deleted Successfully');

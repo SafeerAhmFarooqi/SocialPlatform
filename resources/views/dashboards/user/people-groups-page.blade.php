@@ -86,7 +86,12 @@
                             </div>
                             <!-- Info -->
                             <h5 class="mb-0"> <a href="group-details.html">{{$joinedGroup->title??''}}</a> </h5>
-                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{$joinedGroup->status?'success' : 'danger'}}">{{$joinedGroup->status?'Active' : 'Deactive'}}</span> </small>
+                            @if ($joinedGroup->deleted_at==null)
+                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{$joinedGroup->status?'success' : 'danger'}}">{{$joinedGroup->status?'Active' : 'Deactive'}}</span> </small>    
+                            @else
+                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{'danger'}}">{{'Deactive'}}-This Group is removed by admin</span> </small>
+                            @endif
+                            
                             <!-- Group stat START -->
                             <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
                               <!-- Group stat item -->
@@ -107,7 +112,7 @@
                         </div>
                         <!-- Card body END -->
                         <!-- Card Footer START -->
-
+                        @if ($joinedGroup->deleted_at==null)
                         @if ($joinedGroup->status==1)
                         <div class="card-footer text-center">
                           @if ($joinedGroup->isMember())
@@ -130,6 +135,10 @@
                           <span class="btn btn-danger-soft btn-sm"> This Group is Inactive   </span>
                         </div>
                         @endif
+                        @else
+                        <span class="btn btn-danger-soft btn-sm"> This Group is Removed by Admin   </span>
+                        @endif
+                       
                        
                         <!-- Card Footer END -->
                       </div>
@@ -209,7 +218,12 @@
                             </div>
                             <!-- Info -->
                             <h5 class="mb-0"> <a href="group-details.html">{{$myGroup->title??''}}</a> </h5>
-                            <small> <a href="#" data-bs-toggle="modal" data-bs-target="#delete-group-{{$myGroup->id}}"><i class="bi bi-trash pe-1"></i></a> <span class="badge bg-danger bg-opacity-10 text-{{$myGroup->status?'success' : 'warning'}}">{{$myGroup->status?'Active' : 'Pending Approval'}}</span> </small>
+                            @if ($myGroup->deleted_at==null)
+                            <small> <a href="#" data-bs-toggle="modal" data-bs-target="#delete-group-{{$myGroup->id}}"><i class="bi bi-trash pe-1"></i></a> <span class="badge bg-danger bg-opacity-10 text-{{$myGroup->status?'success' : 'warning'}}">{{$myGroup->status?'Active' : 'Pending Approval'}}</span> </small> 
+                            @else
+                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{'danger'}}">{{'Deactive'}}-This Group is removed by admin</span> </small>
+                            @endif
+                            
                             <!-- Group stat START -->
                             <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
                               <!-- Group stat item -->
@@ -230,15 +244,19 @@
                         </div>
                         <!-- Card body END -->
                         <!-- Card Footer START -->
-                       
-                        @if ($myGroup->status==1)
-                        <div class="card-footer text-center">
-                          @if ($myGroup->owner_id==Auth::user()->id) 
-                            <a class="btn btn-success-soft btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2-{{$myGroup->id}}"> Add Members   </a>
-                          @endif
-                          <a class="btn btn-success-soft btn-sm" href="{{route('user.dashboard.groups.post',[$myGroup->id])}}"> Enter   </a>
-                        </div>
-                        @endif
+                       @if ($myGroup->deleted_at==null)
+                       @if ($myGroup->status==1)
+                       <div class="card-footer text-center">
+                         @if ($myGroup->owner_id==Auth::user()->id) 
+                           <a class="btn btn-success-soft btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2-{{$myGroup->id}}"> Add Members   </a>
+                         @endif
+                         <a class="btn btn-success-soft btn-sm" href="{{route('user.dashboard.groups.post',[$myGroup->id])}}"> Enter   </a>
+                       </div>
+                       @endif
+                       @else
+                       <span class="btn btn-danger-soft btn-sm"> This Group is Removed by Admin   </span>
+                       @endif
+                      
                  <!-- Card Footer END -->
                 </div>
                 <!-- Card END -->
