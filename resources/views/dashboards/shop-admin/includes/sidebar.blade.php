@@ -263,11 +263,19 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('admin.all.post.comments.show')}}">
+                            <a class="menu-link" href="{{route('admin.all.post.user.comments.show')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Comments</span>
+                                <span class="menu-title">User Post Comments</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('admin.all.post.group.comments.show')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Group Post Comments</span>
                             </a>
                         </div>
                     </div>

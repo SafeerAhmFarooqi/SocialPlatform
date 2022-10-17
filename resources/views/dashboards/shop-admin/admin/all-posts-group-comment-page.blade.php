@@ -132,9 +132,9 @@
                             <th class="text-start min-w-100px">Record Id</th>
                             <th class="min-w-150px">User Name</th>
                             <th class="text-start min-w-100px">User Email</th>
-                            <th class="text-start min-w-100px">Group id</th>
-                            <th class="text-start min-w-70px">Post</th>
-                            <th class="text-start min-w-100px">Image</th>
+                            <th class="text-start min-w-100px">Post id</th>
+                            <th class="text-start min-w-100px">Group Title</th>
+                            <th class="text-start min-w-70px">Comment</th>
                             <th class="text-start min-w-100px">Date</th>
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
@@ -144,11 +144,11 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($posts as $post)
+                        @foreach ($comments as $comment)
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$post->id}}</span>
+                                <span class="fw-bolder">{{$comment->id}}</span>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -159,7 +159,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$post->user->firstname.' '.$post->user->lastname}}</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$comment->user->firstname.' '.$comment->user->lastname}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -172,8 +172,8 @@
                             <td class="text-start pe-0">
                              
                                     
-                                <span class="fw-bolder">{{$post->user->email??''}}</span>
-                                <span class="text-danger fw-semibold text-danger d-block fs-7">{{$post->user->deleted_at?'(Deleted User)' : ''}}</span>
+                                <span class="fw-bolder">{{$comment->user->email??''}}</span>
+                                <span class="text-danger fw-semibold text-danger d-block fs-7">{{$comment->user->deleted_at?'(Deleted User)' : ''}}</span>
                          
                         </td>
                             <!--end::Rating-->
@@ -182,24 +182,26 @@
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>{{$post->group_id}}</span>
+                                <span>{{$comment->post->id}}</span>
                             </td>
                             <td class="text-start pe-0">
-                                <span>{{$post->post_text}}</span>
+                                <span>{{$comment->group->title??''}}</span>
+                            </td>
+                            <td class="text-start pe-0">
+                                <span>{{$comment->comment}}</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-start pe-0">post image here</td>
                             
                             <td class="text-start pe-0">
-                                <span>{{$post->created_at->format('F d, Y')}}</span>
+                                <span>{{$comment->created_at->format('F d, Y')}}</span>
                             </td>
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
-                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$post->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.all.groups.post.delete')}}" method="post">
+                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$comment->id)}}">Edit</a> --}}
+                                <form action="{{route('admin.all.post.group.comments.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="post_id" value="{{$post->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-danger" name="comment_id" value="{{$comment->id}}">Delete</button>
                                 </form>
                                 </div>
                                 
