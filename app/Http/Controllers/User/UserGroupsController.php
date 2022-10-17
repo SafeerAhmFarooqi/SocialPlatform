@@ -21,8 +21,8 @@ class UserGroupsController extends BaseUserController
  public function userGroupsPageShow()
  {
     $users= User::where('id', '!=',Auth::user()->id)->role('User')->get();
-    $myGroups=Group::where('owner_id',Auth::user()->id)->get();
-    $joinedGroups=Group::whereRelation('members', 'member_id', Auth::user()->id)->where('owner_id','!=',Auth::user()->id)->get();
+    $myGroups=Group::where('owner_id',Auth::user()->id)->withTrashed()->get();
+    $joinedGroups=Group::whereRelation('members', 'member_id', Auth::user()->id)->where('owner_id','!=',Auth::user()->id)->withTrashed()->get();
     $active=0;
     $active=$myGroups->count()>0&&$joinedGroups->count()==0?$active='1' : $active='1';
     $active=$myGroups->count()==0&&$joinedGroups->count()>0?$active='2' : $active='2';
