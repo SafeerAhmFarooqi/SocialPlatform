@@ -39,7 +39,7 @@ class PostAdminController extends BaseAdminController
  
  public function allGroupPostDelete(Request $request)
  {
-    Posts::findOrFail($request->post_id)->delete();
+   GroupPost::findOrFail($request->post_id)->delete();
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'Post Deleted Successfully');
