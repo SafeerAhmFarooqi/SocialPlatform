@@ -17,7 +17,7 @@ class PostAdminController extends BaseAdminController
  public function allUserPostShow()
  {
     // return "safeer";
-    $posts = Posts::where('group_id',0)->get();
+    $posts = Posts::all();
     return view('dashboards.shop-admin.admin.all-user-posts-page',['posts'=>$posts,'srNo'=>0]);
  }   
  
