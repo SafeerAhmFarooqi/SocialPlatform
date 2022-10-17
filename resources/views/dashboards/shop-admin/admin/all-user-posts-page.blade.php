@@ -153,12 +153,12 @@
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
                                     <a href="#" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url();"></span>
+                                        <span class="symbol-label" style="background-image:url({{$post->user->profile_pic_path?'storage/'.$post->user->profile_pic_path : asset('assets/Metronic-Theme/media/svg/avatars/blank.svg')}});"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$post->user->firstname.' '.$post->user->lastname}}</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$post->user->firstname??''.' '.($post->user->lastname??'')}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -168,12 +168,12 @@
                            
                             <!--end::SKU=-->
                             <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
+                            <td class="text-start pe-0">
+                             
                                     
-                                    <span class="fw-bolder">{{$post->user->email}}</span>
-                                    
-                                </div>
+                                    <span class="fw-bolder">{{$post->user->email??''}}</span>
+                                    <span class="text-danger fw-semibold text-danger d-block fs-7">{{$post->user->deleted_at?'(Deleted User)' : ''}}</span>
+                             
                             </td>
                             <!--end::Rating-->
                             <!--begin::Price=-->
@@ -181,14 +181,19 @@
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>{{$post->post_text}}</span>
+                                <span>{{$post->post_text??''}}</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-start pe-0">post image here</td>
+                            <td>
+                                @if ($post->image_path)
+                                <span class="symbol-label" style="background-image:url({{$post->user->profile_pic_path?'storage/'.$post->user->profile_pic_path :''}});"></span>   
+                                @endif
+                            </td>
+        
                             
                             <td class="text-start pe-0">
-                                <span>{{$post->created_at->format('F d, Y')}}</span>
+                                <span>{{$post->created_at->format('F d, Y')??''}}</span>
                             </td>
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">

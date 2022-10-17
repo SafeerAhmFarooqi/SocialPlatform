@@ -125,27 +125,24 @@
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$voucher->id}}</span><Br>
-                                <span class="text-muted fw-semibold text-muted d-block fs-7"> {{$voucher->created_at->format('F d, Y')}}</span>
+                                <span class="fw-bolder">{{$voucher->id??''}}</span><Br>
+                                <span class="text-muted fw-semibold text-muted d-block fs-7"> {{($voucher->created_at??\Carbon\Carbon::now())->format('F d, Y')}}</span>
                             </td>
 
                             <td>
-                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">Shop 1   </a>
-                                  <span class="text-muted fw-semibold text-muted d-block fs-7">shop@gmail.com</span>
-                                   <span class="text-muted fw-semibold text-muted d-block fs-7"> +92 308 4069635</span>
-                                   <span class="text-muted fw-semibold text-muted d-block fs-7"> New Ireleand CIty New York</span>
+                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->shop->shopname??''}}   </a>
+                                  <span class="text-muted fw-semibold text-muted d-block fs-7">{{$voucher->shop->email??''}}</span>
+                                   <span class="text-muted fw-semibold text-muted d-block fs-7">{{$voucher->shop->phone??''}} </span>
+                                   <span class="text-muted fw-semibold text-muted d-block fs-7">{{$voucher->shop->shop_address??''}} </span>
                             </td>
                             <td>
-                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->title}}  </a>
-                                  <span class="text-muted fw-semibold text-muted d-block fs-7">asad@asadsohail.com</span>
-                                   <span class="text-muted fw-semibold text-muted d-block fs-7"> Mobile > Iphone </span>
+                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->title??''}}  </a>
                             </td>
                             <td>
-                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->code}}  </a>
-                                  <span class="text-muted fw-semibold text-muted d-block fs-7">a{{$voucher->voucher_status?'Active' : 'Non Active'}}</span> 
+                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->code??''}}  </a>
                             </td>
                             <td>
-                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->discount}}   </a> 
+                              <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$voucher->discount??''}}   </a> 
                             </td> 
  
                             <td class="text-end pe-0">

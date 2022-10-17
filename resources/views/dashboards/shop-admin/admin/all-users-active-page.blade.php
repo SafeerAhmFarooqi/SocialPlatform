@@ -129,7 +129,7 @@
                                                                     <br> 
                                                                     
                                                                 </div>
-                                                                <p> {{$user->created_at->format('F d, Y')}} </p>
+                                                             
                                                             </td>
                                                             <td>
                                                                 <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$user->firstname.' '.$user->lastname}}   </a>

@@ -159,7 +159,7 @@
             <div class="d-flex align-items-center">
               <!-- Avatar -->
               <div class="avatar avatar-story me-2">
-                <a href="#!"> <img class="avatar-img rounded-circle" src="{{$post->user->profile_pic_path? asset('storage/'.$post->user->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""> </a>
+                <a href="#!"> <img class="avatar-img rounded-circle" src="{{($post->user->profile_pic_path??false)? asset('storage/'.$post->user->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""> </a>
               </div>
               <!-- Info -->
               <div>
@@ -241,12 +241,12 @@
                  
                   <div class="d-flex align-items-center">
                     <div class="avatar avatar-xs">
-                      <a href="#!"><img class="avatar-img rounded-circle" src="{{$comment->user->profile_pic_path? asset('storage/'.$comment->user->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""></a>
+                      <a href="#!"><img class="avatar-img rounded-circle" src="{{($comment->user->profile_pic_path??false)? asset('storage/'.$comment->user->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""></a>
                     </div>
                     <!-- Comment by -->
                     <div class="bg-light rounded-start-top-0 p-3 rounded">
                       <div class="d-flex justify-content-between">
-                        <h6 class="mb-1"> <a href="#!"> {{$comment->user->firstname.' '.$comment->user->lastname}} </a></h6>
+                        <h6 class="mb-1"> <a href="#!"> {{($comment->user->firstname??'').' '.($comment->user->lastname??'')}} </a></h6>
                         <small class="ms-2">{{$comment->created_at->diffForHumans()??''}}</small>
                       </div>
                       <p class="small mb-0">{{$comment->comment??''}}</p>

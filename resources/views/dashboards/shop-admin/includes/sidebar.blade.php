@@ -224,23 +224,9 @@
                                 <span class="menu-title">All Vouchers</span>
                             </a>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="{{route('admin.all.vouchers.list.show.active')}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Active Vouchers</span>
-                            </a>
-                        </div>
+                       
 
-                        <div class="menu-item">
-                            <a class="menu-link" href="{{route('admin.all.vouchers.list.show.deactive')}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">De Active Vouchers</span>
-                            </a>
-                        </div>
+                    
                         
                     </div>
                 </div>
