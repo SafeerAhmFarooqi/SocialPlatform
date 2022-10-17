@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Group;
 use App\Models\Voucher;
 use App\Models\Posts;
+use App\Models\GroupPost;
 
 class PostAdminController extends BaseAdminController
 {
@@ -32,7 +33,7 @@ class PostAdminController extends BaseAdminController
  public function allGroupPostShow()
  {
     // return "safeer";
-    $posts = Posts::where('group_id','!=',0)->get();
+    $posts = GroupPost::all();
     return view('dashboards.shop-admin.admin.all-group-posts-page',['posts'=>$posts,'srNo'=>0]);
  }   
  
