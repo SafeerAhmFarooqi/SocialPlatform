@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Models\Posts;
+use App\Models\Group;
+use App\Models\GroupPost;
 use App\Mail\UserAccountActivationEmail;
 use App\Mail\UserAccountDeactivationEmail;
 
@@ -18,7 +21,39 @@ class UserAdminController extends BaseAdminController
     // return "safeer";
     $users = User::role('User')->get();
     return view('dashboards.shop-admin.admin.all-users-page',['users'=>$users,'srNo'=>0]);
- }    
+ }  
+ public function userPostList($id=null)
+ {
+   if (!$id) {
+      return back();
+   }
+     
+   $posts = Posts::where('user_id',$id)->get();
+   $groupPosts= GroupPost::where('user_id',$id)->get();
+   return view('dashboards.shop-admin.admin.user-all-posts-show',['posts'=>$posts->merge($groupPosts),'srNo'=>0]);
+ }  
+
+ public function userPostDelete(Request $request)
+ {
+   Posts::find($request->postId)->delete();
+    // Led::with('images')->where('user_id',$request->user_id)->delete();
+    // Storage::deleteDirectory('public/led-images/'.$request->user_id);
+    return back()->with('success', 'Post Deleted Successfully');
+ } 
+
+ public function userGroupList($id=null)
+ {
+   if (!$id) {
+      return back();
+   }
+     
+   $groups = Group::where('owner_id',$id)->get();
+   return view('dashboards.shop-admin.admin.user-all-groups-show',['groups'=>$groups,'srNo'=>0]);
+ }  
+
+
+ 
+ 
 
  public function allUsersListShowActive()
  {
