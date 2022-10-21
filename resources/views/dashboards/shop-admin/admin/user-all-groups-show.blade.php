@@ -102,83 +102,88 @@
             <!--end::Card header-->
             <!--begin::Card body-->
             <div class="card-body pt-0">
-         <div class="table-responsive">
-                                                <!--begin::Table-->
-                                                <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
-                                                    <!--begin::Table head-->
-                                                    <thead>
-                                                        <tr class="fw-bold text-muted">
-                                                         
-                                                            <th class="min-w-150px">#</th>
-                                                            <th class="min-w-140px">Details</th>
-                                                            <th class="min-w-120px">Phone</th>
-                                                            <th class="min-w-120px">Status</th> 
-                                                            <th class="min-w-120px">Social</th> 
-                                                            <th class="min-w-120px">Joined Date</th> 
-                                                            <th class="min-w-100px text-end">Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <!--end::Table head-->
-                                                    <!--begin::Table body-->
-                                                    <tbody>
-                                                      @foreach ($users as $user)
-                                                          <tr>
-                                                            <td>
-                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                            <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$user->id}}   </a>
-                                                                    <br> 
-                                                                    
-                                                                </div>
-                                                            
-                                                            </td>
-                                                            <td>
-                                                                <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$user->firstname.' '.$user->lastname}}   </a>
-                                                                <span class="text-muted fw-semibold text-muted d-block fs-7">{{$user->email}}</span>
-                                                                <span class="text-muted fw-semibold text-muted d-block fs-7">{{$user->address}}</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{$user->phone}}</a>
-                                                                
-                                                            </td>
-                                                            <td>
-                                                                <a href="#" class="badge badge-light-success">{{$user->user_status?'Active' : 'Non Active'}}</a>
-                                                            </td>
-                                                            <td>
-                                                                <a href="{{route('admin.user.post.list',[$user->id])}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-primary" title="Posts" ><span class="fa fa-globe"> </span></a>
+                <!--begin::Table-->
+               
 
-                                                                <a href="{{route('admin.user.group.list',[$user->id])}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-primary" title="Groups"><span class="fa fa-users"> </span></a>
-                                                            </td>
-                                                            <td>
-                                                                {{$user->created_at->format('F d, Y')}}
-                                                            </td>
-                                                          
-                                                            <td class="text-end">
 
-                                                                <form action="{{route('admin.all.users.list.delete')}}" method="post" style="float:right">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="kt_ecommerce_report_views_table">
+                    <!--begin::Table head-->
+                    <thead>
+                        <!--begin::Table row-->
+                        <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                            <th class="text-start min-w-100px">#</th>
+                            <th class="min-w-150px">Group</th> 
+                            <th class="text-start min-w-70px">Owner</th>  
+                            <th class="text-start min-w-100px">Actions</th>
+                        </tr>
+                        <!--end::Table row-->
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody class="fw-bold text-gray-600">
+                        <!--begin::Table row-->
+                                                
+                                                
+                        <!--end::Table row-->
+                        <!--begin::Table row-->
+                    @foreach ($groups as $group)     
+                        <!--end::Table row-->
+                    <tr class="odd">
+                            <!--begin::Product=-->
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$group->id}}</span><br>
+                                 <span class="text-muted fw-semibold text-muted d-block fs-7">October 08, 2022</span>
+                            </td>
+                        
+
+                            <td>
+                            <a href="#" class="text-dark fw-bold text-hover-primary fs-6">{{$group->title}}  </a>
+                            <span class="text-muted fw-semibold text-muted d-block fs-7">{{$group->location}}</span>
+                         </td>
+
+
+                          <td>
+                            <a href="#" class="text-dark fw-bold text-hover-primary fs-6">John  </a>
+                            <span class="text-muted fw-semibold text-muted d-block fs-7">john@gmail.com</span>
+                         </td>
+
+
+                          
+                       
+                            
+                            <td class="text-start pe-0"><span class="badge badge-light-success"> {{$group->status?'Active' : 'Non Active'}} </span></td>
+                            
+                            <td class="text-end pe-0">
+                                <div class="rating justify-content-end">
+                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$group->id)}}">Edit</a> --}}
+                                <form action="{{route('admin.all.groups.list.delete')}}" method="post"  style="float:right">
                                     @csrf
-                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}"><span class="fa fa-trash"> </span></button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="group_id" value="{{$group->id}}"><span class="fa fa-trash"> </span></button>
                                 </form>
-                                <form action="{{route('admin.all.users.list.active')}}" method="post" style="float:right">
+                                <form action="{{route('admin.all.groups.list.active')}}" method="post"  style="float:right">
                                     @csrf
-                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-success" type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}">  <span class="fa fa-check"> </span></button>
+                                  <button  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-success" type="submit" class="btn btn-primary" name="group_id" value="{{$group->id}}"><span class="fa fa-check"> </span></button>
                                 </form>
-                                <form action="{{route('admin.all.users.list.deactive')}}" method="post" style="float:right">
+                                <form action="{{route('admin.all.groups.list.deactive')}}" method="post"  style="float:right">
                                     @csrf
-                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-warning" type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}"> <span class="fa fa-ban"> </span></button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-warning" type="submit" class="btn btn-primary" name="group_id" value="{{$group->id}}"><span class="fa fa-ban"> </span></button>
                                 </form>
+                                </div>
+                                
+                            </td>
+                            <!--end::Percent=-->
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                    <!--end::Table body-->
+                </table>
 
 
 
-                                                           
-                                                             
-                                                            </td>
-                                                        </tr>
-                                                      @endforeach
-                                                    </tbody>
-                                                    <!--end::Table body-->
-                                                </table>
-                                                <!--end::Table-->
-                                            </div>
+ 
+                </table>
+                <!--end::Table-->
             </div>
             <!--end::Card body-->
         </div>

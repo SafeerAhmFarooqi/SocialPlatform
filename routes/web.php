@@ -49,9 +49,12 @@ Route::name('app.')->group(function () {
 Route::name('admin.')->prefix('admin')->middleware(['role:Admin','auth'])->group(function () {
     // Admin User Management Routes
     Route::get('/Users-list', [UserAdminController::class,'allUsersList'])->name('all.users.list');
+    Route::get('/Users-post/{id?}', [UserAdminController::class,'userPostList'])->name('user.post.list');
+    Route::get('/Users-group/{id?}', [UserAdminController::class,'userGroupList'])->name('user.group.list');
     Route::get('/Users-list-Show-Active', [UserAdminController::class,'allUsersListShowActive'])->name('all.users.list.show.active');
     Route::get('/Users-list-Show-Deactive', [UserAdminController::class,'allUsersListShowDeactive'])->name('all.users.list.show.deactive');
     Route::post('/Users-list-Delete', [UserAdminController::class,'allUsersListDelete'])->name('all.users.list.delete');
+    Route::post('/Users-post-Delete', [UserAdminController::class,'userPostDelete'])->name('user.post.delete');
     Route::post('/Users-list-Active', [UserAdminController::class,'allUsersListActive'])->name('all.users.list.active');
     Route::post('/Users-list-Deactive', [UserAdminController::class,'allUsersListDeactive'])->name('all.users.list.deactive');
     // Admin Shop Management Routes
