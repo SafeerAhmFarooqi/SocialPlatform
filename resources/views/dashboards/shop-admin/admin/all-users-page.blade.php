@@ -115,6 +115,7 @@
                                                             <th class="min-w-120px">Status</th> 
                                                             <th class="min-w-120px">Social</th> 
                                                             <th class="min-w-120px">Joined Date</th> 
+                                                            <th class="min-w-120px">Verified</th> 
                                                             <th class="min-w-100px text-end">Actions</th>
                                                         </tr>
                                                     </thead>
@@ -151,12 +152,19 @@
                                                             <td>
                                                                 {{$user->created_at->format('F d, Y')}}
                                                             </td>
+                                                            <td>
+                                                                {{$user->email_verified_at?$user->email_verified_at->format('F d,y') : 'Non Verified'}}
+                                                            </td>
                                                           
                                                             <td class="text-end">
 
                                                                 <form action="{{route('admin.all.users.list.delete')}}" method="post" style="float:right">
                                     @csrf
-                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}"><span class="fa fa-trash"> </span></button>
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}" title="delete"><span class="fa fa-trash"> </span></button>
+                                </form>
+                                <form action="{{route('admin.all.users.list.verify')}}" method="post" style="float:right">
+                                    @csrf
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-success" type="submit" class="btn btn-icon btn-success" name="user_id" value="{{$user->id}}" title="verify"><i class="las la-wallet fs-2 me-2"></i></button>
                                 </form>
                                 <form action="{{route('admin.all.users.list.active')}}" method="post" style="float:right">
                                     @csrf

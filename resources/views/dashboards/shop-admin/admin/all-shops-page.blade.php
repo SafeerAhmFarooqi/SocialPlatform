@@ -111,6 +111,7 @@
                             <th class="min-w-150px">Name</th> 
                             <th class="text-start min-w-100px">Phone</th>
                             <th class="text-start min-w-100px">Status</th> 
+                            <th class="min-w-120px">Verified</th> 
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -141,13 +142,19 @@
                                                             <td>
                                                                 <a href="#" class="badge badge-light-success">{{$shop->shop_status?'Active' : 'Non Active'}}</a>
                                                             </td>
- 
+                                                            <td>
+                                                                {{$shop->email_verified_at?$shop->email_verified_at->format('F d,y') : 'Non Verified'}}
+                                                            </td>
                            
                             <td class="text-end pe-0">
 
                                                <form action="{{route('admin.all.shops.list.delete')}}" method="post" style="float:right">
                                     @csrf
                                   <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-danger" type="submit" class="btn btn-danger" name="shop_id" value="{{$shop->id}}"><span class="fa fa-trash"> </span></button>
+                                </form>
+                                <form action="{{route('admin.all.shops.list.verify')}}" method="post" style="float:right">
+                                    @csrf
+                                  <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 btn-success" type="submit" class="btn btn-icon btn-success" name="shop_id" value="{{$shop->id}}" title="verify"><i class="las la-wallet fs-2 me-2"></i></button>
                                 </form>
                                 <form action="{{route('admin.all.shops.list.active')}}" method="post" style="float:right">
                                     @csrf
