@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\ShopCategories;
 use App\Models\ShopSubCategories;
+use Illuminate\Support\Carbon;
 
 
 class ShopAdminController extends BaseAdminController
@@ -40,6 +41,17 @@ class ShopAdminController extends BaseAdminController
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'Shop Deleted Successfully');
+ }    
+
+ public function allShopsListVerify(Request $request)
+ {
+    $shop=User::find($request->shop_id);
+    $shop->update([
+      'email_verified_at' => Carbon::now(),
+    ]);
+    // Led::with('images')->where('user_id',$request->user_id)->delete();
+    // Storage::deleteDirectory('public/led-images/'.$request->user_id);
+    return back()->with('success', 'Shop Verified Successfully');
  }    
 
  public function allShopsListActive(Request $request)

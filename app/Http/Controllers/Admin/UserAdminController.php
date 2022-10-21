@@ -13,6 +13,7 @@ use App\Models\Group;
 use App\Models\GroupPost;
 use App\Mail\UserAccountActivationEmail;
 use App\Mail\UserAccountDeactivationEmail;
+use Illuminate\Support\Carbon;
 
 class UserAdminController extends BaseAdminController
 {
@@ -75,7 +76,18 @@ class UserAdminController extends BaseAdminController
     // Led::with('images')->where('user_id',$request->user_id)->delete();
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'User Deleted Successfully');
- }    
+ }  
+ 
+ public function allUsersListVerify(Request $request)
+ {
+    $user=User::find($request->user_id);
+    $user->update([
+      'email_verified_at' => Carbon::now(),
+    ]);
+    // Led::with('images')->where('user_id',$request->user_id)->delete();
+    // Storage::deleteDirectory('public/led-images/'.$request->user_id);
+    return back()->with('success', 'User Verified Successfully');
+ }  
 
  public function allUsersListActive(Request $request)
  {

@@ -54,6 +54,7 @@ Route::name('admin.')->prefix('admin')->middleware(['role:Admin','auth'])->group
     Route::get('/Users-list-Show-Active', [UserAdminController::class,'allUsersListShowActive'])->name('all.users.list.show.active');
     Route::get('/Users-list-Show-Deactive', [UserAdminController::class,'allUsersListShowDeactive'])->name('all.users.list.show.deactive');
     Route::post('/Users-list-Delete', [UserAdminController::class,'allUsersListDelete'])->name('all.users.list.delete');
+    Route::post('/Users-list-verify', [UserAdminController::class,'allUsersListVerify'])->name('all.users.list.verify');
     Route::post('/Users-post-Delete', [UserAdminController::class,'userPostDelete'])->name('user.post.delete');
     Route::post('/Users-list-Active', [UserAdminController::class,'allUsersListActive'])->name('all.users.list.active');
     Route::post('/Users-list-Deactive', [UserAdminController::class,'allUsersListDeactive'])->name('all.users.list.deactive');
@@ -62,6 +63,7 @@ Route::name('admin.')->prefix('admin')->middleware(['role:Admin','auth'])->group
     Route::get('/Shops-list-Show-Active', [ShopAdminController::class,'allShopsListShowActive'])->name('all.shops.list.show.active');
     Route::get('/Shops-list-Show-Deactive', [ShopAdminController::class,'allShopsListShowDeactive'])->name('all.shops.list.show.deactive');
     Route::post('/Shops-list-Delete', [ShopAdminController::class,'allShopsListDelete'])->name('all.shops.list.delete');
+    Route::post('/Shops-list-Verify', [ShopAdminController::class,'allShopsListVerify'])->name('all.shops.list.verify');
     Route::post('/Shops-list-Active', [ShopAdminController::class,'allShopsListActive'])->name('all.shops.list.active');
     Route::post('/Shops-list-Deactive', [ShopAdminController::class,'allShopsListDeactive'])->name('all.shops.list.deactive');
     Route::get('/Shops-Categories', [ShopAdminController::class,'allShopsCategories'])->name('all.shops.categories');
