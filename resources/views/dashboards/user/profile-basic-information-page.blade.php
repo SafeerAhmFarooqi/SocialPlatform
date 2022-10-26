@@ -137,7 +137,7 @@
                   
                      <div class="col-sm-6">
                       <label class="form-label">City</label>
-                      <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city" placeholder="Your city" value="New York" value="{{old('city')??Auth::user()->city}}"/>
+                      <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city" placeholder="Your city" value="{{old('city')??Auth::user()->city_id}}"/>
               @error('city')
               <div class="alert alert-danger">
                       {{$message}}
@@ -172,7 +172,7 @@
 
                                         <div class="col-sm-6">
                       <label class="form-label">Phone</label>
-                      <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city" placeholder="Your city" value="New York" value="{{old('city')??Auth::user()->city}}"/>
+                      <input id="city" class="form-control input-group-lg" type="text" name="phone" title="Enter Phone" placeholder="Your Phone NUmber" value="{{old('phone')??Auth::user()->phone}}"/>
               @error('city')
               <div class="alert alert-danger">
                       {{$message}}

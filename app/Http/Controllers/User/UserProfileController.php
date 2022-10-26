@@ -21,7 +21,7 @@ class UserProfileController extends BaseUserController
  {
     return view('dashboards.user.profile-basic-information-page',[
         'activeLink'=>1,
-        'countries'=>Countries::all(),
+        'countries'=>Countries::where('status',true)->get(),
     ]);
  }
 
@@ -136,7 +136,8 @@ class UserProfileController extends BaseUserController
     $user->lastname=$request->lastname;
     $user->dob=$request->dob;
     $user->user_address=$request->address;
-    $user->city=$request->city;
+    $user->city_id=$request->city;
+    $user->phone=$request->phone;
     $user->country_id=$request->country;
     $user->about_me=$request->about_me;
     $user->save();
