@@ -17,10 +17,17 @@ use Illuminate\Support\Collection;
 
 class UserListController extends BaseUserController
 {
- public function userListPageShow()
+ public function userListPageShow(Request $request)
  {
+    $users=User::when($request->search, function($query,$search) {
+        return $query->where('firstname', 'like', '%'.$search.'%')
+                     ->orWhere('lastname', 'like', '%'.$search.'%');
+    })
+    ->where('id','!=',Auth::user()->id)
+    ->where('user_status',true)
+    ->get();
     return view('dashboards.user.user-list-page',[
-        'users'=>User::where('id','!=',Auth::user()->id)->where('user_status',true)->get(),
+        'users'=>$users,
     ]);
  }  
 

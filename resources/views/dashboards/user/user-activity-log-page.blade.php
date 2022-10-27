@@ -73,113 +73,42 @@
                  <!-- Friends groups tab START -->
                 <div class="tab-pane fade show {{$active==1?'active' : ''}}" id="tab-2">
                   <div class="row g-4">
-                    @foreach ($activityLogs=[] as $activityLog)
-                    {{-- <div class="col-sm-6 col-lg-4">
-                      <!-- Card START -->
-                      <div class="card">
-                        <div class="h-80px rounded-top" style="background-image:url({{asset('assets/ressoli-theme/assets/images/bg/01.jpg')}}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
-                          <!-- Card body START -->
-                          <div class="card-body text-center pt-0">
-                            <!-- Avatar -->
-                            <div class="avatar avatar-lg mt-n5 mb-3">
-                               <a href="group-details.html"><img class="avatar-img rounded-circle border border-white border-3 bg-white" src="{{asset('assets/ressoli-theme/assets/images/bg/01.jpg')}}" alt=""></a>
-                            </div>
-                            <!-- Info -->
-                            <h5 class="mb-0"> <a href="group-details.html">{{$joinedGroup->title??''}}</a> </h5>
-                            <small> <i class="bi bi-globe pe-1"></i> <span class="badge bg-danger bg-opacity-10 text-{{$joinedGroup->status?'success' : 'danger'}}">{{$joinedGroup->status?'Active' : 'Deactive'}}</span> </small>
-                            <!-- Group stat START -->
-                            <div class="hstack gap-2 gap-xl-3 justify-content-center mt-3">
-                              <!-- Group stat item -->
-                              <div>
-                                <h6 class="mb-0">{{$joinedGroup->members->count()??''}}</h6>
-                                <small>Members</small>
-                              </div>
-                              <!-- Divider -->
-                              <div class="vr"></div>
-                              <!-- Group stat item -->
-                              <div>
-                                <h6 class="mb-0">20</h6>
-                                <small>Post  </small>
-                              </div>
-                            </div>
-                            <!-- Group stat END -->
-                          
+                    @foreach ($activities as $activity)
+                    <div class="card-body">
+                      <div class="d-flex">
+                        {{-- <div class="avatar avatar-lg status-online me-2">
+                          <a href="#!"><img class="avatar-img rounded-circle" src="{{$unusedVoucher->image_path?'storage/'.$unusedVoucher->image_path : asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}" alt=""></a>
+                        </div> --}}
+  
+                        <div class="ms-2 w-100">
+                          <div class="d-sm-flex justify-content-between">
+                            <h6>{{$activity->getTable()=='groups'&&$activity->created_at?'Group created by you at' 
+                                            : ($activity->getTable()=='posts'&&$activity->created_at?'Post created by you at'
+                                            : ($activity->getTable()=='comments'&&$activity->created_at?'Comment created by you at' 
+                                            : ''))
+                                            
+                                }}</h6>
+                             <!-- Dropdown START -->
+                            {{-- <div class="dropdown ms-auto">
+                              <a href="#" class="text-secondary" id="bdayActionEdit" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-gift"></i>
+                              </a>
+  
+                              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bdayActionEdit">
+                                <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i>234234234</a></li>
+                                 
+                              </ul>
+                            </div> --}}
+  
                         </div>
-                        <!-- Card body END -->
-                        <!-- Card Footer START -->
-
-                        @if ($joinedGroup->status==1)
-                        <div class="card-footer text-center">
-                          @if ($joinedGroup->isMember())
-                          <a class="btn btn-success-soft btn-sm" href="{{route('user.dashboard.groups.post',[$joinedGroup->id])}}"> Enter   </a>    
-                          <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#leave-group-{{$joinedGroup->id}}"> Leave   </a>  
-                          <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#block-group-{{$joinedGroup->id}}"> Block   </a>  
-                          @else
-                          <span class="text-danger"> You Are No Longer Member of this Group   </span> <br>
-                          @if (!$joinedGroup->isGroupBlocked())
-                          <a class="btn btn-danger-soft btn-sm" href="javascript:;" data-bs-toggle="modal" data-bs-target="#block-group-{{$joinedGroup->id}}"> Block   </a>
-                          @endif   
-                          @if ($joinedGroup->isGroupBlocked())
-                          <span class="text-danger"> You have blocked this group   </span>
-                          @endif                             
-                          @endif
-                          
-                        </div>    
-                        @else
-                        <div class="card-footer text-center">
-                          <span class="btn btn-danger-soft btn-sm"> This Group is Inactive   </span>
-                        </div>
-                        @endif
-                       
-                        <!-- Card Footer END -->
-                      </div>
-                      <!-- Card END -->
-                    </div>
-                    <div class="modal fade" id="leave-group-{{$joinedGroup->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{$joinedGroup->title??''}}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            Are you sure you want to leave this group?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <form action="{{route('user.dashboard.groups.leave')}}" method="post">
-                              @csrf
-                              <input type="hidden" name="groupId" value="{{$joinedGroup->id}}">
-                              <button type="submit" class="btn btn-danger">Leave</button>
-                            </form>
-                            
-                          </div>
+                        <div class="position-relative w-100">
+                         <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">{{$activity->created_at->format('F d,Y H:i')}}</span>
+                         
                         </div>
                       </div>
                     </div>
-                    <div class="modal fade" id="block-group-{{$joinedGroup->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{$joinedGroup->title??''}}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            Are you sure you want to block this group?<br>
-                            You will no longer receive group join invitation untill unblock.
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <form action="{{route('user.dashboard.groups.block')}}" method="post">
-                              @csrf
-                              <input type="hidden" name="groupId" value="{{$joinedGroup->id}}">
-                              <button type="submit" class="btn btn-danger">Block</button>
-                            </form>
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div> --}}
+                    <hr class="my-4">
+              </div>
                     @endforeach
                   
                 
