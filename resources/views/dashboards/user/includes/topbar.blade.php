@@ -50,6 +50,16 @@ Header START -->
             <i class="bi bi-gear-fill fs-6"> </i>
           </a>
         </li>
+        @php
+              $postActivities = App\Models\Posts::where('user_id','!=',Auth::user()->id)->orderBy('created_at','DESC')->take(4)->get();
+              $commentActivities = App\Models\Comments::where('user_id','!=',Auth::user()->id)->orderBy('created_at','DESC')->take(4)->get();
+              $groupActivities = App\Models\Group::where('created_by','!=',Auth::user()->id)->orderBy('created_at','DESC')->take(4)->get();
+              $activities=$postActivities->concat($commentActivities)->concat($groupActivities);
+              $activities = $activities->sortBy([
+                  ['created_at', 'desc'],
+              ]);
+              $activities =  $activities->take(4);
+        @endphp
         <li class="nav-item dropdown ms-2">
           <a class="nav-link icon-md btn btn-light p-0" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
             <span class="badge-notif animation-blink"></span>
@@ -58,13 +68,13 @@ Header START -->
           <div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0" aria-labelledby="notifDropdown">
             <div class="card">
               <div class="card-header d-flex justify-content-between align-items-center">
-                <h6 class="m-0">Notifications <span class="badge bg-danger bg-opacity-10 text-danger ms-2">4 new</span></h6>
-                <a class="small" href="#">Clear all</a>
+                <h6 class="m-0">Notifications <span class="badge bg-danger bg-opacity-10 text-danger ms-2">{{$activities->count()??0}} new</span></h6>
+                {{-- <a class="small" href="#">Clear all</a> --}}
               </div>
               <div class="card-body p-0">
                 <ul class="list-group list-group-flush list-unstyled p-2">
                   <!-- Notif item -->
-                  <li>
+                  {{-- <li>
                     <div class="list-group-item list-group-item-action rounded badge-unread d-flex border-0 mb-1 p-3">
                       <div class="avatar text-center d-none d-sm-inline-block">
                         <img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="">
@@ -79,30 +89,40 @@ Header START -->
                       </div>
                     </div>
                   </div>
-                  </li>
+                  </li> --}}
                   <!-- Notif item -->
                    
                   <!-- Notif item -->
+                  @foreach ($activities as $activity)
                   <li>
                     <a href="#" class="list-group-item list-group-item-action rounded d-flex border-0 mb-1 p-3">
-                      <div class="avatar text-center d-none d-sm-inline-block">
+                      {{-- <div class="avatar text-center d-none d-sm-inline-block">
                         <div class="avatar-img rounded-circle bg-success"><span class="text-white position-absolute top-50 start-50 translate-middle fw-bold">WB</span></div>
-                      </div>
+                      </div> --}}
                       <div class="ms-sm-3">
                         <div class="d-flex">
-                          <p class="small mb-2">Webestica has 15 like Comment on your post</p>
-                          <p class="small ms-3">1hr</p>
+                          <p class="small mb-2">
+                            {{$activity->getTable()=='groups'&&$activity->created_at?'Group created by '.($activity->owner->firstname ??'')
+                            : ($activity->getTable()=='posts'&&$activity->created_at?'Post created by '.($activity->user->firstname ??'')
+                            : ($activity->getTable()=='comments'&&$activity->created_at?'Comment created by '.($activity->user->firstname ??'') 
+                            : ''))
+                            
+                            }}
+                          </p>
+                          <p class="small ms-3">{{$activity->created_at->diffForHumans()}}</p>
                         </div>
                       </div>
                     </a>
                   </li>
+                  @endforeach
+                 
                   <!-- Notif item -->
                   
                 </ul>
               </div>
-              <div class="card-footer text-center">
+              {{-- <div class="card-footer text-center">
                 <a href="#" class="btn btn-sm btn-primary-soft">See all incoming activity</a>
-              </div>
+              </div> --}}
             </div>
           </div>
         </li>
