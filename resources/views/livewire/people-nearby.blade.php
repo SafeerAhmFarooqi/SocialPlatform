@@ -65,6 +65,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
 <script>
     document.addEventListener('livewire:load', function () {
+     
+     // alert('check 1');
       if (navigator.geolocation) {
 navigator.geolocation.getCurrentPosition(showPosition);
 } else { 
@@ -77,12 +79,35 @@ function showPosition(position) {
 
 
 }
+
         });
  
 </script>
-
 <script>
+   var locations = @json($users);
+ // alert(locations.length);
+var dot, r, t, container=document.getElementById('radar');
+$.each( locations, function( index, value ){
+  let url = "{{ route('user.dashboard.user.information', ':value.id') }}";
+  url = url.replace(':value.id', value.id);
+  dot = document.createElement('a');
+  
+  dot.className = "object";
+  dot.href=url;
+  dot.title=value.firstname+' '+value.lastname;
+  r = Math.random()*190+5;
+  t = Math.random()*Math.PI*2;
+  dot.style.left = (200+Math.cos(t)*r)+"px";
+  dot.style.top = (200+Math.sin(t)*r)+"px";
+  dot.style.animationDelay = t/Math.PI/2*5+"s";
+  container.appendChild(dot);
+
+});
+</script>
+
+{{-- <script>
   window.onload = function(e){ 
+   // alert('check 2');
     var locations = @json($users);
 
    var mymap = new GMaps({
@@ -109,13 +134,29 @@ var marker= mymap.addMarker({
 });
 
 });
+var dot, r, t, container=document.getElementById('radar');
+$.each( locations, function( index, value ){
+  let url = "{{ route('user.dashboard.user.information', ':value.id') }}";
+  url = url.replace(':value.id', value.id);
+  dot = document.createElement('a');
+  
+  dot.className = "object";
+  dot.href=url;
+  dot.title=value.firstname+' '+value.lastname;
+  r = Math.random()*190+5;
+  t = Math.random()*Math.PI*2;
+  dot.style.left = (200+Math.cos(t)*r)+"px";
+  dot.style.top = (200+Math.sin(t)*r)+"px";
+  dot.style.animationDelay = t/Math.PI/2*5+"s";
+  container.appendChild(dot);
 
+});
 
 }
 
 
 
-</script>
+</script> --}}
 
 <script>
   // $(document).ready(function(){
@@ -128,43 +169,44 @@ var marker= mymap.addMarker({
 
 
 window.addEventListener('getMarker', event => {
+  //alert('check 3');
     //alert("Hello! I am an alert box!");
     //alert('getMarker');
 
     var locations = @json($users);
 //alert(locations[0].longitude);
-var mymap = new GMaps({
-el: '#mymap',
-lat: locations.length==0?51 :locations[0].latitude,
-lng: locations.length==0?10 :locations[0].longitude,
-zoom:10
-});
+// var mymap = new GMaps({
+// el: '#mymap',
+// lat: locations.length==0?51 :locations[0].latitude,
+// lng: locations.length==0?10 :locations[0].longitude,
+// zoom:10
+// });
 
 
 
 
 
-$.each( locations, function( index, value ){
+// $.each( locations, function( index, value ){
 
-  //alert(value.image);
+//   //alert(value.image);
 
-var marker= mymap.addMarker({
+// var marker= mymap.addMarker({
 
-  lat: value.latitude,
-  lng: value.longitude,
-  title: value.firstname+" "+ value.lastname,
-  click: function(e) {
-    let url = "{{ route('user.dashboard.user.information', ':value.id') }}";
-         url = url.replace(':value.id', value.id);
-         document.location.href=url;
-        window.open(url,'_self');
-   // alert('This is second '+value.id+', gujarat from India.');
+//   lat: value.latitude,
+//   lng: value.longitude,
+//   title: value.firstname+" "+ value.lastname,
+//   click: function(e) {
+//     let url = "{{ route('user.dashboard.user.information', ':value.id') }}";
+//          url = url.replace(':value.id', value.id);
+//          document.location.href=url;
+//         window.open(url,'_self');
+//    // alert('This is second '+value.id+', gujarat from India.');
   
 
-  }
-});
+//   }
+// });
 
-});
+// });
 
 
 
@@ -253,11 +295,12 @@ $.each( locations, function( index, value ){
 
 
 .object {
-  width: 8px;
-  height: 8px;
+  width: 50px;
+  height: 62px;
   margin: -4px;
-  background-color: #0c0;
-  border-radius: 4px;
+  /* background-color: #0c0; */
+  background: url("{{asset('assets/images/locationradar.png')}}");
+  border-radius: 1px;
   /* animation: spotted 50s linear infinite both; */
 }
 
