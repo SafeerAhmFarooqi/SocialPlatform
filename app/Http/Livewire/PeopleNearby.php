@@ -16,8 +16,8 @@ class PeopleNearby extends Component
 
     public function dehydrate()
     {
-        $this->dispatchBrowserEvent('getLocation');
-        $this->dispatchBrowserEvent('getMarker',['name'=>$this->coordinates]);
+        // $this->dispatchBrowserEvent('getLocation');
+         $this->dispatchBrowserEvent('getMarker',['name'=>$this->coordinates]);
     }
 
     public function getKmAway($longitude,$latitude)
