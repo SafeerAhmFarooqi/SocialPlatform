@@ -1,11 +1,11 @@
 <div>
    
     <div class="people-nearby ">
-        <div >
+        <div style="display:none">
 
           <div id="mymap" style="width:100% ; height:500px ; margin-top:1% ;margin-bottom:4%;"></div>
         </div>
-        <div class="container" style="padding:0">
+        <div class="container" style="padding:0;display:none">
         @foreach ($users as $user)
 
         <div class="card" style="margin-bottom: 10px;">
@@ -183,6 +183,7 @@ $.each( locations, function( index, value ){
   let url = "{{ route('user.dashboard.user.information', ':value.id') }}";
   url = url.replace(':value.id', value.id);
   dot = document.createElement('a');
+  
   dot.className = "object";
   dot.href=url;
   dot.title=value.firstname+' '+value.lastname;
@@ -210,7 +211,7 @@ $.each( locations, function( index, value ){
          }
 
          #radar {
-    position:relative;
+/*    position:relative;
     width:400px;
     height:400px;
     margin:20px auto;
@@ -224,14 +225,24 @@ $.each( locations, function( index, value ){
         transparent 99px, #0c0 99px, #0c0 100px, transparent 100px,
         transparent 149px, #0c0 149px, #0c0 150px, transparent 150px,
         transparent 198px, #0c0 198px);
-    border-radius:50%;
+    border-radius:50%;*/
+
+    position: absolute;
+    top: 50%;
+    width: 42em;
+    height: 42em;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    right: 15%;
+    transform: translateY(-50%);
+    border: solid 1px rgba(255,255,255,0.5);
 }
 #radar>* {position:absolute}
 .beacon {
     left:50%;
     top:50%;
     border-style:solid;
-    border-width:8px 200px 8px 0;
+    border-width:1px 305px 33px 7px;
     border-color:transparent;
     border-right-color:#0c0;
     margin-top:-8px;
