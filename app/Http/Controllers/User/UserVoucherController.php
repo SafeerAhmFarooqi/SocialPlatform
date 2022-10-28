@@ -14,6 +14,7 @@ use App\Models\Countries;
 use App\Models\AccountSetting;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Crypt;
 
 class UserVoucherController extends BaseUserController
 {
@@ -30,8 +31,8 @@ class UserVoucherController extends BaseUserController
   // return urldecode($email).' '.urldecode($code);
     //return "voucher";
     //return "safeer";
-    $email = urldecode($email);
-    $code = urldecode($code);
+    $email = Crypt::decryptString(urldecode($email));
+    $code = Crypt::decryptString(urldecode($code));
     $user = User::where('email',$email)->first();
     $voucher = Voucher::where('code',$code)->first();
     if ($user&&$user->email==Auth::user()->email&&$voucher) {

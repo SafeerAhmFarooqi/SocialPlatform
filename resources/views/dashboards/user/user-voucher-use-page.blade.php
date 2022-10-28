@@ -1,173 +1,89 @@
-
-
+@extends('layouts.ressoli-theme')
+@section('body-content')
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>asadsohail.com</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <style type="text/css">
-        @media screen {
-            @font-face {
-                font-family: 'Lato';
-                font-style: normal;
-                font-weight: 400;
-                src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
-            }
+  <title>Social - Network, Community and Event Theme</title>
 
-            @font-face {
-                font-family: 'Lato';
-                font-style: normal;
-                font-weight: 700;
-                src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
-            }
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Webestica.com">
+  <meta name="description" content="Bootstrap 5 based Social Media Network and Community Theme">
 
-            @font-face {
-                font-family: 'Lato';
-                font-style: italic;
-                font-weight: 400;
-                src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v11/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
-            }
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-            @font-face {
-                font-family: 'Lato';
-                font-style: italic;
-                font-weight: 700;
-                src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
-            }
-        }
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
 
-        /* CLIENT-SPECIFIC STYLES */
-        body,
-        table,
-        td,
-        a {
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
 
-        table,
-        td {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
-
-        img {
-            -ms-interpolation-mode: bicubic;
-        }
-
-        /* RESET STYLES */
-        img {
-            border: 0;
-            height: auto;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-        }
-
-        table {
-            border-collapse: collapse !important;
-        }
-
-        body {
-            height: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100% !important;
-        }
-
-        /* iOS BLUE LINKS */
-        a[x-apple-data-detectors] {
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
-        }
-
-        /* MOBILE STYLES */
-        @media screen and (max-width:600px) {
-            h1 {
-                font-size: 32px !important;
-                line-height: 32px !important;
-            }
-        }
-
-        /* ANDROID CENTER FIX */
-        div[style*="margin: 16px 0;"] {
-            margin: 0 !important;
-        }
-    </style>
+  <!-- Theme CSS -->
+  <link id="style-switch" rel="stylesheet" type="text/css" href="assets/css/style.css">
+   
 </head>
 
-<body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
-    <!-- HIDDEN PREHEADER TEXT -->
-    <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> We're thrilled to have you here! Get ready to dive into your new account. </div>
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <!-- LOGO -->
-        <tr>
-            <td bgcolor="#FFA73B" align="center">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                    <tr>
-                        <td align="center" valign="top" style="padding: 40px 10px 40px 10px;"> </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td bgcolor="#FFA73B" align="center" style="padding: 0px 10px 0px 10px;">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                    <tr>
-                        <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Thanks!</h1> 
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                    <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Thanks For Using This Voucher</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="#ffffff" align="left">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
-                                        <table border="0" cellspacing="0" cellpadding="0">
-                                            <tr>
-                                                <td align="center" style="border-radius: 3px;" bgcolor="#FFA73B"><a href="{{route('dashboard')}}" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;">Dashboard</a></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr> <!-- COPY -->
-                    <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">If that doesn't work, copy and paste the following link in your browser:</p>
-                        </td>
-                    </tr> <!-- COPY -->
-                    <tr>
-                        <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;"><a href="#" target="_blank" style="color: #FFA73B;">{{route('dashboard')}}</a></p>
-                        </td>
-                    </tr>
-                    
-                </table>
-            </td>
-        </tr>
-       
-    </table>
-</body>
+<body>
 
-</html>
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+  
+  <!-- Container START -->
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100 py-5">
+      <!-- Main content START -->
+      <div class="col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+        <!-- Sign in START -->
+        <div class="card card-body text-center p-4 p-sm-5">
+          <!-- Title -->
+          <h1 class="mb-2"><img src="{{asset('assets/ressoli-theme/assets/images/social6.png')}}"></h1>
+          <p class="mb-0">Thanks For Using Voucher
+
+</a></p>
+           <br><Br>
+
+          <A href="{{ route('landing') }}" class="btn btn-lg btn-warning"> Landing Page </A>
+                        
+                           
+                        
+
+
+
+          <!-- Form END -->
+        </div>
+        <!-- Sign in START -->
+      </div>
+    </div> <!-- Row END -->
+  </div>
+  <!-- Container END -->
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+ 
+
+<!-- =======================
+JS libraries, plugins and custom scripts -->
+
+<!-- Bootstrap JS -->
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Vendors -->
+<script src="assets/vendor/pswmeter/pswmeter.min.js"></script>
+
+<!-- Template Functions -->
+<script src="assets/js/functions.js"></script>
+  
+</body>
+  </html>
+ 
+@endsection
+
+@section('pageScripts')
+    
+@endsection
