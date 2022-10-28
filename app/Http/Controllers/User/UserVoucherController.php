@@ -35,7 +35,7 @@ class UserVoucherController extends BaseUserController
     $code = Crypt::decryptString(urldecode($code));
     $user = User::where('email',$email)->first();
     $voucher = Voucher::where('code',$code)->first();
-    if ($user&&$user->email==Auth::user()->email&&$voucher) {
+    if ($user&&$voucher) {
       if (UseVoucher::where('user_id',$user->id)->where('voucher_id',$voucher->id)->first()) {
          return "This voucher Has Already Been Used By You";
       } else {
