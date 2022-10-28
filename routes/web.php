@@ -135,6 +135,7 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::get('/user-list-page', [UserListController::class,'userListPageShow'])->name('user.dashboard.users.page');
     Route::get('/user-info-page/{id?}', [UserListController::class,'userInfoPageShow'])->name('user.dashboard.user.information');
     Route::get('/user-voucher-page', [UserVoucherController::class,'userVoucherPageShow'])->name('user.dashboard.voucher.page');
+    Route::get('/user-voucher-use-page/{email?}/{code?}', [UserVoucherController::class,'userVoucherUsePageShow'])->name('user.dashboard.voucher.use.page');
     Route::get('/user-saving-page', [UserSavingController::class,'userSavingPageShow'])->name('user.dashboard.saving.page');
     Route::get('chat-with/{id}',[MessagesController::class,'index2'])->name('user2');
 });

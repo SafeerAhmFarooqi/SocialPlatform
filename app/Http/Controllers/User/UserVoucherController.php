@@ -24,6 +24,37 @@ class UserVoucherController extends BaseUserController
 
     ]);
  }  
+
+ public function  userVoucherUsePageShow($email,$code)
+ {
+  // return urldecode($email).' '.urldecode($code);
+    //return "voucher";
+    //return "safeer";
+    $email = urldecode($email);
+    $code = urldecode($code);
+    $user = User::where('email',$email)->first();
+    $voucher = Voucher::where('code',$code)->first();
+    if ($user&&$user->email==Auth::user()->email&&$voucher) {
+      if (UseVoucher::where('user_id',$user->id)->where('voucher_id',$voucher->id)->first()) {
+         return "This voucher Has Already Been Used By You";
+      } else {
+         UseVoucher::create([
+            'user_id' => $user->id,
+            'voucher_id' => $voucher->id,
+            'shop_id' => $voucher->shop->id,
+          ]);
+          
+          return view('dashboards.user.user-voucher-use-page',[
+
+         ]);
+      }
+    } else {
+         return "Unauthorised action";
+    }
+    
+    
+
+ }  
 }
 
 

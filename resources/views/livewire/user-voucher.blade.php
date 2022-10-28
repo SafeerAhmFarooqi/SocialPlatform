@@ -43,6 +43,9 @@
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bdayActionEdit">
                               <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i>{{$unusedVoucher->code??''}}</a></li>
+                              <li><span class="dropdown-item">
+                                {!! QrCode::size(250)->generate(route('user.dashboard.voucher.use.page',[urlencode(Auth::user()->email),urlencode($unusedVoucher->code)])); !!} 
+                              </span></li>
                                
                             </ul>
                           </div>
