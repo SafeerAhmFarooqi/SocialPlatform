@@ -59,7 +59,7 @@
                     </div>
                     
                   </div>
-                  <iframe id="{{$user->id}}" style="visibility:visible;width: 400px; height: 525px; border: 1px solid rgb(214, 214, 214); display: none;position: fixed;
+                  <iframe id="{{$user->id}}" style="visibility:visible;width: 350px; height: 416px; border: 1px solid rgb(214, 214, 214); display: none;position: fixed;
                     bottom: 100px;
                     right: 15px;
                     border: 3px solid #f1f1f1;
@@ -90,7 +90,7 @@
               </div> <!-- Row END -->
             </div>
             <!-- Container END -->
-            <button class="open-button" id="close-chat" onclick="closeChat()">Close Chat</button>
+            <button class="open-button" id="close-chat" onclick="closeChat()"><img src="{{asset('assets/ressoli-theme/assets/crossiconchat.png')}}"></button>
           </main>
           <!-- **************** MAIN CONTENT END **************** -->
           
@@ -107,6 +107,22 @@
 @section('pageStyles')
     <style>
       .open-button {
+    /* background-color: #555; */
+    /* color: white; */
+    /* padding: 16px 20px; */
+    /* border: none; */
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 85px;
+    display: none;
+    border: none;
+}
+
+
+/*      .open-button {
   background-color: #555;
   color: white;
   padding: 16px 20px;
@@ -118,7 +134,7 @@
   right: 28px;
   width: 280px;
   display : none;
-}
+}*/
     </style>
 @endsection
 

@@ -1,7 +1,46 @@
 @extends('layouts.ressoli-theme')
 @section('body-content')
-        @include("dashboards.user.includes.topbar")   
-        <main>
+        @include("dashboards.user.includes.topbar")  
+
+        <style>
+ @media (min-width:130px) and (max-width:669px) {
+
+#radar {
+    position: absolute;
+   
+    width: 19em;
+    height: 19em;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+      right: 6%;
+    transform: translateY(-50%);
+    border: solid 1px rgba(255,255,255,0.5);
+}
+
+.gap-4{
+  height: 95vh;
+}
+
+.beacon {
+    left: 50%;
+    top: 50%;
+    border-style: solid;
+    border-width: 1px 125px 10px 7px;
+    border-color: transparent;
+    border-right-color: #0c0;
+    margin-top: -8px;
+    transform-origin: 0 50%;
+    animation: spin 5s linear infinite;
+}
+
+
+
+}
+
+
+
+        </style>
+               <main>
             <!-- Container START -->
             <div class="container">
               <div class="row g-4">
@@ -28,7 +67,7 @@
                     </div>
                   </nav>
                 </div>
-                  <div class="col-sm-9 vstack gap-4" style="background:url('https://img.freepik.com/premium-photo/world-map-blue-background_590041-79.jpg?w=2000')">
+                  <div class="col-sm-9 vstack gap-4" style="background:url({{asset('assets/ressoli-theme/assets/nearbyimage.png')}})">
   <livewire:people-nearby/> 
  </div>
   
