@@ -7,20 +7,43 @@
 
     <div class="card">
           <!-- Cover image -->
-          <div class="h-200px rounded-top" style="background-image:url({{ $user->cover_image_path?($user->accountSetting->cover_image?asset('storage/'.Auth::user()->cover_image_path) :  asset('assets/ressoli-theme/assets/profilecoverlock.png')) : asset('assets/ressoli-theme/assets/profilecoverlock.png')}}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
-            <!-- Card body START -->
+          <div class="h-200px rounded-top" style="background-image:url(  {{  $user->cover_image_path
+            ? (
+              $user->accountSetting
+              ? (
+                $user->accountSetting->profile_image
+                ? asset('storage/'.Auth::user()->cover_image_path) 
+                : asset('assets/ressoli-theme/assets/profilecoverlock.png') 
+              )
+              : asset('assets/ressoli-theme/assets/profilecoverlock.png')
+            )
+            : asset('assets/ressoli-theme/assets/profilecoverlock.png')
+            }} ); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+        
+          <!-- Card body START -->
             <div class="card-body py-0">
               <div class="d-sm-flex align-items-start text-center text-sm-start">
                 <div>
                   <!-- Avatar -->
                   <div class="avatar avatar-xxl mt-n5 mb-3">
-                    <img class="avatar-img rounded-circle border border-white border-3" src="{{ $user->profile_pic_path?($user->accountSetting->profile_image?asset('storage/'.Auth::user()->profile_pic_path) : asset('assets/FriendFinder-Theme/images/users/empty.jpg')) : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="">
-                    
+                    <img class="avatar-img rounded-circle border border-white border-3" src="{{
+                      $user->profile_pic_path
+                      ? (
+                        $user->accountSetting
+                        ? (
+                          $user->accountSetting->profile_image
+                          ? asset('storage/'.Auth::user()->profile_pic_path) 
+                          : asset('assets/FriendFinder-Theme/images/users/empty.jpg') 
+                        )
+                        : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                      )
+                      : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                    }}" alt="">
                   </div>
                 </div>
                 <div class="ms-sm-4 mt-sm-3">
                   <!-- Info -->
-                  <h1 class="mb-0 h5">{{$user->firstname.' '.$user->lastname}}
+                  <h1 class="mb-0 h5">{{$user->firstname??''.' '.$user->lastname??''}}
                    <!-- <i class="bi bi-patch-check-fill text-success small"></i> -->
                  </h1>
                   <p>{{$user->options??''}}</p>

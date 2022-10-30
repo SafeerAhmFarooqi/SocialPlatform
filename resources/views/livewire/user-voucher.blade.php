@@ -44,7 +44,7 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bdayActionEdit">
                               <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i>{{$unusedVoucher->code??''}}</a></li>
                               <li><span class="dropdown-item">
-                                {!! QrCode::size(400)->generate(route('user.dashboard.voucher.use.page',[urlencode(Illuminate\Support\Facades\Crypt::encryptString(Auth::user()->email)),urlencode(Illuminate\Support\Facades\Crypt::encryptString($unusedVoucher->code))])); !!} 
+                                
                               </span></li>
                                
                             </ul>
@@ -52,8 +52,12 @@
 
                       </div>
                       <div class="position-relative w-100">
-                       <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">{{$unusedVoucher->discount??''}}</span>
+                        <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">Discount : {{$unusedVoucher->discount??''}}</span>
                        
+                       </div>
+                      <div class="position-relative w-100">
+                     
+                       <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">{!! QrCode::size(200)->generate(route('user.dashboard.voucher.use.page',[urlencode(Illuminate\Support\Facades\Crypt::encryptString(Auth::user()->email)),urlencode(Illuminate\Support\Facades\Crypt::encryptString($unusedVoucher->code))])); !!} </span>
                       </div>
                     </div>
                   </div>
