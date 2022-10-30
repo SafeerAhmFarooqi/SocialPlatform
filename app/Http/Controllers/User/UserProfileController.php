@@ -68,6 +68,14 @@ class UserProfileController extends BaseUserController
         'profile_pic' =>'Profile Image',
     ]);
 
+    if(Auth::user()->profile_pic_path)
+    {
+        Storage::delete('public/'.Auth::user()->profile_pic_path);
+        Auth::user()->update([
+            'profile_pic_path' => null,
+        ]);
+    }
+
     $request->profile_pic->store('profile-images/'.Auth::user()->id.'/profile-pic','public');
     $imagePath = 'profile-images/'.Auth::user()->id.'/profile-pic'.'/'. $request->profile_pic->hashName();
     $user=Auth::user();    
@@ -89,6 +97,14 @@ class UserProfileController extends BaseUserController
         //Validation Attributes
         'cover_pic' =>'Cover Image',
     ]);
+
+    if(Auth::user()->cover_image_path)
+    {
+        Storage::delete('public/'.Auth::user()->cover_image_path);
+        Auth::user()->update([
+            'cover_image_path' => null,
+        ]);
+    }
 
     $request->cover_pic->store('cover-images/'.Auth::user()->id.'/cover-pic','public');
     $imagePath = 'cover-images/'.Auth::user()->id.'/cover-pic'.'/'. $request->cover_pic->hashName();
