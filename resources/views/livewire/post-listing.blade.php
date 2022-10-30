@@ -159,7 +159,28 @@
             <div class="d-flex align-items-center">
               <!-- Avatar -->
               <div class="avatar avatar-story me-2">
-                <a href="#!"> <img class="avatar-img rounded-circle" src="{{($post->user->profile_pic_path??false)? asset('storage/'.$post->user->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""> </a>
+                <a href="#!"> <img class="avatar-img rounded-circle" src="{{
+                  $post->user->id==Auth::user()->id
+                  ? (
+                      $post->user->profile_pic_path
+                      ? asset('storage/'.$post->user->profile_pic_path) 
+                      : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                  )
+                  : (
+                    $post->user->profile_pic_path
+                  ? (
+                    $post->user->accountSetting
+                    ? (
+                      $post->user->accountSetting->profile_image
+                      ? asset('storage/'.$post->user->profile_pic_path) 
+                      : asset('assets/FriendFinder-Theme/images/users/empty.jpg') 
+                    )
+                    : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                  )
+                  : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                  )
+                  
+                }}" alt=""> </a>
               </div>
               <!-- Info -->
               <div>
@@ -241,7 +262,28 @@
                  
                   <div class="d-flex align-items-center">
                     <div class="avatar avatar-xs">
-                      <a href="#!"><img class="avatar-img rounded-circle" src="{{($comment->user->profile_pic_path??false)? asset('storage/'.$comment->user->profile_pic_path) : asset('assets/ressoli-theme/assets/images/social13.png')}}" alt=""></a>
+                      <a href="#!"><img class="avatar-img rounded-circle" src="{{
+                        $comment->user->id==Auth::user()->id
+                        ? (
+                            $comment->user->profile_pic_path
+                            ? asset('storage/'.$comment->user->profile_pic_path) 
+                            : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                        )
+                        : (
+                          $comment->user->profile_pic_path
+                        ? (
+                          $comment->user->accountSetting
+                          ? (
+                            $comment->user->accountSetting->profile_image
+                            ? asset('storage/'.$comment->user->profile_pic_path) 
+                            : asset('assets/FriendFinder-Theme/images/users/empty.jpg') 
+                          )
+                          : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                        )
+                        : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                        )
+                        
+                      }}" alt=""></a>
                     </div>
                     <!-- Comment by -->
                     <div class="bg-light rounded-start-top-0 p-3 rounded">

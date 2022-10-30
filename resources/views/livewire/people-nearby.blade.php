@@ -15,7 +15,19 @@
               <div class="d-md-flex align-items-center mb-4">
    
                 <div class="avatar me-3 mb-3 mb-md-0">
-                  <a href="{{route('user.dashboard.user.information',[$user->id])}}"> <img class="avatar-img rounded-circle" src="{{$user->profile_pic_path?'storage/'.$user->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt=""> </a>
+                  <a href="{{route('user.dashboard.user.information',[$user->id])}}"> <img class="avatar-img rounded-circle" src="{{
+                    $user->profile_pic_path
+                    ? (
+                      $user->accountSetting
+                      ? (
+                        $user->accountSetting->profile_image
+                        ? asset('storage/'.$user->profile_pic_path) 
+                        : asset('assets/FriendFinder-Theme/images/users/empty.jpg') 
+                      )
+                      : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                    )
+                    : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                  }}" alt=""> </a>
                 </div>
                 <!-- Info -->
                 <div class="w-100">
