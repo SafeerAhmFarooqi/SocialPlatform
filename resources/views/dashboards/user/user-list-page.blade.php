@@ -40,37 +40,53 @@
 
 @foreach ($users as $user)
 
-                                    <div class="col-sm-3">
-                    <!-- Friends item START -->
-                    <div class="card shadow-none text-center h-100">
-                      
-                      <div class="card-body p-2 pb-0">
-                        <div class="avatar avatar-story avatar-xl">
-                          <a href="{{route('user.dashboard.user.information',[$user->id])}}"><img class="avatar-img rounded-circle" src="{{
-                            $user->profile_pic_path
-                            ? (
-                              $user->accountSetting
-                              ? (
-                                $user->accountSetting->profile_image
-                                ? asset('storage/'.$user->profile_pic_path) 
-                                : asset('assets/FriendFinder-Theme/images/users/empty.jpg') 
-                              )
-                              : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
-                            )
-                            : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
-                          }}" alt=""></a>
+<div class="col-sm-6 col-xl-4">
+                      <!-- Event item START -->
+                      <div class="card h-100">
+
+                        <div class="h-80px rounded-top" style="background-image:url({{asset('assets/ressoli-theme/assets/images/events/01.jpg')}}); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+
+
+                        <div class="position-relative" style="text-align: center;margin-top: -13%;">
+                          <img class="img-fluid rounded-top" src="https://ressoli.asadsohail.com/assets/FriendFinder-Theme/images/users/empty.jpg " alt="" style="max-width:100px">
+                           
                         </div>
-                        <h6 class="card-title mb-1 mt-3"> <a href="{{route('user.dashboard.user.information',[$user->id])}}"> {{substr($user->firstname.' '.$user->lastname,0,25)}}</a></h6>
-                        <p class="mb-0 small lh-sm">16 Followers</p>
-                      </div>
-                      <!-- Card footer -->
-                      <div class="card-footer p-2 border-0">
-                        <a href="javascript:;" onclick="myFunction({{$user->id}})" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send message"> <i class="bi bi-chat-left-text"></i> </a>
-                        <a href="{{route('user.dashboard.user.information',[$user->id])}}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Public Profile"> <i class="bi bi-person"></i> </a>
-                      </div>
+                        <!-- Card body START -->
+                        <div class="card-body position-relative pt-0">
+                          <!-- Tag -->
+                           <h6 class="mt-3" style="text-align:center;"> <a href="event-details.html">{{substr($user->firstname.' '.$user->lastname,0,25)}} </a> </h6>
+                       
+                           
+                          <!-- Avatar group END -->
+                          <!-- Button -->
+                          <div class="d-flex mt-3 justify-content-between">
+                            <!-- Interested button -->
+                            <div class="w-100">
+                             <a href="{{route('user.dashboard.user.information',[$user->id])}}">
+                              <label class="btn btn-sm btn-outline-success d-block" for="Interested1"><i class="fa-solid fa-thumbs-up me-1"></i> Profile</label>
+                            </a>
+                            </div>
+                            <div class="dropdown ms-3">
+                              <a href="javascript:;" onclick="myFunction({{$user->id}})" class="btn btn-sm btn-primary-soft" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send message"> 
+                                  <i class="bi bi-chat-left-text-fill fs-6"> </i>
+                              </a>
+
+                             <!--  <a href="#" class="btn btn-sm btn-primary-soft"  >
+                               <i class="bi bi-chat-left-text-fill fs-6"> </i>
+                              </a> -->
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Card body END -->
+                     </div>
+                     <!-- Event item END -->
                     </div>
-                    
-                  </div>
+
+
+
+
+ 
                   <iframe id="{{$user->id}}" style="visibility:visible;width: 350px; height: 416px; border: 1px solid rgb(214, 214, 214); display: none;position: fixed;
                     bottom: 100px;
                     right: 15px;

@@ -13,8 +13,15 @@
             <!-- News item -->
             @foreach ($groupMemberRequests as $groupMemberRequest)
             <div class="mb-3">
-                <h6 class="mb-0"><a href="#">{{($groupMemberRequest->group->owner->firstname??'').' '.($groupMemberRequest->group->owner->lastname??'')}}</a> Send you Request</h6>
-                <small><a href="javascript:;" wire:click="$set('selectedGroupMemberRequest', {{$groupMemberRequest->id}})" data-bs-toggle="modal"  data-bs-target="#accept-request" style="margin-right: 20px;color: rgb(0, 255, 89);">Accept</a><a href="javascript:;" style="color: red;" wire:click="$set('selectedGroupMemberRequest', {{$groupMemberRequest->id}})" data-bs-toggle="modal"  data-bs-target="#reject-request">Reject</a></small>
+                <h6 class="mb-0" style="font-size: 11px"><a href="#">{{($groupMemberRequest->group->owner->firstname??'').' '.($groupMemberRequest->group->owner->lastname??'')}}</a> Send you Request</h6>
+                <small>
+
+                  <a href="javascript:;" wire:click="$set('selectedGroupMemberRequest', {{$groupMemberRequest->id}})" data-bs-toggle="modal"  data-bs-target="#accept-request" style="margin-right: 10px;padding:5px;font-size:10px" class="btn btn-success">Accept</a>
+
+                  <a href="javascript:;"  wire:click="$set('selectedGroupMemberRequest', {{$groupMemberRequest->id}})" data-bs-toggle="modal"  data-bs-target="#reject-request" class="btn btn-danger"
+                 style="padding:5px !important;font-size:10px;color:#fff !important" >Reject </a>
+
+               </small>
               </div>
             @endforeach
            
