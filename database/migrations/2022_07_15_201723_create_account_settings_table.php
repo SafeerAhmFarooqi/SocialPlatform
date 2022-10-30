@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('account_settings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->boolean('user_dob')->default(0);
-            $table->integer('user_address')->default(0);
-            $table->integer('user_phone')->default(0);
-            $table->integer('user_about')->default(0);
+            $table->boolean('user_dob')->default(1);
+            $table->boolean('user_address')->default(1);
+            $table->boolean('user_phone')->default(1);
+            $table->boolean('user_about')->default(1);
+            $table->boolean('profile_image')->default(1);
+            $table->boolean('cover_image')->default(1);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

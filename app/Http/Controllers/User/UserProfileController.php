@@ -77,6 +77,28 @@ class UserProfileController extends BaseUserController
         return back()->with('success_1', 'Profile Image Updated');
  }
 
+ public function userCoverImageStore(Request $request)
+ {
+    $request->validate([
+        //Validation Rules  
+        'cover_pic' => ['required','max:2048','image','mimes:jpeg,png,jpg,gif,svg,bmp'],
+    ],[
+        //Validation Messages
+        'required'=>':attribute Required',
+    ],[
+        //Validation Attributes
+        'cover_pic' =>'Cover Image',
+    ]);
+
+    $request->cover_pic->store('cover-images/'.Auth::user()->id.'/cover-pic','public');
+    $imagePath = 'cover-images/'.Auth::user()->id.'/cover-pic'.'/'. $request->cover_pic->hashName();
+    $user=Auth::user();    
+    $user->cover_image_path=$imagePath;
+    $user->save();
+
+        return back()->with('success_1', 'Cover Image Updated');
+ }
+
  public function userProfileSettingStore(Request $request)
  {
     //return "safeer";
@@ -87,6 +109,8 @@ class UserProfileController extends BaseUserController
         $accountSetting->user_address=in_array('address',$request->setting??[])?true : false;
         $accountSetting->user_phone=in_array('phone',$request->setting??[])?true : false;
         $accountSetting->user_about=in_array('about',$request->setting??[])?true : false;
+        $accountSetting->profile_image=in_array('profileimage',$request->setting??[])?true : false;
+        $accountSetting->cover_image=in_array('coverimage',$request->setting??[])?true : false;
         $accountSetting->save();
         return back()->with('success', 'Profile Settings Updated');
     } else {
@@ -95,6 +119,8 @@ class UserProfileController extends BaseUserController
             'user_address' => in_array('address',$request->setting??[])?true : false,
             'user_phone' => in_array('phone',$request->setting??[])?true : false,
             'user_about' => in_array('about',$request->setting??[])?true : false,
+            'profile_image' => in_array('profileimage',$request->setting??[])?true : false,
+            'cover_image' => in_array('coverimage',$request->setting??[])?true : false,
         ]);
         if ($accountSetting) {
             return back()->with('success', 'Profile Settings Updated');

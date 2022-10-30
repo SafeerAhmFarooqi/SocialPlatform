@@ -40,6 +40,9 @@
                     <a class="nav-link d-flex mb-0" href="#nav-setting-tab-3" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon/handshake-outline-filled.svg')}}" alt=""><span>Profile Image </span></a>
                   </li>
                   <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <a class="nav-link d-flex mb-0" href="#nav-setting-tab-7" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon/handshake-outline-filled.svg')}}" alt=""><span>Cover Image </span></a>
+                  </li>
+                  <li class="nav-item" data-bs-dismiss="offcanvas">
                     <a class="nav-link d-flex mb-0" href="#nav-setting-tab-2" data-bs-toggle="tab"> <img class="me-2 h-20px fa-fw" src="{{asset('assets/ressoli-theme/assets/images/icon/shield-outline-filled.svg')}}" alt=""><span>Privacy and safety </span></a>
                   </li>
                  
@@ -256,7 +259,7 @@
                       <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
                         <div class="me-2">
                           <h6 class="mb-0">Date of Birth</h6>
-                          <p class="small mb-0">Joy say painful removed reached end.</p>
+                          <p class="small mb-0">{{Auth::user()->dob?Auth::user()->dob->format('F d,y') : ''}}</p>
                         </div>
                         <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox"  name="setting[]" value='dob' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_dob?'checked' : ''):''):''}}>
@@ -267,7 +270,7 @@
                       <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
                         <div class="me-2">
                           <h6 class="mb-0">Address</h6>
-                          <p class="small mb-0">Ask a quick six seven offer see among.</p>
+                          <p class="small mb-0">{{Auth::user()->user_address?Auth::user()->user_address : ''}}</p>
                         </div>
                         <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox" name="setting[]" value='address' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_address?'checked' : ''):''):''}}>
@@ -277,17 +280,35 @@
                       <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
                         <div class="me-2">
                           <h6 class="mb-0"> Phone Number</h6>
-                          <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
+                          <p class="small mb-0">{{Auth::user()->phone?Auth::user()->phone : ''}}</p>
                         </div>
                         <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox" name="setting[]" value='phone' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_phone?'checked' : ''):''):''}}>
+                        </div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                        <div class="me-2">
+                          <h6 class="mb-0"> Profile Image</h6>
+                          <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='profileimage' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->profile_image?'checked' : ''):''):''}}>
+                        </div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                        <div class="me-2">
+                          <h6 class="mb-0"> Cover Image</h6>
+                          <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='coverimage' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->cover_image?'checked' : ''):''):''}}>
                         </div>
                       </li>
                       <!-- Notification list item -->
                       <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
                         <div class="me-2">
                           <h6 class="mb-0">About Me</h6>
-                          <p class="small mb-0">Contented he gentleman agreeable do be</p>
+                          <p class="small mb-0">{{Auth::user()->about_me?Auth::user()->about_me : ''}}</p>
                         </div>
                         <div class="form-check form-switch">
                           <input class="form-check-input" type="checkbox" name="setting[]" value='about' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_about?'checked' : ''):''):''}}>
@@ -318,7 +339,7 @@
               <div class="card">
                 <!-- Card header START -->
                 <div class="card-header border-0 pb-0">
-                  <h5 class="card-title">Privacy and safety</h5>
+                  <h5 class="card-title">Profile Image</h5>
                   <p class="mb-0">See information about your account, download an archive of your data, or learn about your account deactivation options</p>
                 </div>
                 <!-- Card header START -->
@@ -331,11 +352,11 @@
             <div class="col-md-12">
               <div class="profile-info">
                  <label for="profile_pic col-sm-6">
-                  <img src="{{Auth::user()->profile_pic_path?'storage/'.Auth::user()->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="" class="img-responsive profile-photo" id="output" style="max-width: 200px;" />
+                  <img src="{{Auth::user()->profile_pic_path?'storage/'.Auth::user()->profile_pic_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="" class="img-responsive profile-photo" id="output1" style="max-width: 200px;" />
                 </label>
                 <form action="{{route('user.profile.image.change')}}" method="post" class="form-inline" enctype="multipart/form-data">
                   @csrf
-                <input type="file" class="form-control" name="profile_pic" id="profile_pic" style="margin: 10% 10%;" onchange="loadFile(event)">
+                <input type="file" class="form-control" name="profile_pic" id="profile_pic" style="margin: 10% 10%;" onchange="loadFile1(event)">
                 @error('profile_pic')
                 <div style="color: red;">
                         {{$message}}
@@ -356,6 +377,49 @@
               <!-- Privacy and safety END -->
             </div>
             <!-- Privacy and safety tab END -->
+
+            <div class="tab-pane fade" id="nav-setting-tab-7">
+              <!-- Privacy and safety START -->
+              <div class="card">
+                <!-- Card header START -->
+                <div class="card-header border-0 pb-0">
+                  <h5 class="card-title">Cover Image</h5>
+                  <p class="mb-0">See information about your account, download an archive of your data, or learn about your account deactivation options</p>
+                </div>
+                <!-- Card header START -->
+                <!-- Card body START -->
+                <div class="card-body">
+                  <!-- Privacy START -->
+                  <ul class="list-group">
+                    
+                   <div class="wrapper" style="text-align: center;margin:0 auto">
+            <div class="col-md-12">
+              <div class="profile-info">
+                 <label for="profile_pic col-sm-6">
+                  <img src="{{Auth::user()->cover_image_path?'storage/'.Auth::user()->cover_image_path : asset('assets/FriendFinder-Theme/images/users/empty.jpg')}}" alt="" class="img-responsive profile-photo" id="output2" style="max-width: 200px;" />
+                </label>
+                <form action="{{route('user.cover.image.change')}}" method="post" class="form-inline" enctype="multipart/form-data">
+                  @csrf
+                <input type="file" class="form-control" name="cover_pic" id="cover_pic" style="margin: 10% 10%;" onchange="loadFile2(event)">
+                @error('cover_pic')
+                <div style="color: red;">
+                        {{$message}}
+                </div>
+                @enderror
+                <button type="submit" class="btn btn-sm btn-primary mb-0" style="margin-bottom: 10%;">Change</button>
+              </form>
+              </div>
+              
+            </div>
+            
+          </div>
+                  </ul>
+                  <!-- Privacy END -->
+                </div>
+               
+              </div>
+              <!-- Privacy and safety END -->
+            </div>
 
             <!-- Communications tab START -->
             <div class="tab-pane fade" id="nav-setting-tab-4">
@@ -697,5 +761,23 @@
                 var near_place = autocomplete.getPlace();
             });
         });
+</script>
+<script>
+  var loadFile1 = function(event) {
+    var output1 = document.getElementById('output1');
+    output1.src = URL.createObjectURL(event.target.files[0]);
+    output1.onload = function() {
+      URL.revokeObjectURL(output1.src) // free memory
+    }
+  };
+</script>
+<script>
+  var loadFile2 = function(event) {
+    var output2 = document.getElementById('output2');
+    output2.src = URL.createObjectURL(event.target.files[0]);
+    output2.onload = function() {
+      URL.revokeObjectURL(output2.src) // free memory
+    }
+  };
 </script>
 @endsection
