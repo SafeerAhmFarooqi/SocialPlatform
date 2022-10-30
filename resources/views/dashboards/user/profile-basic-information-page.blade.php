@@ -262,7 +262,7 @@
                           <p class="small mb-0">{{Auth::user()->dob?Auth::user()->dob->format('F d,y') : ''}}</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox"  name="setting[]" value='dob' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_dob?'checked' : ''):''):''}}>
+                          <input class="form-check-input" type="checkbox"  name="setting[]" value='dob' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->user_dob?'checked' : ''):''}}>
                           
                         </div>
                       </li>
@@ -273,7 +273,7 @@
                           <p class="small mb-0">{{Auth::user()->user_address?Auth::user()->user_address : ''}}</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="setting[]" value='address' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_address?'checked' : ''):''):''}}>
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='address' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->user_address?'checked' : ''):''}}>
                         </div>
                       </li>
                       <!-- Notification list item -->
@@ -283,7 +283,7 @@
                           <p class="small mb-0">{{Auth::user()->phone?Auth::user()->phone : ''}}</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="setting[]" value='phone' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_phone?'checked' : ''):''):''}}>
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='phone' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->user_phone?'checked' : ''):''}}>
                         </div>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
@@ -292,7 +292,7 @@
                           <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="setting[]" value='profileimage' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->profile_image?'checked' : ''):''):''}}>
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='profileimage' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->profile_image?'checked' : ''):''}}>
                         </div>
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
@@ -301,7 +301,7 @@
                           <p class="small mb-0">Preference any astonished unreserved Mrs.</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="setting[]" value='coverimage' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->cover_image?'checked' : ''):''):''}}>
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='coverimage' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->cover_image?'checked' : ''):''}}>
                         </div>
                       </li>
                       <!-- Notification list item -->
@@ -311,7 +311,7 @@
                           <p class="small mb-0">{{Auth::user()->about_me?Auth::user()->about_me : ''}}</p>
                         </div>
                         <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" name="setting[]" value='about' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->first()?(Auth::user()->accountSetting->first()->user_about?'checked' : ''):''):''}}>
+                          <input class="form-check-input" type="checkbox" name="setting[]" value='about' {{Auth::user()->accountSetting?(Auth::user()->accountSetting->user_about?'checked' : ''):''}}>
                         </div>
                       </li>
           
