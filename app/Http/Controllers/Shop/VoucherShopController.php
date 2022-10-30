@@ -25,7 +25,7 @@ class VoucherShopController extends BaseShopController
  {
     $request->validate([
         'title' => ['required', 'string', 'max:255'],
-        'discount' => ['required', 'string', 'max:255'],
+        'discount' => ['required', 'numeric', 'max:255'],
         'image' => ['required','max:2048','image','mimes:jpeg,png,jpg,gif,svg,bmp'],
     ]);
 

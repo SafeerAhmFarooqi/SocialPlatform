@@ -54,7 +54,8 @@ Header START -->
               $postActivities = App\Models\Posts::where('user_id','!=',Auth::user()->id)->orderBy('created_at','DESC')->take(4)->get();
               $commentActivities = App\Models\Comments::where('user_id','!=',Auth::user()->id)->orderBy('created_at','DESC')->take(4)->get();
               $groupActivities = App\Models\Group::where('created_by','!=',Auth::user()->id)->orderBy('created_at','DESC')->take(4)->get();
-              $activities=$postActivities->concat($commentActivities)->concat($groupActivities);
+              $groupMemberRequests = App\Models\GroupMemberRequest::where('member_id',Auth::user()->id)->where('status',null)->get();
+              $activities=$postActivities->concat($commentActivities)->concat($groupActivities)->concat($groupMemberRequests);
               $activities = $activities->sortBy([
                   ['created_at', 'desc'],
               ]);
@@ -104,8 +105,9 @@ Header START -->
                           <p class="small mb-2">
                             {{$activity->getTable()=='groups'&&$activity->created_at?'Group created by '.($activity->owner->firstname ??'')
                             : ($activity->getTable()=='posts'&&$activity->created_at?'Post created by '.($activity->user->firstname ??'')
+                            : ($activity->getTable()=='group_member_requests'&&$activity->created_at?'Group Invitation by '.($activity->group->owner->firstname ??'')
                             : ($activity->getTable()=='comments'&&$activity->created_at?'Comment created by '.($activity->user->firstname ??'') 
-                            : ''))
+                            : '')))
                             
                             }}
                           </p>
