@@ -12,7 +12,7 @@
               $user->accountSetting
               ? (
                 $user->accountSetting->profile_image
-                ? asset('storage/'.Auth::user()->cover_image_path) 
+                ? asset('storage/'.$user->cover_image_path) 
                 : asset('assets/ressoli-theme/assets/profilecoverlock.png') 
               )
               : asset('assets/ressoli-theme/assets/profilecoverlock.png')
@@ -32,7 +32,7 @@
                         $user->accountSetting
                         ? (
                           $user->accountSetting->profile_image
-                          ? asset('storage/'.Auth::user()->profile_pic_path) 
+                          ? asset('storage/'.$user->profile_pic_path) 
                           : asset('assets/FriendFinder-Theme/images/users/empty.jpg') 
                         )
                         : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
