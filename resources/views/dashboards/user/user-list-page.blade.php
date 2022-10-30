@@ -46,7 +46,19 @@
                       
                       <div class="card-body p-2 pb-0">
                         <div class="avatar avatar-story avatar-xl">
-                          <a href="{{route('user.dashboard.user.information',[$user->id])}}"><img class="avatar-img rounded-circle" src="{{$user->profile_pic_path?'storage/'.$user->profile_pic_path : asset('assets/ressoli-theme/assets/images/icon/person-outline-filled.svg')}}" alt=""></a>
+                          <a href="{{route('user.dashboard.user.information',[$user->id])}}"><img class="avatar-img rounded-circle" src="{{
+                            $user->profile_pic_path
+                            ? (
+                              $user->accountSetting
+                              ? (
+                                $user->accountSetting->profile_image
+                                ? asset('storage/'.$user->profile_pic_path) 
+                                : asset('assets/FriendFinder-Theme/images/users/empty.jpg') 
+                              )
+                              : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                            )
+                            : asset('assets/FriendFinder-Theme/images/users/empty.jpg')
+                          }}" alt=""></a>
                         </div>
                         <h6 class="card-title mb-1 mt-3"> <a href="{{route('user.dashboard.user.information',[$user->id])}}"> {{substr($user->firstname.' '.$user->lastname,0,25)}}</a></h6>
                         <p class="mb-0 small lh-sm">16 Followers</p>
