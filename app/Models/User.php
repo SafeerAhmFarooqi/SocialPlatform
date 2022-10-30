@@ -49,6 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
         'shopbanner_id',
         'shoplogo_id',
+        'cover_image_path',
     ];
 
     protected $dates = ['dob','deleted_at'];

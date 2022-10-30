@@ -22,6 +22,8 @@ class AccountSetting extends Model
         'user_address',
         'user_phone',
         'user_about',
+        'profile_image',
+        'cover_image',
     ];
 
     protected static function booted()

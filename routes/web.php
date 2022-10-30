@@ -116,6 +116,7 @@ Route::resource('profile', ShopProfileController::class);
 Route::group(['middleware' => ['role:User','auth','verified','admin.user.approved']], function () {
     Route::get('/user-profile-page', [UserProfileController::class,'userProfilePageShow'])->name('user.profile.basic.show');
     Route::post('/user-profile-image-store', [UserProfileController::class,'userProfileImageStore'])->name('user.profile.image.change');
+    Route::post('/user-cover-image-store', [UserProfileController::class,'userCoverImageStore'])->name('user.cover.image.change');
     Route::post('/user-profile-data-store', [UserProfileController::class,'userProfileDataStore'])->name('user.profile.data.change');
     Route::get('/user-people-nearby', [UserPeopleNearbyController::class,'userPeopleNearbyPageShow'])->name('user.dashboard.people-nearby');
     Route::get('/user-groups-dashboard', [UserGroupsController::class,'userGroupsPageShow'])->name('user.dashboard.groups');
