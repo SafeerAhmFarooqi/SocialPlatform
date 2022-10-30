@@ -16,27 +16,22 @@
           <p class="mt-3">{{old('about_me')??Auth::user()->about_me}}</p>
 
           <!-- User stat START -->
-          <div class="hstack gap-2 gap-xl-3 justify-content-center">
-            <!-- User stat item -->
-            <div>
+      <!--     <div class="hstack gap-2 gap-xl-3 justify-content-center">
+             <div>
               <h6 class="mb-0">256</h6>
               <small>Post</small>
             </div>
-            <!-- Divider -->
-            <div class="vr"></div>
-            <!-- User stat item -->
-            <div>
+             <div class="vr"></div>
+             <div>
               <h6 class="mb-0">2.5K</h6>
               <small>Followers</small>
             </div>
-            <!-- Divider -->
-            <div class="vr"></div>
-            <!-- User stat item -->
-            <div>
+             <div class="vr"></div>
+             <div>
               <h6 class="mb-0">365</h6>
               <small>Following</small>
             </div>
-          </div>
+          </div> -->
           <!-- User stat END -->
         </div>
 

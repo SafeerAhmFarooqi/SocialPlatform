@@ -36,7 +36,7 @@
                         <div class="d-sm-flex justify-content-between">
                           <h6><a href="#!">{{$unusedVoucher->title??''}} </a></h6>
                            <!-- Dropdown START -->
-                          <div class="dropdown ms-auto">
+                     <!--      <div class="dropdown ms-auto">
                             <a href="#" class="text-secondary" id="bdayActionEdit" data-bs-toggle="dropdown" aria-expanded="false">
                               <i class="fa fa-gift"></i>
                             </a>
@@ -48,10 +48,10 @@
                               </span></li>
                                
                             </ul>
-                          </div>
+                          </div> -->
 
                       </div>
-                      <div class="position-relative w-100">
+                      <div class="position-relative w-100" style="text-align:right">
                         <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">Discount : {{$unusedVoucher->discount??''}}</span>
                         <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal-{{$unusedVoucher->id}}"><img width="50" height="50" src="{{asset('assets/images/qr_icon.png')}}" alt=""></a>
                        </div>
@@ -68,7 +68,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <div class="position-relative w-100">
+                    <div class="position-relative w-100" style="text-align:center;">
                      
                       <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">{!! QrCode::size(200)->generate(route('user.dashboard.voucher.use.page',[urlencode(Illuminate\Support\Facades\Crypt::encryptString(Auth::user()->email)),urlencode(Illuminate\Support\Facades\Crypt::encryptString($unusedVoucher->code))])); !!} </span>
                      </div>
@@ -104,7 +104,7 @@
                           <div class="d-sm-flex justify-content-between">
                             <h6><a href="#!">{{$usedVoucher->voucher->title??''}} </a></h6>
                              <!-- Dropdown START -->
-                            <div class="dropdown ms-auto">
+                           <!--  <div class="dropdown ms-auto">
                               <a href="#" class="text-secondary" id="bdayActionEdit" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-gift"></i>
                               </a>
@@ -113,7 +113,7 @@
                                 <li><a class="dropdown-item" href="#"> <i class="fa fa-gift fa-fw pe-1"></i>{{$usedVoucher->voucher->code??''}}</a></li>
                                  
                               </ul>
-                            </div>
+                            </div> -->
   
                         </div>
                         <div class="position-relative w-100">
