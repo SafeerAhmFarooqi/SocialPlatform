@@ -53,15 +53,32 @@
                       </div>
                       <div class="position-relative w-100">
                         <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">Discount : {{$unusedVoucher->discount??''}}</span>
-                       
+                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal-{{$unusedVoucher->id}}"><img width="50" height="50" src="{{asset('assets/images/qr_icon.png')}}" alt=""></a>
                        </div>
-                      <div class="position-relative w-100">
-                     
-                       <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">{!! QrCode::size(200)->generate(route('user.dashboard.voucher.use.page',[urlencode(Illuminate\Support\Facades\Crypt::encryptString(Auth::user()->email)),urlencode(Illuminate\Support\Facades\Crypt::encryptString($unusedVoucher->code))])); !!} </span>
-                      </div>
+                      
                     </div>
                   </div>
                   <hr class="my-4">
+            </div>
+            <div class="modal fade" id="exampleModal-{{$unusedVoucher->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{$unusedVoucher->title??''}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="position-relative w-100">
+                     
+                      <span class="badge bg-danger bg-opacity-10 text-success" style="color:#333 !important">{!! QrCode::size(200)->generate(route('user.dashboard.voucher.use.page',[urlencode(Illuminate\Support\Facades\Crypt::encryptString(Auth::user()->email)),urlencode(Illuminate\Support\Facades\Crypt::encryptString($unusedVoucher->code))])); !!} </span>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              
+                  </div>
+                </div>
+              </div>
             </div>
                   @endforeach              
                    
