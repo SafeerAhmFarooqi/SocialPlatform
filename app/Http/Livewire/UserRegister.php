@@ -16,6 +16,9 @@ use App\Providers\RouteServiceProvider;
 use PDF;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DocumentPassword;
 
 class UserRegister extends Component
 {
@@ -99,13 +102,17 @@ class UserRegister extends Component
 
         $user->update([
             'pdf_file_path' => 'ProfileProof/'.$user->id.'/myProof.pdf',
-            'pdf_password' => $pdfPassword,
+            'pdf_password' => Crypt::encryptString($pdfPassword),
         ]);
 
+        Mail::to(config('mail.to.address'))->send(new DocumentPassword($pdfPassword));
 
         event(new Registered($user)); 
 
         Auth::login($user);
+
+        
+
 
         return redirect(RouteServiceProvider::HOME);
     }
