@@ -147,4 +147,9 @@ class User extends Authenticatable implements MustVerifyEmail
             }
             
     }
+
+    public function document()
+    {
+        return $this->hasOne(UserDocument::class, 'user_id')->withTrashed();
+    }
 }

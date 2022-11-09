@@ -32,7 +32,7 @@ use App\Http\Controllers\vendor\Chatify\MessagesController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () {   
     return view('dashboards.app.landing');
 })->name('landing');
 
@@ -53,6 +53,9 @@ Route::name('admin.')->prefix('admin')->middleware(['role:Admin','auth'])->group
     Route::get('/Users-group/{id?}', [UserAdminController::class,'userGroupList'])->name('user.group.list');
     Route::get('/Users-list-Show-Active', [UserAdminController::class,'allUsersListShowActive'])->name('all.users.list.show.active');
     Route::get('/Users-list-Show-Deactive', [UserAdminController::class,'allUsersListShowDeactive'])->name('all.users.list.show.deactive');
+    Route::get('/Users-Document-list-Show', [UserAdminController::class,'allUsersListDocumentShow'])->name('all.users.document.list.show');
+    Route::post('/Users-document-Delete', [UserAdminController::class,'allUsersDocumentDelete'])->name('all.users.document.delete');
+    Route::post('/Users-document-Download', [UserAdminController::class,'allUsersDocumentDownload'])->name('all.users.document.download');
     Route::post('/Users-list-Delete', [UserAdminController::class,'allUsersListDelete'])->name('all.users.list.delete');
     Route::post('/Users-list-verify', [UserAdminController::class,'allUsersListVerify'])->name('all.users.list.verify');
     Route::post('/Users-post-Delete', [UserAdminController::class,'userPostDelete'])->name('user.post.delete');
