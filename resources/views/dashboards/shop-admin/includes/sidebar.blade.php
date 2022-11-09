@@ -97,6 +97,15 @@
                                 <span class="menu-title">De Active Users</span>
                             </a>
                         </div>
+
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('admin.all.users.document.list.show')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Documents</span>
+                            </a>
+                        </div>
                         
                     </div>
                 </div>

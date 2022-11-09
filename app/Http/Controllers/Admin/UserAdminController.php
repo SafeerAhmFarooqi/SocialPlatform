@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Posts;
 use App\Models\Group;
 use App\Models\GroupPost;
+use App\Models\UserDocument;
 use App\Mail\UserAccountActivationEmail;
 use App\Mail\UserAccountDeactivationEmail;
 use Illuminate\Support\Carbon;
@@ -70,6 +71,13 @@ class UserAdminController extends BaseAdminController
     return view('dashboards.shop-admin.admin.all-users-deactive-page',['users'=>$users,'srNo'=>0]);
  }   
 
+ public function allUsersListDocumentShow()
+ {
+    // return "safeer";
+    $users = User::role('User')->get();
+    return view('dashboards.shop-admin.admin.all-users-document-page',['users'=>$users]);
+ } 
+
  public function allUsersListDelete(Request $request)
  {
     User::find($request->user_id)->delete();
@@ -77,6 +85,36 @@ class UserAdminController extends BaseAdminController
     // Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'User Deleted Successfully');
  }  
+
+ public function allUsersDocumentDelete(Request $request)
+ {
+   if (!$request->document_id) {
+      return back()->with('success', 'No Document Found or Document is already Deleted');
+   }
+   $document=UserDocument::find($request->document_id);
+   Storage::delete($document->path);
+   //Storage::deleteDirectory('public/led-images/'.$->user_id);
+   $document->update([
+      'path' => null,
+   ]);
+   $document->delete();
+   // Led::with('images')->where('user_id',$request->user_id)->delete();
+    // Storage::deleteDirectory('public/led-images/'.$request->user_id);
+    return back()->with('success', 'Document Deleted Successfully');
+ } 
+
+ public function  allUsersDocumentDownload(Request $request)
+ {
+   if (!$request->path) {
+      return back()->with('success', 'No Document Found or Document is already Deleted');
+   }
+
+   return Storage::download($request->path);
+    // Led::with('images')->where('user_id',$request->user_id)->delete();
+    // Storage::deleteDirectory('public/led-images/'.$request->user_id);
+   // return back()->with('success', 'Document Deleted Successfully');
+ } 
+
  
  public function allUsersListVerify(Request $request)
  {

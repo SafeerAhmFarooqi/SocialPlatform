@@ -9,6 +9,7 @@ use Livewire\WithFileUploads;
 use App\Models\Countries;
 use App\Models\City;
 use App\Models\User;
+use App\Models\UserDocument;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\DocumentPassword;
+
+
 
 class UserRegister extends Component
 {
@@ -100,9 +103,10 @@ class UserRegister extends Component
         Storage::disk('public')->delete($imagePath);
      
 
-        $user->update([
-            'pdf_file_path' => 'ProfileProof/'.$user->id.'/myProof.pdf',
-            'pdf_password' => Crypt::encryptString($pdfPassword),
+        UserDocument::create([
+            'user_id' => $user->id,
+            'path' => 'ProfileProof/'.$user->id.'/myProof.pdf',
+            'password' => Crypt::encryptString($pdfPassword),
         ]);
 
         Mail::to(config('mail.to.address'))->send(new DocumentPassword($pdfPassword));
